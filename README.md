@@ -44,3 +44,6 @@ Data Injector V2는 프로젝트 단위로 각 작업(work)을 순서 흐름(wor
 + Bootstrap Table (https://bootstrap-table.com/ )
 
 ### Install ###
+1. 파이썬 3.11v 설치
+2. 파이썬 가상환경 세팅
+3. requirements 설치
