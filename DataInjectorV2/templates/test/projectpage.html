@@ -1,0 +1,396 @@
+{% extends 'test/header.html' %}
+    {% block content %}
+    <div class="container-fluid h-100" style="padding: 0;">
+        <div class="row g-0" style="padding: 0; ">
+            <div class="col-12 d-flex flex-row p-3 gap-3">
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="" style=" text-align: center;">
+                        <i class="fa-solid fa-circle-play"
+                            style="font-size: 36px; color: #1FB148; text-align: center;  cursor: pointer;"></i>
+                    </div>
+                    <div style="text-align: center; font-size: 14px;">작업 시작</div>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="" style=" text-align: center;">
+                        <i class="fa-solid fa-clipboard"
+                            style="font-size: 36px; color: #868686; text-align: center;  cursor: pointer;"></i>
+                    </div>
+                    <div style="text-align: center; font-size: 14px;">작업 내역</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-0">
+            <div class="col-2 ">
+                <div class="" id="accordionExample" style="">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="head">
+                            <div class="d-flex flex-row justify-content-between" style="position: relative; display: flex; align-items: center; width: 100%; padding: 1rem 1.25rem; font-size: 1rem;
+                            background-color: #FAFAFA; font-weight: 600;">
+                                <div>데이터</div>
+                                <div class="dropdown">
+                                    <button style="all: unset; padding:0 .4em; border: none;" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end"
+                                        style="min-width: 5em; text-align: center;">
+                                        <li><a class="dropdown-item" href="#">추가</a></li>
+                                        <li><a class="dropdown-item" href="#">삭제</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <div class="accordion-button d-flex flex-row justify-content-between g-3" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#pet" aria-expanded="true" aria-controls="pet"
+                                style="width:100%">
+                                <div>Pet</div>
+                                <div class="dropdown dropend" style="position:relative; z-index: 999; ">
+                                    <div type="" class="" data-bs-toggle="dropdown" aria-expanded="false"
+                                        data-bs-auto-close="outside" style="margin-left: 10px;">
+                                        <i class="fa-solid fa-gear"></i>
+                                    </div>
+                                    <div class="dropdown-menu" style="width:360px; padding: 0; padding-bottom: 10px;">
+                                        <div class="card-header d-flex flex-row" style="font-weight: 600;">
+                                            <div class="">Pet</div>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link" aria-current="page" href="#">NetWorkDrive</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">FTP</a>
+                                            </li>
+                                        </ul>
+                                        <form class="p-3">
+                                            <div class="">
+                                                <div class="mb-2 input-group-sm">
+                                                    <label for="exampleDropdownFormEmail1" class="form-label">
+                                                        이름</label>
+                                                    <input type="text" class="form-control " id="optionname"
+                                                        placeholder="">
+                                                </div>
+                                                <div class="mb-2 input-group-sm">
+                                                    <label for="exampleDropdownFormPassword1"
+                                                        class="form-label">IP</label>
+                                                    <input type="text" class="form-control input-group-sm"
+                                                        id="exampleDropdownFormPassword1"
+                                                        placeholder="127.0.0.1/example">
+                                                </div>
+                                                <div class="mb-2 input-group-sm">
+                                                    <label for="exampleFormControlTextarea1"
+                                                        class="form-label">ID</label>
+                                                    <input class="form-control" style="resize: none;"
+                                                        id="exampleFormControlTextarea1" rows="5"></input>
+                                                </div>
+                                                <div class="mb-2 input-group-sm">
+                                                    <label type="password" for="exampleFormControlTextarea1"
+                                                        class="form-label">비밀번호</label>
+                                                    <input class="form-control" style="resize: none;"
+                                                        id="exampleFormControlTextarea1" rows="5"></input>
+                                                </div>
+                                                <div class="mb-2 form-check" style="">
+                                                    <label class="form-check-label" for="defaultCheck2"></label>
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="defaultCheck2">
+                                                </div>
+                                                <div class="mb-2 mb-2">
+                                                    <div class="btn btn-primary float-end">저장</div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </h2>
+                        <div id="pet" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div>
+                                    <span>데이터 위치 : NetWorkDrive</span>
+                                </div>
+                                <div>
+                                    <span>파일 등록 일자 : 2023-02-20</span>
+                                </div>
+                                <div>
+                                    <span>파일 개수 : 120,000 개</span>
+                                </div>
+                                <div>
+                                    <span>파일 구성 : jpg, png</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#tkd" aria-expanded="false" aria-controls="tkd">
+                                태권도
+                            </button>
+                        </h2>
+                        <div id="tkd" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div>
+                                    <span>데이터 위치 : NetWorkDrive</span>
+                                </div>
+                                <div>
+                                    <span>파일 등록 일자 : 2023-02-20</span>
+                                </div>
+                                <div>
+                                    <span>파일 개수 : 120,000 개</span>
+                                </div>
+                                <div>
+                                    <span>파일 구성 : jpg, png</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="head">
+                                <div class="accordion-head" style="position: relative; display: flex; align-items: center; width: 100%; padding: 1rem 1.25rem; font-size: 1rem;
+                                background-color: #FAFAFA; font-weight: 600;">
+                                    작업
+                                </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#viewer" aria-expanded="true" aria-controls="viewer">
+                                    뷰어
+                                </button>
+                            </h2>
+                            <div id="viewer" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body p-0">
+                                    <button type="button" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        <div class="d-flex flex-row">
+                                            <div class="col d-flex flex-row g-2">
+                                                <div><i class="fa-solid fa-image"></i></div>
+                                                <div>이미지 뷰어</div>
+                                            </div>
+                                            <div class="dropdown dropend" style="position:relative;">
+                                                <div type="" class="" data-bs-toggle="dropdown" aria-expanded="false"
+                                                    data-bs-auto-close="outside">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </div>
+                                                <div class="dropdown-menu"
+                                                    style="width:360px; padding: 0; padding-bottom: 10px;">
+                                                    <div class="card-header d-flex flex-row" style="font-weight: 600;">
+                                                        <div class="">이미지 뷰어</div>
+                                                        <div class="form-check form-switch" style="margin-left: 10px;">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                role="switch" id="flexSwitchCheckDefault">
+                                                            <label class="form-check-label"
+                                                                for="flexSwitchCheckDefault"></label>
+                                                        </div>
+                                                    </div>
+                                                    <form class="p-3">
+                                                        <div class="">
+                                                            <div class="mb-2 input-group-sm">
+                                                                <label for="exampleDropdownFormEmail1"
+                                                                    class="form-label">옵션
+                                                                    이름</label>
+                                                                <input type="text" class="form-control " id="optionname"
+                                                                    placeholder="이미지 뷰어">
+                                                            </div>
+                                                            <div class="mb-2 input-group-sm">
+                                                                <label for="exampleDropdownFormPassword1"
+                                                                    class="form-label">URL</label>
+                                                                <input type="text" class="form-control input-group-sm"
+                                                                    id="exampleDropdownFormPassword1"
+                                                                    placeholder="127.0.0.1/example">
+                                                            </div>
+                                                            <div class="mb-2 input-group-sm">
+                                                                <label for="exampleFormControlTextarea1"
+                                                                    class="form-label">JSON</label>
+                                                                <textarea class="form-control" style="resize: none;"
+                                                                    id="exampleFormControlTextarea1"
+                                                                    rows="5"></textarea>
+                                                            </div>
+                                                            <div class="mb-2 mb-2">
+                                                                <div class="btn btn-primary float-end">저장</div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                    </button>
+                                    <button type="button" class="list-group-item list-group-item-action">
+                                        <div class="d-flex flex-row gap-2">
+                                            <div><i class="fa-solid fa-chart-pie"></i></div>
+                                            <div>통계</div>
+                                            <div class=""></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#manufacturing" aria-expanded="false" aria-controls="manufacturing">
+                                가공
+                            </button>
+                        </h2>
+                        <div id="manufacturing" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body p-0">
+                                <button type="button" class="list-group-item list-group-item-action"
+                                    aria-current="true">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div class="col d-flex flex-row gap-2">
+                                            <div><i class="fa-solid fa-image"></i></div>
+                                            <div>이미지 뷰어</div>
+                                        </div>
+                                        <div onclick=""><i class="fa-solid fa-gear"></i></div>
+                                    </div>
+                                </button>
+                                <button type="button" class="list-group-item list-group-item-action">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div><i class="fa-solid fa-chart-pie"></i></div>
+                                        <div>통계</div>
+                                        <div class=""></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#study" aria-expanded="false" aria-controls="study">
+                                학습
+                            </button>
+                        </h2>
+                        <div id="study" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body p-0">
+                                <button type="button" class="list-group-item list-group-item-action"
+                                    aria-current="true">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div class="col d-flex flex-row gap-2">
+                                            <div><i class="fa-solid fa-image"></i></div>
+                                            <div>이미지 뷰어</div>
+                                        </div>
+                                        <div onclick=""><i class="fa-solid fa-gear"></i></div>
+                                    </div>
+                                </button>
+                                <button type="button" class="list-group-item list-group-item-action">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div><i class="fa-solid fa-chart-pie"></i></div>
+                                        <div>통계</div>
+                                        <div class=""></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#evaluation" aria-expanded="false" aria-controls="evaluation">
+                                평가
+                            </button>
+                        </h2>
+                        <div id="evaluation" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body p-0">
+                                <button type="button" class="list-group-item list-group-item-action"
+                                    aria-current="true">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div><i class="fa-solid fa-image"></i></div>
+                                        <div>이미지 뷰어</div>
+                                    </div>
+                                </button>
+                                <button type="button" class="list-group-item list-group-item-action">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div><i class="fa-solid fa-chart-pie"></i></div>
+                                        <div>통계</div>
+                                        <div class=""></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#interlock" aria-expanded="false" aria-controls="interlock">
+                                연동
+                            </button>
+                        </h2>
+                        <div id="interlock" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body p-0">
+                                <button type="button" class="list-group-item list-group-item-action"
+                                    aria-current="true">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div><i class="fa-solid fa-image"></i></div>
+                                        <div>이미지 뷰어</div>
+                                    </div>
+                                </button>
+                                <button type="button" class="list-group-item list-group-item-action">
+                                    <div class="d-flex flex-row gap-2">
+                                        <div><i class="fa-solid fa-chart-pie"></i></div>
+                                        <div>통계</div>
+                                        <div class=""></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-10 h-100">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="head">
+                        <div class="accordion-head" style="position: relative; display: flex; align-items: center; width: 100%; padding: 1rem 1.25rem; font-size: 1rem;
+                        background-color: #FAFAFA; font-weight: 600;">
+                            project01
+                        </div>
+                </div>
+                <div class="h-5" style="height: 400px; "></div>
+
+                <div class="col-12 h-100">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="head">
+                            <div class="accordion-head" style="position: relative; display: flex; align-items: center; width: 100%; padding: 1rem 1.25rem; font-size: 1rem;
+                                background-color: #FAFAFA; font-weight: 600;">
+                                결과 확인
+                            </div>
+
+                    </div>
+                    <div class="row accordion-header" style="margin: 0; text-align: center;">
+                        <div class="tab col-1"
+                            style="border: 1px solid  rgba(0, 0, 0, 0.125); padding: 0.8rem 1.25rem; font-size: 1rem;">
+                            결과 확인
+                        </div>
+                        <div class="tab col-1"
+                            style="border: 1px solid  rgba(0, 0, 0, 0.125); padding: 0.8rem 1.25rem; font-size: 1rem;">
+                            결과 확인
+                        </div>
+                    </div>
+                    <div
+                        style="border: 1px solid rgba(0, 0, 0, 0.125); padding: 0.8rem 1.25rem; font-size: 1rem; height: 300px">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

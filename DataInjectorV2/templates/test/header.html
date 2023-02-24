@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Injector</title>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alyssaxuu/flowy/flowy.min.css">
+
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #167251; ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color:#fff; font-weight:600;">
+                <img src={% static '/img/LogoGXAI.svg'%} style="width:6em;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            </button>
+            <button class="btn " style="">
+                <i style="font-size: 1.5em; color: #fff;" class="fa-solid fa-arrow-left"></i>
+            </button>
+        </div>
+    </nav>
+    <div>
+        {% block content %} 
+              {% comment %} base.html을 상속한 템플릿에서 구현해야 하는 영역 {% endcomment %}
+        {% endblock %}
+            <div>
+</body>
+
+
+</html>
