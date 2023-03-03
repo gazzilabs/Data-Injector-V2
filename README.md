@@ -44,6 +44,8 @@ Data Injector V2는 프로젝트 단위로 각 작업(work)을 순서 흐름(wor
 + Bootstrap Table (https://bootstrap-table.com/ )
 
 ### Install ###
-1. 파이썬 3.11v 설치
-2. 파이썬 가상환경 세팅
-3. requirements 설치
+1. install python v3.11.2
+2. python.exe -m venv venv (venv폴더명이 ignore패턴으로 포함되어 있음.)
+3. venv\activate.bat 가상환경 실행
+4. pip install -r requirements.txt
+5. python DatainjectorV2\manage.py runserver
