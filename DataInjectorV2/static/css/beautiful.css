@@ -101,23 +101,6 @@
   border-radius: 4px;
 }
 
-.drawflow-node input,
-.drawflow-node select,
-.drawflow-node textarea {
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  height: 30px;
-  line-height: 30px;
-  font-size: 16px;
-  width: 158px;
-  color: #555555;
-}
-
-.drawflow-node textarea {
-  height: 100px;
-}
-
-
 .drawflow-node.personalized {
   background: red;
   height: 200px;
@@ -225,7 +208,6 @@
 
 .drawflow svg {
   z-index: 0;
-  position: absolute;
   overflow: visible !important
 }
 
@@ -443,8 +425,6 @@
   background: var(--dfInputBackgroundColor);
   border: var(--dfInputBorderSize)  solid var(--dfInputBorderColor);
   border-radius: var(--dfInputBorderRadius);
-  height: var(--dfInputHeight);
-  width: var(--dfInputWidth);
 }
 
 .drawflow .drawflow-node .input:hover {
