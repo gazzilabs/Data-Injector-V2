@@ -3,7 +3,7 @@
 <div class="row g-0 " style="padding: 0; border: 1px solid rgba(0, 0, 0, 0.125);">
     <div class="col-12 d-flex flex-row p-3 gap-3">
         <div class="d-flex flex-column justify-content-center" onclick="openstart();">
-            <div class="" style=" text-align: center;"  >
+            <div class="" style=" text-align: center;">
                 <i class="fa-solid fa-circle-play"
                     style="font-size: 36px; color: #1FB148; text-align: center;  cursor: pointer;"></i>
             </div>
@@ -14,7 +14,7 @@
                 <i class="fa-solid fa-clipboard"
                     style="font-size: 36px; color: #868686; text-align: center;  cursor: pointer;"></i>
             </div>
-            <div style="text-align: center; font-size: 14px;" >작업 내역</div>
+            <div style="text-align: center; font-size: 14px;">작업 내역</div>
         </div>
     </div>
 </div>
@@ -63,7 +63,12 @@
             <div class="p-3 list-group-item d-flex flex-row justify-content-between "
                 style="background-color:rgba(0, 0, 0, 0.03);">
                 <div style="font-weight: 600;">작업</div>
-                <div><i class="fa-solid fa-ellipsis-vertical" style="color: #868686; font-size: 20px;"></i></div>
+                <div>
+                    <button style="all: unset; padding:0 .4em; border: none;" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
             </div>
             <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
                 data-bs-target="#viewer" aria-expanded="false" aria-controls="viewer">
@@ -172,8 +177,7 @@
                     </div>
                     <div class="gap-3 d-flex flex-row" style="float: right;">
                         <div>
-                            <button class="btn btn-outline-primary" aria-current="page"
-                                onclick="Swal.fire({ title: 'Export', html: '<pre><code>'+JSON.stringify(editor.export(), null,4)+'</code></pre>'})">
+                            <button class="btn btn-outline-primary" aria-current="page" onclick="exportmodal()">
                                 내보내기
                             </button>
                         </div>
@@ -218,6 +222,24 @@
     </div>
 </div>
 
+<div class="modal" id="modal-export" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">내보내기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="div-export" style="overflow-y: auto;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    onclick="closePopup('modal-start');">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal" id="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -237,15 +259,14 @@
                 </div>
                 <div class="mb-2 input-group-sm">
                     <label for="URL" class="form-label">IP</label>
-                    <input type="text" class="form-control input-group-sm" id="URL"
-                        placeholder="127.0.0.1/example">
+                    <input type="text" class="form-control input-group-sm" id="URL" placeholder="127.0.0.1/example">
                 </div>
                 <div class="mb-2 input-group-sm">
                     <label for="ID" class="form-label">ID</label>
                     <input class="form-control" style="resize: none;" id="ID" rows="5"></input>
                 </div>
                 <div class="mb-2 input-group-sm">
-                    <label  for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
+                    <label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
                     <input type="password" class="form-control" style="resize: none;" id="password" rows="5"></input>
                 </div>
                 <div class="mb-2 form-check" style="">
@@ -253,7 +274,7 @@
                     <input class="form-check-input" type="checkbox" id="watching">
                 </div>
                 <div class="mb-2 form-check" style="" id="registeredURL">
-                    
+
                 </div>
                 <div class="mb-2 mb-2">
                     <div class="btn btn-primary float-end" onclick="closePopup('modal')">확인</div>
@@ -301,120 +322,120 @@
 <style>
     /*timeilne*/
 
-.timeline {
-    border-left: 3px solid #727cf5;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
-    background: rgba(114, 124, 245, 0.09);
-    margin: 0 auto;
-    letter-spacing: 0.2px;
-    position: relative;
-    line-height: 1.4em;
-    font-size: 1.03em;
-    padding: 50px;
-    list-style: none;
-    text-align: left;
-    max-width: 40%;
-}
-
-@media (max-width: 767px) {
     .timeline {
-        max-width: 98%;
-        padding: 25px;
-    }
-}
-
-.timeline h1 {
-    font-weight: 300;
-    font-size: 1.4em;
-}
-
-.timeline h2,
-.timeline h3 {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.timeline .event {
-    border-bottom: 1px dashed #e8ebf1;
-    padding-bottom: 25px;
-    margin-bottom: 25px;
-    position: relative;
-}
-
-@media (max-width: 767px) {
-    .timeline .event {
-        padding-top: 30px;
-    }
-}
-
-.timeline .event:last-of-type {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    border: none;
-}
-
-.timeline .event:before,
-.timeline .event:after {
-    position: absolute;
-    display: block;
-    top: 0;
-}
-
-.timeline .event:before {
-    left: -207px;
-    content: attr(data-date);
-    text-align: right;
-    font-weight: 100;
-    font-size: 0.9em;
-    min-width: 120px;
-}
-
-@media (max-width: 767px) {
-    .timeline .event:before {
-        left: 0px;
+        border-left: 3px solid #727cf5;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        background: rgba(114, 124, 245, 0.09);
+        margin: 0 auto;
+        letter-spacing: 0.2px;
+        position: relative;
+        line-height: 1.4em;
+        font-size: 1.03em;
+        padding: 50px;
+        list-style: none;
         text-align: left;
+        max-width: 40%;
     }
-}
 
-.timeline .event:after {
-    -webkit-box-shadow: 0 0 0 3px #727cf5;
-    box-shadow: 0 0 0 3px #727cf5;
-    left: -55.8px;
-    background: #fff;
-    border-radius: 50%;
-    height: 9px;
-    width: 9px;
-    content: "";
-    top: 5px;
-}
+    @media (max-width: 767px) {
+        .timeline {
+            max-width: 98%;
+            padding: 25px;
+        }
+    }
 
-@media (max-width: 767px) {
+    .timeline h1 {
+        font-weight: 300;
+        font-size: 1.4em;
+    }
+
+    .timeline h2,
+    .timeline h3 {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .timeline .event {
+        border-bottom: 1px dashed #e8ebf1;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event {
+            padding-top: 30px;
+        }
+    }
+
+    .timeline .event:last-of-type {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: none;
+    }
+
+    .timeline .event:before,
     .timeline .event:after {
-        left: -31.8px;
+        position: absolute;
+        display: block;
+        top: 0;
     }
-}
 
-.rtl .timeline {
-    border-left: 0;
-    text-align: right;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-    border-right: 3px solid #727cf5;
-}
+    .timeline .event:before {
+        left: -207px;
+        content: attr(data-date);
+        text-align: right;
+        font-weight: 100;
+        font-size: 0.9em;
+        min-width: 120px;
+    }
 
-.rtl .timeline .event::before {
-    left: 0;
-    right: -170px;
-}
+    @media (max-width: 767px) {
+        .timeline .event:before {
+            left: 0px;
+            text-align: left;
+        }
+    }
 
-.rtl .timeline .event::after {
-    left: 0;
-    right: -55.8px;
-}
+    .timeline .event:after {
+        -webkit-box-shadow: 0 0 0 3px #727cf5;
+        box-shadow: 0 0 0 3px #727cf5;
+        left: -55.8px;
+        background: #fff;
+        border-radius: 50%;
+        height: 9px;
+        width: 9px;
+        content: "";
+        top: 5px;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event:after {
+            left: -31.8px;
+        }
+    }
+
+    .rtl .timeline {
+        border-left: 0;
+        text-align: right;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+        border-right: 3px solid #727cf5;
+    }
+
+    .rtl .timeline .event::before {
+        left: 0;
+        right: -170px;
+    }
+
+    .rtl .timeline .event::after {
+        left: 0;
+        right: -55.8px;
+    }
 </style>
 
 <script>
@@ -424,7 +445,82 @@
     const dataToImport = {
         "drawflow": {
             "Home": {
-                "data": {}
+                "data": {
+                    "1": {
+                        "id": 1,
+                        "name": "pet",
+                        "data": {},
+                        "class": "pet",
+                        "html": "\n <div class='d-flex flex-row'>\n <div class='d-flex flex-row justify-content-between'>\n <div><i class='fa-solid fa-database'></i></div>\n <div> pet</div>\n </div> \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {},
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                        "node": "2",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "3",
+                                        "output": "input_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "pos_x": 277.361083984375,
+                        "pos_y": 174.25692749023438
+                    },
+                    "2": {
+                        "id": 2,
+                        "name": "viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                        "node": "1",
+                                        "input": "output_1"
+                                    },
+                                    {
+                                        "node": "3",
+                                        "input": "output_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 764.361083984375,
+                        "pos_y": 189.25692749023438
+                    },
+                    "3": {
+                        "id": 3,
+                        "name": "coco",
+                        "data": {},
+                        "class": "coco",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>\n <div>\n <div class='input-group my-3'>\n <span class='input-group-text'>URL</span>\n <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>\n <div class='input-group my-3'>\n <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "1",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "2",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 425,
+                        "pos_y": 267
+                    }
+                }
             },
             "Other": {
                 "data": {
@@ -433,7 +529,6 @@
                 }
             }
         }
-
     }
     editor.start();
     editor.import(dataToImport);
@@ -592,20 +687,20 @@
         switch (name) {
             case 'pet':
                 var pet = `
-            <div class="d-flex flex-row">
-                <div class="d-flex flex-row justify-content-between">
-                    <div class=""><i class="fa-solid fa-database"></i></div>
-                    <div> pet</div>
-                </div> 
-            </div>
-            `;
+                <div class='d-flex flex-row'>
+                    <div class='d-flex flex-row justify-content-between'>
+                        <div><i class='fa-solid fa-database'></i></div>
+                        <div> pet</div>
+                    </div> 
+                </div>
+                `;
                 editor.addNode('pet', 0, 1, pos_x, pos_y, 'pet', {}, pet);
                 break;
 
             case 'viewer':
                 var viewer = `
               <div>
-                <div class="title-box"><i class="fa-solid fa-images"></i>이미지 뷰어</div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>이미지 뷰어</div>
                 
               </div>
               `
@@ -615,7 +710,7 @@
             case 'chart':
                 var chart = `
               <div>
-                <div class="title-box"><i class="fa-solid fa-chart-pie"></i> chart</div>
+                <div class='title-box'><i class='fa-solid fa-chart-pie'></i> chart</div>
               </div>
               `
                 editor.addNode('chart', 1, 0, pos_x, pos_y, 'chart', {}, chart);
@@ -623,13 +718,13 @@
             case 'hawkeye':
                 var hawkeye = `
                 <div>
-                <div class="title-box"><i class="fa-solid fa-photo-film"></i> Hawkeye</div>
+                <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>
                 <div>
-                    <div class="input-group my-3">
-                    <span class="input-group-text">URL</span>
-                    <input type="text" class="form-control" placeholder="\\\\127.0.0.1\\example"></div>
-                    <div class="input-group my-3">
-                        <textarea class="form-control" aria-label="With textarea" rows="5"></textarea>
+                    <div class='input-group my-3'>
+                    <span class='input-group-text'>URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <div class='input-group my-3'>
+                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
                     </div>
                 </div>
               </div>
@@ -639,13 +734,13 @@
             case 'coco':
                 var coco = `
               <div>
-                <div class="title-box"><i class="fa-solid fa-right-left"></i> COCO데이터셋 변환</div>
+                <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>
                 <div>
-                    <div class="input-group my-3">
-                    <span class="input-group-text">URL</span>
-                    <input type="text" class="form-control" placeholder="\\\\127.0.0.1\\example"></div>
-                    <div class="input-group my-3">
-                        <textarea class="form-control" aria-label="With textarea" rows="5"></textarea>
+                    <div class='input-group my-3'>
+                    <span class='input-group-text'>URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <div class='input-group my-3'>
+                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
                     </div>
                 </div>
               </div>
@@ -655,13 +750,13 @@
             case 'videotoimage':
                 var videotoimage = `
               <div>
-                <div class="title-box"><i class="fa-solid fa-right-left"></i> 비디오를 이미지로 변환</div>
+                <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>
                 <div>
-                    <div class="input-group my-3">
-                    <span class="input-group-text">URL</span>
-                    <input type="text" class="form-control" placeholder="\\\\127.0.0.1\\example"></div>
-                    <div class="input-group my-3">
-                        <textarea class="form-control" aria-label="With textarea" rows="5"></textarea>
+                    <div class='input-group my-3'>
+                    <span class='input-group-text'>URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <div class='input-group my-3'>
+                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
                     </div>
                 </div>
               </div>
@@ -670,10 +765,10 @@
                 break;
             case 'xdq':
                 var xdq = `
-              <div class="" >
-                <div class="title-box"><i class="fa-solid fa-circle-nodes"></i>XDQ 연동</div>
-                <div class="d-flex flex-row justify-content-center my-2 " style="text-align: center;">
-                    <button class="btn btn-primary" onclick="moveXDQ()">XDQ</button>
+              <div class='' >
+                <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>
+                <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
+                    <button class='btn btn-primary' onclick='moveXDQ()'>XDQ</button>
                    
                 </div>
               </div>
@@ -683,46 +778,46 @@
             case 'telegram':
                 var telegrambot = `
               <div>
-                <div class="title-box"><i class="fab fa-telegram-plane"></i> Telegram bot</div>
-                <div class="box">
+                <div class='title-box'><i class='fab fa-telegram-plane'></i> Telegram bot</div>
+                <div class='box'>
                   <p>Send to telegram</p>
                   <p>select channel</p>
                   <select df-channel>
-                    <option value="channel_1">Channel 1</option>
-                    <option value="channel_2">Channel 2</option>
-                    <option value="channel_3">Channel 3</option>
-                    <option value="channel_4">Channel 4</option>
+                    <option value='channel_1'>Channel 1</option>
+                    <option value='channel_2'>Channel 2</option>
+                    <option value='channel_3'>Channel 3</option>
+                    <option value='channel_4'>Channel 4</option>
                   </select>
                 </div>
               </div>
               `;
                 editor.addNode('telegram', 1, 0, pos_x, pos_y, 'telegram', {
-                    "channel": 'channel_3'
+                    'channel': 'channel_3'
                 }, telegrambot);
                 break;
             case 'aws':
                 var aws = `
               <div>
-                <div class="title-box"><i class="fab fa-aws"></i> Aws Save </div>
-                <div class="box">
+                <div class='title-box'><i class='fab fa-aws'></i> Aws Save </div>
+                <div class='box'>
                   <p>Save in aws</p>
-                  <input type="text" df-db-dbname placeholder="DB name"><br><br>
-                  <input type="text" df-db-key placeholder="DB key">
+                  <input type='text' df-db-dbname placeholder='DB name'><br><br>
+                  <input type='text' df-db-key placeholder='DB key'>
                   <p>Output Log</p>
                 </div>
               </div>
               `;
                 editor.addNode('aws', 1, 1, pos_x, pos_y, 'aws', {
-                    "db": {
-                        "dbname": '',
-                        "key": ''
+                    'db': {
+                        'dbname': '',
+                        'key': ''
                     }
                 }, aws);
                 break;
             case 'log':
                 var log = `
                 <div>
-                  <div class="title-box"><i class="fas fa-file-signature"></i> Save log file </div>
+                  <div class='title-box'><i class='fas fa-file-signature'></i> Save log file </div>
                 </div>
                 `;
                 editor.addNode('log', 1, 0, pos_x, pos_y, 'log', {}, log);
@@ -730,7 +825,7 @@
             case 'google':
                 var google = `
                 <div>
-                  <div class="title-box"><i class="fab fa-google-drive"></i> Google Drive save </div>
+                  <div class='title-box'><i class='fab fa-google-drive'></i> Google Drive save </div>
                 </div>
                 `;
                 editor.addNode('google', 1, 0, pos_x, pos_y, 'google', {}, google);
@@ -738,7 +833,7 @@
             case 'email':
                 var email = `
                 <div>
-                  <div class="title-box"><i class="fas fa-at"></i> Send Email </div>
+                  <div class='title-box'><i class='fas fa-at'></i> Send Email </div>
                 </div>
                 `;
                 editor.addNode('email', 1, 0, pos_x, pos_y, 'email', {}, email);
@@ -747,8 +842,8 @@
             case 'template':
                 var template = `
                 <div>
-                  <div class="title-box"><i class="fas fa-code"></i> Template</div>
-                  <div class="box">
+                  <div class='title-box'><i class='fas fa-code'></i> Template</div>
+                  <div class='box'>
                     Ger Vars
                     <textarea df-template></textarea>
                     Output template with vars
@@ -756,13 +851,13 @@
                 </div>
                 `;
                 editor.addNode('template', 1, 1, pos_x, pos_y, 'template', {
-                    "template": 'Write your template'
+                    'template': 'Write your template'
                 }, template);
                 break;
             case 'multiple':
                 var multiple = `
                 <div>
-                  <div class="box">
+                  <div class='box'>
                     Multiple!
                   </div>
                 </div>
@@ -780,14 +875,14 @@
             case 'dbclick':
                 var dbclick = `
                 <div>
-                <div class="title-box"><i class="fas fa-mouse"></i> Db Click</div>
-                  <div class="box dbclickbox" ondblclick="showpopup(event)">
+                <div class='title-box'><i class='fas fa-mouse'></i> Db Click</div>
+                  <div class='box dbclickbox' ondblclick='showpopup(event)'>
                     Db Click here
-                    <div class="modal" style="display:none">
-                      <div class="modal-content">
-                        <span class="close" onclick="closemodal(event)">&times;</span>
+                    <div class='modal' style='display:none'>
+                      <div class='modal-content'>
+                        <span class='close' onclick='closemodal(event)'>&times;</span>
                         Change your variable {name} !
-                        <input type="text" df-name>
+                        <input type='text' df-name>
                       </div>
     
                     </div>
@@ -859,12 +954,12 @@
     function openPopup(name) {
         $("#modal").modal("show");
 
-        if(name == 'pet'){
+        if (name == 'pet') {
             fillName();
         }
     }
 
-    function fillName(){
+    function fillName() {
         document.getElementById("optionname").value = "pet";
         document.getElementById("URL").value = '//127.0.0.1/test';
         document.getElementById("ID").value = 'gazzilabs';
@@ -872,12 +967,13 @@
         document.getElementById("watching").checked = true;
     }
 
-    function openstart() {
-        $("#modal-start").modal("show");
-
+    function exportmodal() {
+        $("#modal-export").modal("show");
+        console.log(JSON.stringify(editor.export(), null, 4));
+        document.getElementById("div-export").innerText = JSON.stringify(editor.export(), null, 4);
     }
 
-    function openTimeline(){
+    function openTimeline() {
         $("#modal-timeline").modal("show");
     }
 
