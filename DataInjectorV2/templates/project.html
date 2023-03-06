@@ -1,4 +1,4 @@
-{% extends 'test/header.html' %}
+{% extends 'header.html' %}
 {% block content %}
 <div class="row g-0 " style="padding: 0; border: 1px solid rgba(0, 0, 0, 0.125);">
     <div class="col-12 d-flex flex-row p-3 gap-3">
@@ -65,8 +65,8 @@
                 <div style="font-weight: 600;">작업</div>
                 <div>
                     <button style="all: unset; padding:0 .4em; border: none;" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                        aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                 </div>
             </div>
@@ -76,14 +76,24 @@
             </div>
             <div class="collapse collapse-horizontal border accordion-body" id="viewer" style="padding-left:0 1rem;">
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
-                    draggable="true" ondragstart="drag(event)" data-node="viewer">
-                    <div><i class="fa-solid fa-images" style="color: #868686; font-size: 20px;"></i>이미지 뷰어</div>
-                    <div><i class="" style="color: #868686; font-size: 20px;"></i></div>
+                    draggable="true" ondragstart="drag(event)" data-node="original-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>원본 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="test-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>검사 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="label-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>라벨링 이미지 뷰어</div>
                 </div>
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
                     draggable="true" ondragstart="drag(event)" data-node="chart">
-                    <div><i class="fa-solid fa-chart-pie" style="color: #868686; font-size: 20px;"></i>통계</div>
-                    <div><i class="" style="color: #868686; font-size: 20px;"></i></div>
+                    <div><i class="fa-solid fa-chart-pie"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>통계</div>
                 </div>
             </div>
             <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
@@ -93,21 +103,19 @@
             <div class="collapse collapse-horizontal border accordion-body" id="machining" style="padding-left:0 1rem;">
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
                     draggable="true" ondragstart="drag(event)" data-node="coco">
-                    <div><i class="fa-solid fa-right-left" style="color: #868686; font-size: 20px;"></i>COCO 데이터셋 변환
-                    </div>
-                    <div><i class="" style="color: #868686; font-size: 20px;"></i></div>
+                    <div><i class="fa-solid fa-right-left"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>COCO 데이터셋 변환</div>
                 </div>
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2  border-bottom"
                     draggable="true" ondragstart="drag(event)" data-node="hawkeye">
-                    <div><i class="fa-solid fa-photo-film" style="color: #868686; font-size: 20px;"></i>Hawkeye
+                    <div><i class="fa-solid fa-photo-film"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>Hawkeye
                     </div>
-                    <div><i class="" style="color: #868686; font-size: 20px;"></i></div>
                 </div>
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
                     draggable="true" ondragstart="drag(event)" data-node="videotoimage">
-                    <div><i class="fa-solid fa-right-left" style="color: #868686; font-size: 20px;"></i>Video를 이미지로 변환
-                    </div>
-                    <div><i class="" style="color: #868686; font-size: 20px;"></i></div>
+                    <div><i class="fa-solid fa-right-left"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>Video를 이미지로 변환 </div>
                 </div>
             </div>
             <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
@@ -130,9 +138,8 @@
             <div class="collapse collapse-horizontal border accordion-body" id="interlock" style="padding-left:0 1rem;">
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
                     draggable="true" ondragstart="drag(event)" data-node="xdq">
-                    <div><i class="fa-solid fa-circle-nodes" style="color: #868686; font-size: 20px;"></i>XDQ 연동
-                    </div>
-                    <div><i class="" style="color: #868686; font-size: 20px;"></i></div>
+                    <div><i class="fa-solid fa-circle-nodes"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>XDQ 연동</div>
                 </div>
             </div>
         </div>
@@ -697,10 +704,30 @@
                 editor.addNode('pet', 0, 1, pos_x, pos_y, 'pet', {}, pet);
                 break;
 
-            case 'viewer':
+            case 'original-viewer':
+                var originalViewer = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>
+                
+              </div>
+              `
+                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, originalViewer);
+                break;
+
+            case 'test-viewer':
+                var testViewer = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>
+                
+              </div>
+              `
+                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, testViewer);
+                break;
+
+            case 'labeling-viewer':
                 var viewer = `
               <div>
-                <div class='title-box'><i class='fa-solid fa-images'></i>이미지 뷰어</div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>라벨링 이미지 뷰어</div>
                 
               </div>
               `
@@ -822,14 +849,6 @@
                 `;
                 editor.addNode('log', 1, 0, pos_x, pos_y, 'log', {}, log);
                 break;
-            case 'google':
-                var google = `
-                <div>
-                  <div class='title-box'><i class='fab fa-google-drive'></i> Google Drive save </div>
-                </div>
-                `;
-                editor.addNode('google', 1, 0, pos_x, pos_y, 'google', {}, google);
-                break;
             case 'email':
                 var email = `
                 <div>
@@ -893,7 +912,6 @@
                     name: ''
                 }, dbclick);
                 break;
-
             default:
         }
     }
@@ -983,6 +1001,10 @@
 
     function moveXDQ() {
         window.open('http://101.101.219.218:8000/', 'XDQ');
+    }
+
+    function openstart() {
+        $("#modal-start").modal("show");
     }
 </script>
 {% endblock %}

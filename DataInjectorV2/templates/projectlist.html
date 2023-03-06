@@ -1,4 +1,4 @@
-{% extends 'test/header.html' %}
+{% extends "header.html" %}
 
     {% block content %}
     <div class="container">
@@ -13,40 +13,50 @@
             data-detail-view="true" data-show-export="true" data-click-to-select="true"
             data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
             data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" data-show-footer="true"
-            data-side-pagination="server" data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
-            data-response-handler="responseHandler">
+            data-side-pagination="server" data-response-handler="responseHandler">
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="name">프로젝트 이름</th>
+                <th data-field="business_name">사업명</th>
+                <th data-field="startdate">작업 시작</th>
+                <th data-field="startdate">작업 끝</th>
+                <th data-field="startdate">시작 시간</th>
+
+              </tr>
         </table>
 
     </div>
    
 
     <script>
-        var $table = $('#table')
-        var $remove = $('#remove')
+        var $table = $("#table")
+        var $remove = $("#remove")
         var selections = []
 
         $(function() {
             var data = [
               {
-                'id': 0,
-                'name': 'project01',
-                'business_name': 'tkd'
-                'startdate':"2023-02-02"
-                'enddate':"2023-02-04"
-                'createdate':"2023-02-02"
-
+                "id": 0,
+                "name": "project01",
+                "business_name": "tkd",
+                "startdate":"2023-02-02",
+                "enddate":"2023-02-04",
+                "createdate":"2023-02-02"
               },
               {
-                'id': 1,
-                'name': 'Item 1',
-                'price': '$1'
+                "id": 1,
+                "name": "project01",
+                "business_name": "tkd",
+                "startdate":"2023-02-02",
+                "enddate":"2023-02-04",
+                "createdate":"2023-02-02"
               },
             ]
             $table.bootstrapTable({data: data})
           })
 
         function getIdSelections() {
-            return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return $.map($table.bootstrapTable("getSelections"), function (row) {
                 return row.id
             })
         }
@@ -61,36 +71,29 @@
         function detailFormatter(index, row) { // 추가 테이블
             var html = []
             $.each(row, function (key, value) {
-                html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+                html.push("<p><b>" + key + ":</b> " + value + "</p>")
             })
-            return html.join('')
+            return html.join("")
         }
 
         function operateFormatter(value, row, index) {
-            return [
-                '<a class="like" href="javascript:void(0)" title="Like">',
-                '<i class="fa fa-heart"></i>',
-                '</a>  ',
-                '<a class="remove" href="javascript:void(0)" title="Remove">',
-                '<i class="fa fa-trash"></i>',
-                '</a>'
-            ].join('')
+
         }
 
         window.operateEvents = {
-            'click .like': function (e, value, row, index) {
-                alert('You click like action, row: ' + JSON.stringify(row))
+            "click .like": function (e, value, row, index) {
+                alert("You click like action, row: " + JSON.stringify(row))
             },
-            'click .remove': function (e, value, row, index) {
-                $table.bootstrapTable('remove', {
-                    field: 'id',
+            "click .remove": function (e, value, row, index) {
+                $table.bootstrapTable("remove", {
+                    field: "id",
                     values: [row.id]
                 })
             }
         }
 
         function totalTextFormatter(data) {
-            return 'Total'
+            return "Total"
         }
 
         function totalNameFormatter(data) {
@@ -99,7 +102,7 @@
 
         function totalPriceFormatter(data) {
             var field = this.field
-            return '$' + data.map(function (row) {
+            return "$" + data.map(function (row) {
                 return +row[field].substring(1)
             }).reduce(function (sum, i) {
                 return sum + i
@@ -107,58 +110,55 @@
         }
 
         function initTable() {
-            $table.bootstrapTable('destroy').bootstrapTable({
-                height: '100%',
-                locale: $('#locale').val(),
+            $table.bootstrapTable("destroy").bootstrapTable({
+                height: "100%",
+                locale: $("#locale").val(),
                 columns: [
                     [{
-                        field: 'name',
-                        title: 'Item Name',
+                        field: "name",
+                        title: "Item Name",
                         sortable: true,
-                        footerFormatter: totalNameFormatter,
-                        align: 'center'
+                        align: "center"
                     }, {
-                        field: 'price',
-                        title: 'Item Price',
+                        field: "business_name",
+                        title: "Item Price",
                         sortable: true,
-                        align: 'center',
-                        footerFormatter: totalPriceFormatter
+                        align: "center",
                     }, {
-                        field: 'operate',
-                        title: 'Item Operate',
-                        align: 'center',
+                        field: "startdate",
+                        title: "Item Operate",
+                        align: "center",
                         clickToSelect: false,
                         events: window.operateEvents,
-                        formatter: operateFormatter
                     }]
                 ]
             })
-            $table.on('check.bs.table uncheck.bs.table ' +
-                'check-all.bs.table uncheck-all.bs.table',
+            $table.on("check.bs.table uncheck.bs.table " +
+                "check-all.bs.table uncheck-all.bs.table",
                 function () {
-                    $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
+                    $remove.prop("disabled", !$table.bootstrapTable("getSelections").length)
 
                     // save your data, here just save the current page
                     selections = getIdSelections()
                     // push or splice the selections if you want to save all data selections
                 })
-            $table.on('all.bs.table', function (e, name, args) {
+            $table.on("all.bs.table", function (e, name, args) {
                 console.log(name, args)
             })
             $remove.click(function () {
                 var ids = getIdSelections()
-                $table.bootstrapTable('remove', {
-                    field: 'id',
+                $table.bootstrapTable("remove", {
+                    field: "id",
                     values: ids
                 })
-                $remove.prop('disabled', true)
+                $remove.prop("disabled", true)
             })
         }
 
         $(function () {
             initTable()
 
-            $('#locale').change(initTable)
+            $("#locale").change(initTable)
         })
     </script>
     {% endblock %}
