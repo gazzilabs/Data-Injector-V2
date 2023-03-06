@@ -1,0 +1,1010 @@
+{% extends 'header.html' %}
+{% block content %}
+<div class="row g-0 " style="padding: 0; border: 1px solid rgba(0, 0, 0, 0.125);">
+    <div class="col-12 d-flex flex-row p-3 gap-3">
+        <div class="d-flex flex-column justify-content-center" onclick="openstart();">
+            <div class="" style=" text-align: center;">
+                <i class="fa-solid fa-circle-play"
+                    style="font-size: 36px; color: #1FB148; text-align: center;  cursor: pointer;"></i>
+            </div>
+            <div style="text-align: center; font-size: 14px;">작업 시작</div>
+        </div>
+        <div class="d-flex flex-column justify-content-center" onclick="openTimeline();">
+            <div class="" style=" text-align: center;">
+                <i class="fa-solid fa-clipboard"
+                    style="font-size: 36px; color: #868686; text-align: center;  cursor: pointer;"></i>
+            </div>
+            <div style="text-align: center; font-size: 14px;">작업 내역</div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="wrapper col-2 shadow-sm list-group">
+        <div class="col d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+            <div class="p-3 list-group-item d-flex flex-row justify-content-between"
+                style="background-color:rgba(0, 0, 0, 0.03);">
+                <div style="font-weight: 600;"> 데이터</div>
+                <div class="dropdown">
+                    <button style="all: unset; padding:0 .4em; border: none;" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 5em; text-align: center;">
+                        <li><a class="dropdown-item" onclick="openPopup()">추가</a></li>
+                        <li><a class="dropdown-item" href="#">삭제</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="drag-drawflow list-group-item d-flex flex-row justify-content-between" draggable="true"
+                    ondragstart="drag(event)" data-node="pet" data-bs-toggle="collapse"
+                    data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                    <div> pet</div>
+                    <div id="setting" onclick="openPopup('pet')"><i class="fa-solid fa-gear"
+                            style="color: #868686; font-size: 20px;"></i></div>
+                </div>
+                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div class="accordion-body">
+                        <div>
+                            <span>데이터 위치 : NetWorkDrive</span>
+                        </div>
+                        <div>
+                            <span>파일 등록 일자 : 2023-02-20</span>
+                        </div>
+                        <div>
+                            <span>파일 개수 : 120,000 개</span>
+                        </div>
+                        <div>
+                            <span>파일 구성 : jpg, png</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 list-group-item d-flex flex-row justify-content-between "
+                style="background-color:rgba(0, 0, 0, 0.03);">
+                <div style="font-weight: 600;">작업</div>
+                <div>
+                    <button style="all: unset; padding:0 .4em; border: none;" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#viewer" aria-expanded="false" aria-controls="viewer">
+                <div class="accordion-header" style="font-weight: 600;"> 뷰어</div>
+            </div>
+            <div class="collapse collapse-horizontal border accordion-body" id="viewer" style="padding-left:0 1rem;">
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="original-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>원본 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="test-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>검사 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="label-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>라벨링 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
+                    draggable="true" ondragstart="drag(event)" data-node="chart">
+                    <div><i class="fa-solid fa-chart-pie"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>통계</div>
+                </div>
+            </div>
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#machining" aria-expanded="false" aria-controls="machining">
+                <div class="accordion-header" style="font-weight: 600;">가공</div>
+            </div>
+            <div class="collapse collapse-horizontal border accordion-body" id="machining" style="padding-left:0 1rem;">
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="coco">
+                    <div><i class="fa-solid fa-right-left"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>COCO 데이터셋 변환</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2  border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="hawkeye">
+                    <div><i class="fa-solid fa-photo-film"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>Hawkeye
+                    </div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
+                    draggable="true" ondragstart="drag(event)" data-node="videotoimage">
+                    <div><i class="fa-solid fa-right-left"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>Video를 이미지로 변환 </div>
+                </div>
+            </div>
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#learning" aria-expanded="false" aria-controls="learning">
+                <div class="accordion-header" style="font-weight: 600;">학습</div>
+            </div>
+            <!--<div class="collapse collapse-horizontal border accordion-body" id="learning" style="padding-left:0 1rem;">
+            </div>-->
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#evaluation">
+                <div class="accordion-header" style="font-weight: 600;">평가</div>
+            </div>
+            <!--<div class="collapse collapse-horizontal border accordion-body" id="evaluation"
+                style="padding-left:0 1rem;">
+            </div>-->
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#interlock" aria-expanded="false" aria-controls="interlock">
+                <div class="accordion-header" style="font-weight: 600;">연동</div>
+            </div>
+            <div class="collapse collapse-horizontal border accordion-body" id="interlock" style="padding-left:0 1rem;">
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
+                    draggable="true" ondragstart="drag(event)" data-node="xdq">
+                    <div><i class="fa-solid fa-circle-nodes"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>XDQ 연동</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-10 ">
+        <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+            <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                <div class="">Project01</div>
+            </div>
+
+            <div class="card-body" style="background-color:rgba(0, 0, 0, 0.0);">
+                <div class="d-flex flex-row justify-content-between ">
+                    <div class="gap-3 d-flex flex-row">
+                        <div id="lock" onclick="editor.editor_mode='fixed'; changeMode('lock');">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-lock "></i>
+                            </button>
+                        </div>
+                        <div id="unlock" onclick="editor.editor_mode='edit'; changeMode('unlock');"
+                            style="display:none;">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-lock-open"></i>
+                            </button>
+                        </div>
+                        <div onclick="editor.zoom_out()">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                        </div>
+                        <div onclick="editor.zoom_reset()">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div onclick="editor.zoom_in()">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gap-3 d-flex flex-row" style="float: right;">
+                        <div>
+                            <button class="btn btn-outline-primary" aria-current="page" onclick="exportmodal()">
+                                내보내기
+                            </button>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary" onclick="editor.clearModuleSelected()">
+                                모두 지우기
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class=" col-12 drawflow" id="drawflow" style="height: 600px;" ondrop="drop(event)"
+                    ondragover="allowDrop(event)">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<div class="modal" id="modal-start" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">안 내</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>해당 워크플로우의 작업을 시작합니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closePopup('modal-start');">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    onclick="closePopup('modal-start');">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-export" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">내보내기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="div-export" style="overflow-y: auto;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    onclick="closePopup('modal-start');">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#" id="network">NetWorkDrive</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="FTP">FTP</a>
+                </li>
+            </ul>
+            <form class="p-3">
+                <div class="mb-2 input-group-sm">
+                    <label for="exampleDropdownFormEmail1" class="form-label">
+                        이름</label>
+                    <input type="text" class="form-control " id="optionname" placeholder="">
+                </div>
+                <div class="mb-2 input-group-sm">
+                    <label for="URL" class="form-label">IP</label>
+                    <input type="text" class="form-control input-group-sm" id="URL" placeholder="127.0.0.1/example">
+                </div>
+                <div class="mb-2 input-group-sm">
+                    <label for="ID" class="form-label">ID</label>
+                    <input class="form-control" style="resize: none;" id="ID" rows="5"></input>
+                </div>
+                <div class="mb-2 input-group-sm">
+                    <label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
+                    <input type="password" class="form-control" style="resize: none;" id="password" rows="5"></input>
+                </div>
+                <div class="mb-2 form-check" style="">
+                    <label class="form-check-label" for="defaultCheck2">데이터 변화 감지(Watching)</label>
+                    <input class="form-check-input" type="checkbox" id="watching">
+                </div>
+                <div class="mb-2 form-check" style="" id="registeredURL">
+
+                </div>
+                <div class="mb-2 mb-2">
+                    <div class="btn btn-primary float-end" onclick="closePopup('modal')">확인</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-timeline" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">작업내역</h6>
+                    <div id="content">
+                        <ul class="timeline">
+                            <li class="event" data-date="2023-02-03 17:48:48">
+                                <h3> 이미지 라벨링 작업 완료</h3>
+                                <p>성공 : 199,995 건
+                                    실패 : 5 건</p>
+                            </li>
+                            <li class="event" data-date="2023-02-02 11:00:36">
+                                <h3> 이미지 라벨링 작업 시작 </h3>
+                                <p>성공 : 120,000 건
+                                    실패 : 0 건</p>
+                            </li>
+                            <li class="event" data-date="2023-02-01 14:04:01">
+                                <h3>pet 데이터 추가</h3>
+                                <p>성공 : 120,000 건
+                                    실패 : 0 건</p>
+                            </li>
+                            <li class="event" data-date="2023-02-01 14:00:01">
+                                <h3>프로젝트 생성</h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    /*timeilne*/
+
+    .timeline {
+        border-left: 3px solid #727cf5;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        background: rgba(114, 124, 245, 0.09);
+        margin: 0 auto;
+        letter-spacing: 0.2px;
+        position: relative;
+        line-height: 1.4em;
+        font-size: 1.03em;
+        padding: 50px;
+        list-style: none;
+        text-align: left;
+        max-width: 40%;
+    }
+
+    @media (max-width: 767px) {
+        .timeline {
+            max-width: 98%;
+            padding: 25px;
+        }
+    }
+
+    .timeline h1 {
+        font-weight: 300;
+        font-size: 1.4em;
+    }
+
+    .timeline h2,
+    .timeline h3 {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .timeline .event {
+        border-bottom: 1px dashed #e8ebf1;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event {
+            padding-top: 30px;
+        }
+    }
+
+    .timeline .event:last-of-type {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: none;
+    }
+
+    .timeline .event:before,
+    .timeline .event:after {
+        position: absolute;
+        display: block;
+        top: 0;
+    }
+
+    .timeline .event:before {
+        left: -207px;
+        content: attr(data-date);
+        text-align: right;
+        font-weight: 100;
+        font-size: 0.9em;
+        min-width: 120px;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event:before {
+            left: 0px;
+            text-align: left;
+        }
+    }
+
+    .timeline .event:after {
+        -webkit-box-shadow: 0 0 0 3px #727cf5;
+        box-shadow: 0 0 0 3px #727cf5;
+        left: -55.8px;
+        background: #fff;
+        border-radius: 50%;
+        height: 9px;
+        width: 9px;
+        content: "";
+        top: 5px;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event:after {
+            left: -31.8px;
+        }
+    }
+
+    .rtl .timeline {
+        border-left: 0;
+        text-align: right;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+        border-right: 3px solid #727cf5;
+    }
+
+    .rtl .timeline .event::before {
+        left: 0;
+        right: -170px;
+    }
+
+    .rtl .timeline .event::after {
+        left: 0;
+        right: -55.8px;
+    }
+</style>
+
+<script>
+    var id = document.getElementById("drawflow");
+    const editor = new Drawflow(id);
+    editor.reroute = true;
+    const dataToImport = {
+        "drawflow": {
+            "Home": {
+                "data": {
+                    "1": {
+                        "id": 1,
+                        "name": "pet",
+                        "data": {},
+                        "class": "pet",
+                        "html": "\n <div class='d-flex flex-row'>\n <div class='d-flex flex-row justify-content-between'>\n <div><i class='fa-solid fa-database'></i></div>\n <div> pet</div>\n </div> \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {},
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                        "node": "2",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "3",
+                                        "output": "input_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "pos_x": 277.361083984375,
+                        "pos_y": 174.25692749023438
+                    },
+                    "2": {
+                        "id": 2,
+                        "name": "viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                        "node": "1",
+                                        "input": "output_1"
+                                    },
+                                    {
+                                        "node": "3",
+                                        "input": "output_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 764.361083984375,
+                        "pos_y": 189.25692749023438
+                    },
+                    "3": {
+                        "id": 3,
+                        "name": "coco",
+                        "data": {},
+                        "class": "coco",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>\n <div>\n <div class='input-group my-3'>\n <span class='input-group-text'>URL</span>\n <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>\n <div class='input-group my-3'>\n <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "1",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "2",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 425,
+                        "pos_y": 267
+                    }
+                }
+            },
+            "Other": {
+                "data": {
+                    "pos_x": 179,
+                    "pos_y": 272
+                }
+            }
+        }
+    }
+    editor.start();
+    editor.import(dataToImport);
+
+
+    /*
+        var welcome = `
+        <div>
+          <div class="title-box">👏 Welcome!!</div>
+          <div class="box">
+            <p>Simple flow library <b>demo</b>
+            <a href="https://github.com/jerosoler/Drawflow" target="_blank">Drawflow</a> by <b>Jero Soler</b></p><br>
+    
+            <p>Multiple input / outputs<br>
+               Data sync nodes<br>
+               Import / export<br>
+               Modules support<br>
+               Simple use<br>
+               Type: Fixed or Edit<br>
+               Events: view console<br>
+               Pure Javascript<br>
+            </p>
+            <br>
+            <p><b><u>Shortkeys:</u></b></p>
+            <p>🎹 <b>Delete</b> for remove selected<br>
+            💠 Mouse Left Click == Move<br>
+            ❌ Mouse Right == Delete Option<br>
+            🔍 Ctrl + Wheel == Zoom<br>
+            📱 Mobile support<br>
+            ...</p>
+          </div>
+        </div>
+        `;
+    */
+
+
+    //editor.addNode(name, inputs, outputs, posx, posy, class, data, html);
+    /*editor.addNode('welcome', 0, 0, 50, 50, 'welcome', {}, welcome );
+    editor.addModule('Other');
+    */
+
+    // Events!
+    editor.on('nodeCreated', function (id) {
+        console.log("Node created " + id);
+    })
+
+    editor.on('nodeRemoved', function (id) {
+        console.log("Node removed " + id);
+    })
+
+    editor.on('nodeSelected', function (id) {
+        console.log("Node selected " + id);
+    })
+
+    editor.on('moduleCreated', function (name) {
+        console.log("Module Created " + name);
+    })
+
+    editor.on('moduleChanged', function (name) {
+        console.log("Module Changed " + name);
+    })
+
+    editor.on('connectionCreated', function (connection) {
+        console.log('Connection created');
+        console.log(connection);
+    })
+
+    editor.on('connectionRemoved', function (connection) {
+        console.log('Connection removed');
+        console.log(connection);
+    })
+
+    editor.on('mouseMove', function (position) {
+        //console.log('Position mouse x:' + position.x + ' y:' + position.y);
+    })
+
+    editor.on('nodeMoved', function (id) {
+        console.log("Node moved " + id);
+    })
+
+    editor.on('zoom', function (zoom) {
+        console.log('Zoom level ' + zoom);
+    })
+
+    editor.on('translate', function (position) {
+        console.log('Translate x:' + position.x + ' y:' + position.y);
+    })
+
+    editor.on('addReroute', function (id) {
+        console.log("Reroute added " + id);
+    })
+
+    editor.on('removeReroute', function (id) {
+        console.log("Reroute removed " + id);
+    })
+
+    /* DRAG EVENT */
+
+    /* Mouse and Touch Actions */
+
+    var elements = document.getElementsByClassName('drag-drawflow');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('touchend', drop, false);
+        elements[i].addEventListener('touchmove', positionMobile, false);
+        elements[i].addEventListener('touchstart', drag, false);
+    }
+
+    var mobile_item_selec = '';
+    var mobile_last_move = null;
+
+    function positionMobile(ev) {
+        mobile_last_move = ev;
+    }
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        if (ev.type === "touchstart") {
+            mobile_item_selec = ev.target.closest(".drag-drawflow").getAttribute('data-node');
+        } else {
+            ev.dataTransfer.setData("node", ev.target.getAttribute('data-node'));
+        }
+    }
+
+    function drop(ev) {
+        if (ev.type === "touchend") {
+            var parentdrawflow = document.elementFromPoint(mobile_last_move.touches[0].clientX, mobile_last_move
+                .touches[0].clientY).closest("#drawflow");
+            if (parentdrawflow != null) {
+                addNodeToDrawFlow(mobile_item_selec, mobile_last_move.touches[0].clientX, mobile_last_move.touches[0]
+                    .clientY);
+            }
+            mobile_item_selec = '';
+        } else {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("node");
+            addNodeToDrawFlow(data, ev.clientX, ev.clientY);
+        }
+
+    }
+
+    function addNodeToDrawFlow(name, pos_x, pos_y) {
+        if (editor.editor_mode === 'fixed') {
+            return false;
+        }
+        pos_x = pos_x * (editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)) - (editor
+            .precanvas.getBoundingClientRect().x * (editor.precanvas.clientWidth / (editor.precanvas.clientWidth *
+                editor.zoom)));
+        pos_y = pos_y * (editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)) - (editor
+            .precanvas.getBoundingClientRect().y * (editor.precanvas.clientHeight / (editor.precanvas.clientHeight *
+                editor.zoom)));
+
+
+        switch (name) {
+            case 'pet':
+                var pet = `
+                <div class='d-flex flex-row'>
+                    <div class='d-flex flex-row justify-content-between'>
+                        <div><i class='fa-solid fa-database'></i></div>
+                        <div> pet</div>
+                    </div> 
+                </div>
+                `;
+                editor.addNode('pet', 0, 1, pos_x, pos_y, 'pet', {}, pet);
+                break;
+
+            case 'original-viewer':
+                var originalViewer = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>
+                
+              </div>
+              `
+                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, originalViewer);
+                break;
+
+            case 'test-viewer':
+                var testViewer = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>
+                
+              </div>
+              `
+                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, testViewer);
+                break;
+
+            case 'labeling-viewer':
+                var viewer = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-images'></i>라벨링 이미지 뷰어</div>
+                
+              </div>
+              `
+                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, viewer);
+                break;
+
+            case 'chart':
+                var chart = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-chart-pie'></i> chart</div>
+              </div>
+              `
+                editor.addNode('chart', 1, 0, pos_x, pos_y, 'chart', {}, chart);
+                break;
+            case 'hawkeye':
+                var hawkeye = `
+                <div>
+                <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>
+                <div>
+                    <div class='input-group my-3'>
+                    <span class='input-group-text'>URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <div class='input-group my-3'>
+                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
+                    </div>
+                </div>
+              </div>
+              `;
+                editor.addNode('hawkeye', 1, 1, pos_x, pos_y, 'hawkeye', {}, hawkeye);
+                break;
+            case 'coco':
+                var coco = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>
+                <div>
+                    <div class='input-group my-3'>
+                    <span class='input-group-text'>URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <div class='input-group my-3'>
+                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
+                    </div>
+                </div>
+              </div>
+              `
+                editor.addNode('coco', 1, 1, pos_x, pos_y, 'coco', {}, coco);
+                break;
+            case 'videotoimage':
+                var videotoimage = `
+              <div>
+                <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>
+                <div>
+                    <div class='input-group my-3'>
+                    <span class='input-group-text'>URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <div class='input-group my-3'>
+                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
+                    </div>
+                </div>
+              </div>
+              `
+                editor.addNode('videotoimage', 1, 1, pos_x, pos_y, 'videotoimage', {}, videotoimage);
+                break;
+            case 'xdq':
+                var xdq = `
+              <div class='' >
+                <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>
+                <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
+                    <button class='btn btn-primary' onclick='moveXDQ()'>XDQ</button>
+                   
+                </div>
+              </div>
+              `
+                editor.addNode('xdq', 1, 0, pos_x, pos_y, 'xdq', {}, xdq);
+                break;
+            case 'telegram':
+                var telegrambot = `
+              <div>
+                <div class='title-box'><i class='fab fa-telegram-plane'></i> Telegram bot</div>
+                <div class='box'>
+                  <p>Send to telegram</p>
+                  <p>select channel</p>
+                  <select df-channel>
+                    <option value='channel_1'>Channel 1</option>
+                    <option value='channel_2'>Channel 2</option>
+                    <option value='channel_3'>Channel 3</option>
+                    <option value='channel_4'>Channel 4</option>
+                  </select>
+                </div>
+              </div>
+              `;
+                editor.addNode('telegram', 1, 0, pos_x, pos_y, 'telegram', {
+                    'channel': 'channel_3'
+                }, telegrambot);
+                break;
+            case 'aws':
+                var aws = `
+              <div>
+                <div class='title-box'><i class='fab fa-aws'></i> Aws Save </div>
+                <div class='box'>
+                  <p>Save in aws</p>
+                  <input type='text' df-db-dbname placeholder='DB name'><br><br>
+                  <input type='text' df-db-key placeholder='DB key'>
+                  <p>Output Log</p>
+                </div>
+              </div>
+              `;
+                editor.addNode('aws', 1, 1, pos_x, pos_y, 'aws', {
+                    'db': {
+                        'dbname': '',
+                        'key': ''
+                    }
+                }, aws);
+                break;
+            case 'log':
+                var log = `
+                <div>
+                  <div class='title-box'><i class='fas fa-file-signature'></i> Save log file </div>
+                </div>
+                `;
+                editor.addNode('log', 1, 0, pos_x, pos_y, 'log', {}, log);
+                break;
+            case 'email':
+                var email = `
+                <div>
+                  <div class='title-box'><i class='fas fa-at'></i> Send Email </div>
+                </div>
+                `;
+                editor.addNode('email', 1, 0, pos_x, pos_y, 'email', {}, email);
+                break;
+
+            case 'template':
+                var template = `
+                <div>
+                  <div class='title-box'><i class='fas fa-code'></i> Template</div>
+                  <div class='box'>
+                    Ger Vars
+                    <textarea df-template></textarea>
+                    Output template with vars
+                  </div>
+                </div>
+                `;
+                editor.addNode('template', 1, 1, pos_x, pos_y, 'template', {
+                    'template': 'Write your template'
+                }, template);
+                break;
+            case 'multiple':
+                var multiple = `
+                <div>
+                  <div class='box'>
+                    Multiple!
+                  </div>
+                </div>
+                `;
+                editor.addNode('multiple', 3, 4, pos_x, pos_y, 'multiple', {}, multiple);
+                break;
+            case 'personalized':
+                var personalized = `
+                <div>
+                  Personalized
+                </div>
+                `;
+                editor.addNode('personalized', 1, 1, pos_x, pos_y, 'personalized', {}, personalized);
+                break;
+            case 'dbclick':
+                var dbclick = `
+                <div>
+                <div class='title-box'><i class='fas fa-mouse'></i> Db Click</div>
+                  <div class='box dbclickbox' ondblclick='showpopup(event)'>
+                    Db Click here
+                    <div class='modal' style='display:none'>
+                      <div class='modal-content'>
+                        <span class='close' onclick='closemodal(event)'>&times;</span>
+                        Change your variable {name} !
+                        <input type='text' df-name>
+                      </div>
+    
+                    </div>
+                  </div>
+                </div>
+                `;
+                editor.addNode('dbclick', 1, 1, pos_x, pos_y, 'dbclick', {
+                    name: ''
+                }, dbclick);
+                break;
+            default:
+        }
+    }
+
+    var transform = '';
+
+    function showpopup(e) {
+        e.target.closest(".drawflow-node").style.zIndex = "9999";
+        e.target.children[0].style.display = "block";
+        //document.getElementById("modalfix").style.display = "block";
+
+        //e.target.children[0].style.transform = 'translate('+translate.x+'px, '+translate.y+'px)';
+        transform = editor.precanvas.style.transform;
+        editor.precanvas.style.transform = '';
+        editor.precanvas.style.left = editor.canvas_x + 'px';
+        editor.precanvas.style.top = editor.canvas_y + 'px';
+        console.log(transform);
+
+        //e.target.children[0].style.top  =  -editor.canvas_y - editor.container.offsetTop +'px';
+        //e.target.children[0].style.left  =  -editor.canvas_x  - editor.container.offsetLeft +'px';
+        editor.editor_mode = "fixed";
+
+    }
+
+    function closemodal(e) {
+        e.target.closest(".drawflow-node").style.zIndex = "2";
+        e.target.parentElement.parentElement.style.display = "none";
+        //document.getElementById("modalfix").style.display = "none";
+        editor.precanvas.style.transform = transform;
+        editor.precanvas.style.left = '0px';
+        editor.precanvas.style.top = '0px';
+        editor.editor_mode = "edit";
+    }
+
+    function changeModule(event) {
+        var all = document.querySelectorAll(".menu ul li");
+        for (var i = 0; i < all.length; i++) {
+            all[i].classList.remove('selected');
+        }
+        event.target.classList.add('selected');
+    }
+
+    function changeMode(option) {
+        var lock = document.getElementById("lock");
+        var unlock = document.getElementById("unlock");
+
+        //console.log(lock.id);
+        if (option == 'lock') {
+            lock.style.display = 'none';
+            unlock.style.display = 'block';
+        } else {
+            lock.style.display = 'block';
+            unlock.style.display = 'none';
+        }
+
+    }
+
+    function openPopup(name) {
+        $("#modal").modal("show");
+
+        if (name == 'pet') {
+            fillName();
+        }
+    }
+
+    function fillName() {
+        document.getElementById("optionname").value = "pet";
+        document.getElementById("URL").value = '//127.0.0.1/test';
+        document.getElementById("ID").value = 'gazzilabs';
+        document.getElementById("password").value = 'gazzilabs123123**';
+        document.getElementById("watching").checked = true;
+    }
+
+    function exportmodal() {
+        $("#modal-export").modal("show");
+        console.log(JSON.stringify(editor.export(), null, 4));
+        document.getElementById("div-export").innerText = JSON.stringify(editor.export(), null, 4);
+    }
+
+    function openTimeline() {
+        $("#modal-timeline").modal("show");
+    }
+
+    function closePopup(id) {
+        $("#" + id).modal("hide");
+    }
+
+    function moveXDQ() {
+        window.open('http://101.101.219.218:8000/', 'XDQ');
+    }
+
+    function openstart() {
+        $("#modal-start").modal("show");
+    }
+</script>
+{% endblock %}
