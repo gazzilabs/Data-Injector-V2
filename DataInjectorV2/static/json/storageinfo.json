@@ -1,0 +1,60 @@
+storage = {
+    "데이터": [
+        {
+            "storageID": 0,
+            "name": "축구 데이터",
+            "type": "0",
+            "address": "\\\\192.168.25.184\\share_folder\\SOCCER_CLEAR",
+            "ID": "gazzilabs",
+            "password": "hawkeye@",
+            "watching_type": true
+        },
+        {
+            "storageID": 1,
+            "name": "축구 데이터2",
+            "type": "1",
+            "address": "\\\\192.168.25.184:21",
+            "ID": "gazzilabs",
+            "password": "hawkeye@",
+            "watching_type": false
+        }
+    ],
+    "뷰어": [
+        {
+            "name": "원본 이미지 뷰어",
+            "type": 0
+        },
+        {
+            "name": "검사 이미지 뷰어",
+            "type": 1
+        },
+        {
+            "name": "라벨링 이미지 뷰어",
+            "type": 2
+        },
+        {
+            "name": "통계",
+            "type": 3
+        }
+    ],
+    "가공":[
+        {
+            "name": "coco 데이터셋 변환",
+            "type": 0  
+        },
+        {
+            "name": "Hawkeye",
+            "type": 1
+        },
+        {
+            "name": "비디오를 이미지로 변환",
+            "type": 2
+        }
+    ],
+    "학습":"",
+    "평가":"",
+    "연동":{
+        "name": "XDQ 연동",
+        "type": 0  
+    }
+}

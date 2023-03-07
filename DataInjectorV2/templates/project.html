@@ -221,7 +221,8 @@
                 <p>해당 워크플로우의 작업을 시작합니까?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="closePopup('modal-start');">Yes</button>
+                <button type="button" class="btn btn-primary"
+                    onclick="startWork();closePopup('modal-start');">Yes</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                     onclick="closePopup('modal-start');">Close</button>
             </div>
@@ -445,7 +446,13 @@
     }
 </style>
 
+</div>
 <script>
+    let projectJson = JSON.parse(JSON.stringify(projectlist));
+    let storageJson = JSON.parse(JSON.stringify(storage));
+    console.log(projectJson);
+    console.log(storageJson);
+
     var id = document.getElementById("drawflow");
     const editor = new Drawflow(id);
     editor.reroute = true;
@@ -453,65 +460,41 @@
         "drawflow": {
             "Home": {
                 "data": {
-                    "1": {
-                        "id": 1,
+                    "6": {
+                        "id": 6,
                         "name": "pet",
                         "data": {},
-                        "class": "pet",
-                        "html": "\n <div class='d-flex flex-row'>\n <div class='d-flex flex-row justify-content-between'>\n <div><i class='fa-solid fa-database'></i></div>\n <div> pet</div>\n </div> \n </div>\n ",
+                        "class": "data",
+                        "html": "\n                <div class='d-flex flex-row'>\n                    <div class='d-flex flex-row justify-content-between'>\n                        <div><i class='fa-solid fa-database'></i></div>\n                        <div> pet</div>\n                    </div> \n                </div>\n                ",
                         "typenode": false,
                         "inputs": {},
                         "outputs": {
                             "output_1": {
                                 "connections": [{
-                                        "node": "2",
+                                        "node": "8",
                                         "output": "input_1"
                                     },
                                     {
-                                        "node": "3",
+                                        "node": "13",
                                         "output": "input_1"
                                     }
                                 ]
                             }
                         },
-                        "pos_x": 277.361083984375,
-                        "pos_y": 174.25692749023438
+                        "pos_x": 201,
+                        "pos_y": 229
                     },
-                    "2": {
-                        "id": 2,
-                        "name": "viewer",
+                    "8": {
+                        "id": 8,
+                        "name": "hawkeye",
                         "data": {},
-                        "class": "viewer",
-                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>이미지 뷰어</div>\n \n </div>\n ",
+                        "class": "machining",
+                        "html": "\n                <div>\n                    <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>\n                    <div>\n                        <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>\n                        <div class='progress-bar'></div>\n                    </div>\n                        <div class='input-group my-3'>\n                        <span class='input-group-text'>URL</span>\n                        <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>\n                        <div class='input-group my-3'>\n                            <textarea class='form-control' aria-label='With textarea' rows='5' id='hawkeye-setting' ></textarea>\n                        </div>\n                    </div>\n                </div>\n              ",
                         "typenode": false,
                         "inputs": {
                             "input_1": {
                                 "connections": [{
-                                        "node": "1",
-                                        "input": "output_1"
-                                    },
-                                    {
-                                        "node": "3",
-                                        "input": "output_1"
-                                    }
-                                ]
-                            }
-                        },
-                        "outputs": {},
-                        "pos_x": 764.361083984375,
-                        "pos_y": 189.25692749023438
-                    },
-                    "3": {
-                        "id": 3,
-                        "name": "coco",
-                        "data": {},
-                        "class": "coco",
-                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>\n <div>\n <div class='input-group my-3'>\n <span class='input-group-text'>URL</span>\n <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>\n <div class='input-group my-3'>\n <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>\n </div>\n </div>\n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "1",
+                                    "node": "6",
                                     "input": "output_1"
                                 }]
                             }
@@ -519,20 +502,78 @@
                         "outputs": {
                             "output_1": {
                                 "connections": [{
-                                    "node": "2",
+                                    "node": "11",
                                     "output": "input_1"
                                 }]
                             }
                         },
-                        "pos_x": 425,
-                        "pos_y": 267
+                        "pos_x": 523,
+                        "pos_y": 346
+                    },
+                    "11": {
+                        "id": 11,
+                        "name": "test-viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n              <div>\n                <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>\n                \n              </div>\n              ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "8",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 1079,
+                        "pos_y": 432
+                    },
+                    "12": {
+                        "id": 12,
+                        "name": "chart",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n              <div>\n                <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>\n              </div>\n              ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "13",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 1157.361083984375,
+                        "pos_y": 180.25692749023438
+                    },
+                    "13": {
+                        "id": 13,
+                        "name": "coco",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n              <div>\n                <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>\n                <div>\n                    <div>\n                        <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>\n                        <div class='progress-bar'></div>\n                    </div>\n                    <div class='input-group my-3'>\n                    <span class='input-group-text' >URL</span>\n                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example' id=\"coco-url\"></div>\n                    <div class='input-group my-3'>\n                        <textarea class='form-control' aria-label='With textarea' rows='5' id=\"coco-setting\"></textarea>\n                    </div>\n                </div>\n              </div>\n              ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "6",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "12",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 530,
+                        "pos_y": 8
                     }
-                }
-            },
-            "Other": {
-                "data": {
-                    "pos_x": 179,
-                    "pos_y": 272
                 }
             }
         }
@@ -701,7 +742,7 @@
                     </div> 
                 </div>
                 `;
-                editor.addNode('pet', 0, 1, pos_x, pos_y, 'pet', {}, pet);
+                editor.addNode('pet', 0, 1, pos_x, pos_y, 'data', {}, pet);
                 break;
 
             case 'original-viewer':
@@ -711,7 +752,7 @@
                 
               </div>
               `
-                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, originalViewer);
+                editor.addNode('original-viewer', 1, 0, pos_x, pos_y, 'viewer', {}, originalViewer);
                 break;
 
             case 'test-viewer':
@@ -721,64 +762,75 @@
                 
               </div>
               `
-                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, testViewer);
+                editor.addNode('test-viewer', 1, 0, pos_x, pos_y, 'viewer', {}, testViewer);
                 break;
 
-            case 'labeling-viewer':
-                var viewer = `
+            case 'label-viewer':
+                var labelviewer = `
               <div>
                 <div class='title-box'><i class='fa-solid fa-images'></i>라벨링 이미지 뷰어</div>
                 
               </div>
               `
-                editor.addNode('viewer', 1, 0, pos_x, pos_y, 'viewer', {}, viewer);
+                editor.addNode('label-viewer', 1, 0, pos_x, pos_y, 'viewer', {}, labelviewer);
                 break;
 
             case 'chart':
                 var chart = `
               <div>
-                <div class='title-box'><i class='fa-solid fa-chart-pie'></i> chart</div>
+                <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>
               </div>
               `
-                editor.addNode('chart', 1, 0, pos_x, pos_y, 'chart', {}, chart);
+                editor.addNode('chart', 1, 0, pos_x, pos_y, 'viewer', {}, chart);
                 break;
             case 'hawkeye':
                 var hawkeye = `
                 <div>
-                <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>
-                <div>
-                    <div class='input-group my-3'>
-                    <span class='input-group-text'>URL</span>
-                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
-                    <div class='input-group my-3'>
-                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
+                    <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>
+                    <div>
+                        <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>
+                        <div class='progress-bar'></div>
+                    </div>
+                        <div class='input-group my-3'>
+                        <span class='input-group-text'>URL</span>
+                        <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                        <div class='input-group my-3'>
+                            <textarea class='form-control' aria-label='With textarea' rows='5' id='hawkeye-setting' ></textarea>
+                        </div>
                     </div>
                 </div>
-              </div>
               `;
-                editor.addNode('hawkeye', 1, 1, pos_x, pos_y, 'hawkeye', {}, hawkeye);
+                editor.addNode('hawkeye', 1, 1, pos_x, pos_y, 'machining', {}, hawkeye);
                 break;
             case 'coco':
                 var coco = `
               <div>
                 <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>
                 <div>
+                    <div>
+                        <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>
+                        <div class='progress-bar'></div>
+                    </div>
                     <div class='input-group my-3'>
-                    <span class='input-group-text'>URL</span>
-                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
+                    <span class='input-group-text' >URL</span>
+                    <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example' id="coco-url"></div>
                     <div class='input-group my-3'>
-                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
+                        <textarea class='form-control' aria-label='With textarea' rows='5' id="coco-setting"></textarea>
                     </div>
                 </div>
               </div>
               `
-                editor.addNode('coco', 1, 1, pos_x, pos_y, 'coco', {}, coco);
+                editor.addNode('coco', 1, 1, pos_x, pos_y, 'machining', {}, coco);
                 break;
             case 'videotoimage':
                 var videotoimage = `
               <div>
                 <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>
                 <div>
+                    <div>
+                        <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>
+                        <div class='progress-bar'></div>
+                    </div>
                     <div class='input-group my-3'>
                     <span class='input-group-text'>URL</span>
                     <input type='text' class='form-control' placeholder='\\\\127.0.0.1\\example'></div>
@@ -788,7 +840,7 @@
                 </div>
               </div>
               `
-                editor.addNode('videotoimage', 1, 1, pos_x, pos_y, 'videotoimage', {}, videotoimage);
+                editor.addNode('videotoimage', 1, 1, pos_x, pos_y, 'machining', {}, videotoimage);
                 break;
             case 'xdq':
                 var xdq = `
@@ -799,7 +851,7 @@
                    
                 </div>
               </div>
-              `
+              `;
                 editor.addNode('xdq', 1, 0, pos_x, pos_y, 'xdq', {}, xdq);
                 break;
             case 'telegram':
@@ -967,6 +1019,18 @@
             unlock.style.display = 'none';
         }
 
+    }
+
+    function startWork() {
+        console.log(JSON.stringify(editor.export(), null, 4));
+        n = 13
+        console.log(editor.export().drawflow.Home.data[n].name);
+        var name = editor.export().drawflow.Home.data[n].name;
+
+        var a = document.getElementById(name + "-url").value;
+        var b = document.getElementById(name + "-setting").value;
+
+        console.log(a + b);
     }
 
     function openPopup(name) {
