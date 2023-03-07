@@ -40,3 +40,21 @@ background-size: cover;
     cursor: pointer;
 }
 
+#menu{
+    overflow-y: auto; 
+}
+
+#menu::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+#menu::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #217af4; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+#menu::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
