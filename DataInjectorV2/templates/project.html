@@ -23,40 +23,21 @@
         <div class="col d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
             <div class="p-3 list-group-item d-flex flex-row justify-content-between"
                 style="background-color:rgba(0, 0, 0, 0.03);">
-                <div style="font-weight: 600;"> 데이터</div>
-                <div class="dropdown">
-                    <button style="all: unset; padding:0 .4em; border: none;" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 5em; text-align: center;">
-                        <li><a class="dropdown-item" onclick="openPopup()">추가</a></li>
-                        <li><a class="dropdown-item" href="#">삭제</a></li>
-                    </ul>
-                </div>
+                <div style="font-weight: 600;">옵션 뷰</div>
             </div>
             <div>
-                <div class="drag-drawflow list-group-item d-flex flex-row justify-content-between" draggable="true"
-                    ondragstart="drag(event)" data-node="pet" data-bs-toggle="collapse"
-                    data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                    <div> pet</div>
-                    <div id="setting" onclick="openPopup('pet')"><i class="fa-solid fa-gear"
-                            style="color: #868686; font-size: 20px;"></i></div>
-                </div>
-                <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                    <div class="accordion-body">
-                        <div>
-                            <span>데이터 위치 : NetWorkDrive</span>
-                        </div>
-                        <div>
-                            <span>파일 등록 일자 : 2023-02-20</span>
-                        </div>
-                        <div>
-                            <span>파일 개수 : 120,000 개</span>
-                        </div>
-                        <div>
-                            <span>파일 구성 : jpg, png</span>
-                        </div>
+                <div class="accordion-body">
+                    <div>
+                        <span>데이터 위치 : NetWorkDrive</span>
+                    </div>
+                    <div>
+                        <span>파일 등록 일자 : 2023-02-20</span>
+                    </div>
+                    <div>
+                        <span>파일 개수 : 120,000 개</span>
+                    </div>
+                    <div>
+                        <span>파일 구성 : jpg, png</span>
                     </div>
                 </div>
             </div>
@@ -71,30 +52,16 @@
                 </div>
             </div>
             <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
-                data-bs-target="#viewer" aria-expanded="false" aria-controls="viewer">
-                <div class="accordion-header" style="font-weight: 600;"> 뷰어</div>
+                data-bs-target="#data-input" aria-expanded="false" aria-controls="data-input">
+                <div class="accordion-header" style="font-weight: 600;">데이터</div>
             </div>
-            <div class="collapse collapse-horizontal border accordion-body" id="viewer" style="padding-left:0 1rem;">
-                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
-                    draggable="true" ondragstart="drag(event)" data-node="original-viewer">
-                    <div><i class="fa-solid fa-images"
-                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>원본 이미지 뷰어</div>
-                </div>
-                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
-                    draggable="true" ondragstart="drag(event)" data-node="test-viewer">
-                    <div><i class="fa-solid fa-images"
-                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>검사 이미지 뷰어</div>
-                </div>
-                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
-                    draggable="true" ondragstart="drag(event)" data-node="label-viewer">
-                    <div><i class="fa-solid fa-images"
-                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>라벨링 이미지 뷰어</div>
-                </div>
+            <div class="collapse collapse-horizontal border accordion-body" id="data-input"
+                style="padding-left:0 1rem;">
                 <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
-                    draggable="true" ondragstart="drag(event)" data-node="chart">
-                    <div><i class="fa-solid fa-chart-pie"
-                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>통계</div>
+                    draggable="true" ondragstart="drag(event)" data-node="pet">
+                    <div><i class="fa-solid fa-database" style="color: #868686; font-size: 20px;"></i>pet</div>
                 </div>
+
             </div>
             <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
                 data-bs-target="#machining" aria-expanded="false" aria-controls="machining">
@@ -141,6 +108,36 @@
                     <div><i class="fa-solid fa-circle-nodes"
                             style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>XDQ 연동</div>
                 </div>
+            </div>
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#viewer" aria-expanded="false" aria-controls="viewer">
+                <div class="accordion-header" style="font-weight: 600;"> 뷰어</div>
+            </div>
+            <div class="collapse collapse-horizontal border accordion-body" id="viewer" style="padding-left:0 1rem;">
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="original-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>원본 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="test-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>검사 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2 border-bottom"
+                    draggable="true" ondragstart="drag(event)" data-node="label-viewer">
+                    <div><i class="fa-solid fa-images"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>라벨링 이미지 뷰어</div>
+                </div>
+                <div class="drag-drawflow list-group-item-action d-flex flex-row justify-content-between p-2"
+                    draggable="true" ondragstart="drag(event)" data-node="chart">
+                    <div><i class="fa-solid fa-chart-pie"
+                            style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>통계</div>
+                </div>
+            </div>
+            <div class="list-group-item d-flex flex-row justify-content-between accordion" data-bs-toggle="collapse"
+                data-bs-target="#evaluation">
+                <div class="accordion-header" style="font-weight: 600;">추가</div>
             </div>
         </div>
 
