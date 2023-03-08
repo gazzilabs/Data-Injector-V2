@@ -20,19 +20,19 @@
 </div>
 <div class="row" style="margin-left: 0; margin-right: 0;">
     <div class="wrapper col-2 shadow-sm list-group" style=" height: 84vh;">
-        <div class="align-items-stretch bg-white" id="option-view" style="display: none;">
-            <div class="accordion-item">
+        <div class="align-items-stretch bg-white border-bottom border-primary border-5" id="option-view" >
+            <div class="accordion-item ">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#option" aria-expanded="false" aria-controls="option"
                         style="font-weight: 600; background-color: rgba(0, 0, 0, 0.03);">
-                        <div style="font-weight: 600;" id="option-name">옵션 뷰</div>
+                        <div style="font-weight: 600;" >속성</div>
                     </button>
                 </h2>
-                <div class="collapse collapse-horizontal show" id="option" style="padding-left:0 1rem;">
-                    <div class="accordion-body border-bottom border-primary border-5" id="option-detail"
-                        style="display: none;">
-
+                <div class="collapse collapse-horizontal show" id="option" style="padding-left:0 1rem; height: 300px; overflow-y: auto;">
+                    <div class="accordion-body" >
+                        <div class="mb-2" id="option-name" style="font-weight: 600;"></div>
+                        <div id="option-detail" ></div>
                     </div>
                 </div>
             </div>
@@ -83,6 +83,12 @@
                             data-node="videotoimage">
                             <div><i class="fa-solid fa-right-left"
                                     style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>Video를 이미지로 변환
+                            </div>
+                        </div>
+                        <div class="drag-drawflow list-group-item" draggable="true" ondragstart="drag(event)"
+                            data-node="autolabeling">
+                            <div><i class="fa-solid fa-tag"
+                                    style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>자동 이미지 라벨링
                             </div>
                         </div>
                         <div class="list-group-item" onclick="optionPopup();">
@@ -189,7 +195,7 @@
         </div>
     </div>
     <div class="col">
-        <div class="col-12 shadow-sm" id="resizable" style="overflow-y: hidden; height: 50vh;">
+        <div class="col-12 shadow-sm" id="resizable" style="overflow-y: hidden; height: 85vh;">
             <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
                 <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
                     <div class="">Project01</div>
@@ -240,16 +246,32 @@
 
                     </div>
 
-                    <div class=" col-12 drawflow" id="drawflow" style="height: 50vh;" ondrop="drop(event)"
+                    <div class=" col-12 drawflow" id="drawflow" style="height: 100vh;" ondrop="drop(event)"
                         ondragover="allowDrop(event)">
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="col-12 shadow-sm" style="overflow-y: auto; height: 35vh;">
-            {% include 'medialist.html' %}
-            {% include 'imageview.html' %}
+        <div class="col-12 shadow-sm viewers" id="filelist" style="display: none;">
+            <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                    <div class="">Filelist</div>
+                </div>
+                <div class="card-body"  style="overflow-y: auto; height: 35vh;">
+                    {% include 'medialist.html' %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 shadow-sm viewers" id="imageviewer" style="display: none;">
+            <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                    <div class="">Image Viewer</div>
+                </div>
+                <div class="card-body"  style="overflow-y: auto; height: 35vh;">
+                    {% include 'imageview.html' %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -455,8 +477,13 @@
 
 
 <script>
+    function screenChange(it){
+        document.getElementById("resizable").style.height = "50vh";
 
-
+        $(".viewers").hide();
+        $("#"+it).show();
+    }
+    
     let projectJson = JSON.parse(JSON.stringify(projectlist));
     let storageJson = JSON.parse(JSON.stringify(storage));
     console.log(projectJson);
@@ -819,7 +846,7 @@
         switch (name) {
             case 'pet':
                 var pet = `
-                <div class='d-flex flex-row' onclick="openPopup()">
+                <div class='d-flex flex-row' onclick="openPopup(); screenChange('filelist');">
                     <div class='d-flex flex-row justify-content-between'>
                         <div><i class='fa-solid fa-database'></i></div>
                         <div> 데이터셋 입수</div>
@@ -831,7 +858,7 @@
 
             case 'original-viewer':
                 var originalViewer = `
-              <div>
+              <div onclick='screenChange("imageviewer");'>
                 <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>
                 
               </div>
@@ -841,7 +868,7 @@
 
             case 'test-viewer':
                 var testViewer = `
-              <div>
+              <div onclick='screenChange("imageviewer");'>
                 <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>
                 
               </div>
@@ -851,7 +878,7 @@
 
             case 'label-viewer':
                 var labelviewer = `
-              <div>
+              <div onclick='screenChange("imageviewer");'>
                 <div class='title-box'><i class='fa-solid fa-images'></i>라벨링 이미지 뷰어</div>
                 
               </div>
@@ -869,7 +896,7 @@
                 break;
             case 'hawkeye':
                 var hawkeye = `
-                <div onclick="hawkeyeClick()">
+                <div onclick="hawkeyeClick(); screenChange('filelist');">
                     <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>
                     <div>
                         <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>
@@ -882,7 +909,7 @@
                 break;
             case 'coco':
                 var coco = `
-              <div onclick="cocoClick('COCO데이터셋 변환');">
+              <div onclick="cocoClick('COCO데이터셋 변환'); screenChange('filelist');">
                 <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>
                 <div>
                     <div>
@@ -896,7 +923,7 @@
                 break;
             case 'videotoimage':
                 var videotoimage = `
-              <div onclick="videoClick('비디오를 이미지로 변환');">
+              <div onclick="videoClick('비디오를 이미지로 변환'); screenChange('filelist');">
                 <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>
                 <div>
                     <div>
@@ -907,6 +934,20 @@
               </div>
               `
                 editor.addNode('videotoimage', 1, 1, pos_x, pos_y, 'machining', {}, videotoimage);
+                break;
+            case 'autolabeling':
+                var label = `
+              <div onclick="videoClick('자동 이미지 라벨링'); screenChange('filelist');">
+                <div class='title-box'><i class='fa-solid fa-right-left'></i>자동 이미지 라벨링</div>
+                <div>
+                    <div>
+                        <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'  style='height:8px;'>
+                        <div class='progress-bar'></div>
+                    </div>
+                </div>
+              </div>
+              `
+                editor.addNode('autolabeling', 1, 1, pos_x, pos_y, 'machining', {}, label);
                 break;
             case 'xdq':
                 var xdq = `
@@ -923,11 +964,8 @@
 
             case 'template':
                 var template = `
-              <div class='' >
+              <div class='' onclick="codeClick(); screenChange('filelist');">
                 <div class='title-box'><i class='fa-solid fa-code'></i>코드 커스텀</div>
-                <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
-                    <button class='btn btn-primary' onclick='codeblock()'>코드 작성</button>
-                </div>
               </div>
               `;
                 editor.addNode('template', 1, 1, pos_x, pos_y, 'template', {}, template);
@@ -1210,7 +1248,7 @@
 
     function dataClick(name) {
         $("#option-view").show();
-        $("#option-detail").show();
+        $("#option").show();
 
         document.getElementById("option-name").innerText = name;
         document.getElementById("option-detail").innerHTML = `
@@ -1260,9 +1298,9 @@
 
     function hawkeyeClick() {
         $("#option-view").show();
-        $("#option-detail").show();
+        $("#option").show();
 
-        document.getElementById("option-name").innerText = 'hawkeye';
+        document.getElementById("option-name").innerText = 'Hawkeye';
         document.getElementById("option-detail").innerHTML = `
         <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
         <button class='btn btn-primary' onclick='hawkeyeSetting();'>옵션 설정</button>
@@ -1286,6 +1324,15 @@
         urlboxFill(name, url, detail);
     }
 
+    function autolabeling(){
+        url = `http://118.67.129.214:7060/Analyze/Check`;
+        document.getElementById("option-name").innerText = "자동 이미지 라벨링";
+        document.getElementById("option-detail").innerHTML = urlboxCreate();
+
+
+         urlboxFill(name, url, detail)
+    }
+
 
     function urlboxFill(name, url, detail) {
         $("#option-view").show();
@@ -1297,6 +1344,16 @@
         document.getElementById("url").value = url;
         document.getElementById("setting").value = detail
 
+    }
+
+    function codeClick(){
+        $("#option-view").show();
+        $("#option-detail").show();
+
+        document.getElementById("option-name").innerText = '코드 커스텀';
+        document.getElementById("option-detail").innerHTML = `<div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
+                    <button class='btn btn-primary' onclick='codeblock()'>코드 작성</button>
+                </div>`;
     }
 
     function urlboxCreate() {
@@ -1312,6 +1369,7 @@
 
         return box;
     }
+    
 </script>
 <style>
     body {
