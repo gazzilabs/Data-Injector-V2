@@ -19,22 +19,30 @@
     </div>
 </div>
 <div class="row" style="margin-left: 0; margin-right: 0;">
-    <div class="wrapper col-2 shadow-sm list-group">
-        <div class="col d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
-            <div class="p-3 list-group-item d-flex flex-row justify-content-between"
-                style="background-color:rgba(0, 0, 0, 0.03);">
-                <div style="font-weight: 600;" id="option-name">옵션 뷰</div>
-            </div>
-            <div>
-                <div class="accordion-body border-bottom border-primary border-5" id="option-detail" style="display: none;">
-    
+    <div class="wrapper col-2 shadow-sm list-group" style=" height: 84vh;">
+        <div class="align-items-stretch bg-white" id="option-view" style="display: none;">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#option" aria-expanded="false" aria-controls="option"
+                        style="font-weight: 600; background-color: rgba(0, 0, 0, 0.03);">
+                        <div style="font-weight: 600;" id="option-name">옵션 뷰</div>
+                    </button>
+                </h2>
+                <div class="collapse collapse-horizontal show" id="option" style="padding-left:0 1rem;">
+                    <div class="accordion-body border-bottom border-primary border-5" id="option-detail"
+                        style="display: none;">
+
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="col align-items-stretch bg-white" style="overflow-y: auto; ">
             <div class="p-3 list-group-item d-flex flex-row justify-content-between "
                 style="background-color:rgba(0, 0, 0, 0.03);">
                 <div style="font-weight: 600; ">작업</div>
             </div>
-            <div class="accordion" id="menu">
+            <div class="accordion" id="menu" style="overflow-y: auto;">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -47,11 +55,7 @@
                         <div class="drag-drawflow list-group-item" draggable="true" ondragstart="drag(event)"
                             data-node="pet">
                             <div><i class="fa-solid fa-database "
-                                    style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>pet</div>
-                        </div>
-                        <div class="list-group-item" onclick="openPopup();">
-                            <div class="d-flex flex-row justify-content-center"><i class="fa-solid fa-circle-plus"
-                                    style="font-size: 20px; margin-right: 0.3em; color:#0d6efd;"></i></div>
+                                    style="color: #868686; font-size: 20px; margin-right: 0.3em;"></i>데이터셋 입수</div>
                         </div>
                     </div>
                 </div>
@@ -184,69 +188,71 @@
             </div>
         </div>
     </div>
+    <div class="col">
+        <div class="col-12 shadow-sm" id="resizable" style="overflow-y: hidden; height: 50vh;">
+            <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                    <div class="">Project01</div>
+                </div>
 
-    <div class="col-10 ">
-        <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
-            <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
-                <div class="">Project01</div>
-            </div>
+                <div class="card-body" style="background-color:rgba(0, 0, 0, 0.0);">
+                    <div class="d-flex flex-row justify-content-between ">
+                        <div class="gap-3 d-flex flex-row">
+                            <div id="lock" onclick="editor.editor_mode='fixed'; changeMode('lock');">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-lock "></i>
+                                </button>
+                            </div>
+                            <div id="unlock" onclick="editor.editor_mode='edit'; changeMode('unlock');"
+                                style="display:none;">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-lock-open"></i>
+                                </button>
+                            </div>
+                            <div onclick="editor.zoom_out()">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-search-minus"></i>
+                                </button>
+                            </div>
+                            <div onclick="editor.zoom_reset()">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div onclick="editor.zoom_in()">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="gap-3 d-flex flex-row" style="float: right;">
+                            <div>
+                                <button class="btn btn-outline-primary" aria-current="page" onclick="exportmodal()">
+                                    내보내기
+                                </button>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-primary" onclick="editor.clearModuleSelected()">
+                                    모두 지우기
+                                </button>
+                            </div>
+                        </div>
 
-            <div class="card-body" style="background-color:rgba(0, 0, 0, 0.0);">
-                <div class="d-flex flex-row justify-content-between ">
-                    <div class="gap-3 d-flex flex-row">
-                        <div id="lock" onclick="editor.editor_mode='fixed'; changeMode('lock');">
-                            <button class="btn btn-outline-primary">
-                                <i class="fas fa-lock "></i>
-                            </button>
-                        </div>
-                        <div id="unlock" onclick="editor.editor_mode='edit'; changeMode('unlock');"
-                            style="display:none;">
-                            <button class="btn btn-outline-primary">
-                                <i class="fas fa-lock-open"></i>
-                            </button>
-                        </div>
-                        <div onclick="editor.zoom_out()">
-                            <button class="btn btn-outline-primary">
-                                <i class="fas fa-search-minus"></i>
-                            </button>
-                        </div>
-                        <div onclick="editor.zoom_reset()">
-                            <button class="btn btn-outline-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                        <div onclick="editor.zoom_in()">
-                            <button class="btn btn-outline-primary">
-                                <i class="fas fa-search-plus"></i>
-                            </button>
-                        </div>
                     </div>
-                    <div class="gap-3 d-flex flex-row" style="float: right;">
-                        <div>
-                            <button class="btn btn-outline-primary" aria-current="page" onclick="exportmodal()">
-                                내보내기
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-outline-primary" onclick="editor.clearModuleSelected()">
-                                모두 지우기
-                            </button>
-                        </div>
+
+                    <div class=" col-12 drawflow" id="drawflow" style="height: 50vh;" ondrop="drop(event)"
+                        ondragover="allowDrop(event)">
                     </div>
 
                 </div>
-
-                <div class=" col-12 drawflow" id="drawflow" style="height: 600px;" ondrop="drop(event)"
-                    ondragover="allowDrop(event)">
-                </div>
-
             </div>
         </div>
+        <div class="col-12 shadow-sm" style="overflow-y: auto; height: 35vh;">
+            {% include 'medialist.html' %}
+            {% include 'imageview.html' %}
+            {% include 'statsview.html' %}
+        </div>
     </div>
-
-
-
-
 </div>
 
 <div class="modal" id="modal-start" tabindex="-1" style="display: none;">
@@ -295,7 +301,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <textarea  class="form-control" style="overflow-y: hidden;" rows="11" readonly>
+                <textarea class="form-control" style="overflow-y: hidden;" rows="11" readonly>
                     import os
                     import random
                     import shutil
@@ -308,7 +314,7 @@
                         #구현 옵션 사항
                         # SendProgress(int (0~100)) : 진행률 전달하기 위함
                 </textarea>
-                <textarea  class="form-control" rows="11">
+                <textarea class="form-control" rows="11">
                         #파일 리스트 만드는 예제
                         for file in os.listdir(type_file_path):
                                     single_file_path = os.path.join(type_file_path, file[:file.rfind("-")+1])
@@ -366,14 +372,15 @@
                     </div>
                     <div class="mb-2 input-group-sm">
                         <label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
-                        <input type="password" class="form-control" style="resize: none;" id="password" rows="5"></input>
+                        <input type="password" class="form-control" style="resize: none;" id="password"
+                            rows="5"></input>
                     </div>
                     <div class="mb-2 form-check" style="">
                         <label class="form-check-label" for="defaultCheck2">데이터 변화 감지(Watching)</label>
                         <input class="form-check-input" type="checkbox" id="watching">
                     </div>
                     <div class="mb-2 form-check" style="" id="registeredURL">
-    
+
                     </div>
                 </form>
             </div>
@@ -383,7 +390,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                     onclick="closePopup('modal-start');">Close</button>
             </div>
-        </div>            
+        </div>
     </div>
 </div>
 
@@ -398,9 +405,9 @@
                 <div class='input-group my-3'>
                     <span class='input-group-text'>URL</span>
                     <input type='text' class='form-control' placeholder='\\127.0.0.1\example'></div>
-                    <div class='input-group my-3'>
-                        <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
-                    </div>
+                <div class='input-group my-3'>
+                    <textarea class='form-control' aria-label='With textarea' rows='5'></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
@@ -408,7 +415,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                     onclick="closePopup('modal-start');">Close</button>
             </div>
-        </div>            
+        </div>
     </div>
 </div>
 
@@ -447,151 +454,12 @@
 </div>
 
 
-<style>
-    #menu {
-        overflow-y: auto;
-        height: 100vh;
-    }
 
-    body::-webkit-scrollbar {
-        width: 8px;
-        /* 스크롤바의 너비 */
-    }
-
-    body::-webkit-scrollbar-thumb {
-        height: 30%;
-        /* 스크롤바의 길이 */
-        background: #dadada;
-        /* 스크롤바의 색상 */
-
-        border-radius: 10px;
-    }
-
-    body::-webkit-scrollbar-track {
-        background: rgba(241, 241, 241, 0.1);
-        /*스크롤바 뒷 배경 색상*/
-    }
-
-    /*timeilne*/
-
-    .timeline {
-        border-left: 3px solid #727cf5;
-        border-bottom-right-radius: 4px;
-        border-top-right-radius: 4px;
-        background: rgba(114, 124, 245, 0.09);
-        margin: 0 auto;
-        letter-spacing: 0.2px;
-        position: relative;
-        line-height: 1.4em;
-        font-size: 1.03em;
-        padding: 50px;
-        list-style: none;
-        text-align: left;
-        max-width: 40%;
-    }
-
-    @media (max-width: 767px) {
-        .timeline {
-            max-width: 98%;
-            padding: 25px;
-        }
-    }
-
-    .timeline h1 {
-        font-weight: 300;
-        font-size: 1.4em;
-    }
-
-    .timeline h2,
-    .timeline h3 {
-        font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 10px;
-    }
-
-    .timeline .event {
-        border-bottom: 1px dashed #e8ebf1;
-        padding-bottom: 25px;
-        margin-bottom: 25px;
-        position: relative;
-    }
-
-    @media (max-width: 767px) {
-        .timeline .event {
-            padding-top: 30px;
-        }
-    }
-
-    .timeline .event:last-of-type {
-        padding-bottom: 0;
-        margin-bottom: 0;
-        border: none;
-    }
-
-    .timeline .event:before,
-    .timeline .event:after {
-        position: absolute;
-        display: block;
-        top: 0;
-    }
-
-    .timeline .event:before {
-        left: -207px;
-        content: attr(data-date);
-        text-align: right;
-        font-weight: 100;
-        font-size: 0.9em;
-        min-width: 120px;
-    }
-
-    @media (max-width: 767px) {
-        .timeline .event:before {
-            left: 0px;
-            text-align: left;
-        }
-    }
-
-    .timeline .event:after {
-        -webkit-box-shadow: 0 0 0 3px #727cf5;
-        box-shadow: 0 0 0 3px #727cf5;
-        left: -55.8px;
-        background: #fff;
-        border-radius: 50%;
-        height: 9px;
-        width: 9px;
-        content: "";
-        top: 5px;
-    }
-
-    @media (max-width: 767px) {
-        .timeline .event:after {
-            left: -31.8px;
-        }
-    }
-
-    .rtl .timeline {
-        border-left: 0;
-        text-align: right;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 4px;
-        border-top-left-radius: 4px;
-        border-right: 3px solid #727cf5;
-    }
-
-    .rtl .timeline .event::before {
-        left: 0;
-        right: -170px;
-    }
-
-    .rtl .timeline .event::after {
-        left: 0;
-        right: -55.8px;
-    }
-</style>
-
-</div>
 <script>
+    $(function () {
+        $("#resizable").resizable();
+    });
+
     let projectJson = JSON.parse(JSON.stringify(projectlist));
     let storageJson = JSON.parse(JSON.stringify(storage));
     console.log(projectJson);
@@ -604,6 +472,193 @@
         "drawflow": {
             "Home": {
                 "data": {
+                    "8": {
+                        "id": 8,
+                        "name": "hawkeye",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n <div onclick=\"hawkeyeClick()\">\n <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "9",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "13",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 595,
+                        "pos_y": 238.66666666666666
+                    },
+                    "9": {
+                        "id": 9,
+                        "name": "videotoimage",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n <div onclick=\"videoClick('비디오를 이미지로 변환');\">\n <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>\n <div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "16",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                        "node": "14",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "8",
+                                        "output": "input_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "pos_x": 246,
+                        "pos_y": 133.33333333333334
+                    },
+                    "11": {
+                        "id": 11,
+                        "name": "original-viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "16",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 254.33333333333334,
+                        "pos_y": 22
+                    },
+                    "12": {
+                        "id": 12,
+                        "name": "chart",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "15",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 586,
+                        "pos_y": 359.6666666666667
+                    },
+                    "13": {
+                        "id": 13,
+                        "name": "test-viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "8",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 812.3333333333334,
+                        "pos_y": 243
+                    },
+                    "14": {
+                        "id": 14,
+                        "name": "test-viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "9",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 813,
+                        "pos_y": 136.66666666666666
+                    },
+                    "15": {
+                        "id": 15,
+                        "name": "template",
+                        "data": {},
+                        "class": "template",
+                        "html": "\n <div class='' >\n <div class='title-box'><i class='fa-solid fa-code'></i>코드 커스텀</div>\n <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>\n <button class='btn btn-primary' onclick='codeblock()'>코드 작성</button>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "16",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "12",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 297.6666666666667,
+                        "pos_y": 275.3333333333333
+                    },
+                    "16": {
+                        "id": 16,
+                        "name": "pet",
+                        "data": {},
+                        "class": "data",
+                        "html": "\n <div class='d-flex flex-row' onclick=\"openPopup()\">\n <div class='d-flex flex-row justify-content-between'>\n <div><i class='fa-solid fa-database'></i></div>\n <div> 데이터셋 입수</div>\n </div> \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {},
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                        "node": "11",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "9",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "15",
+                                        "output": "input_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "pos_x": 52,
+                        "pos_y": 155
+                    }
                 }
             }
         }
@@ -762,14 +817,15 @@
                 editor.zoom)));
 
 
-        var url='',detail='';
+        var url = '',
+            detail = '';
         switch (name) {
             case 'pet':
                 var pet = `
-                <div class='d-flex flex-row' onclick="dataClick('pet')">
+                <div class='d-flex flex-row' onclick="openPopup()">
                     <div class='d-flex flex-row justify-content-between'>
                         <div><i class='fa-solid fa-database'></i></div>
-                        <div> pet</div>
+                        <div> 데이터셋 입수</div>
                     </div> 
                 </div>
                 `;
@@ -1047,7 +1103,7 @@
 
     }
 
-    function optionPopup(){
+    function optionPopup() {
         $("#modal-option").modal("show");
     }
 
@@ -1067,14 +1123,14 @@
 
         console.log(a + b);
     }
+    /*
+        function openPopup(name) {
+            $("#modal").modal("show");
 
-    function openPopup(name) {
-        $("#modal").modal("show");
-
-        if (name == 'pet') {
-            fillName();
-        }
-    }
+            if (name == 'pet') {
+                fillName();
+            }
+        }*/
 
     function fillName() {
         document.getElementById("optionname").value = "pet";
@@ -1108,10 +1164,58 @@
 
 
     //클릭이벤트
-    function dataClick(name){
+
+    function openPopup(name) {
+        $("#option-view").show();
         $("#option-detail").show();
 
-        document.getElementById("option-name").innerText = name;        
+        document.getElementById("option-name").innerText = '데이터셋 입수';
+        document.getElementById("option-detail").innerHTML = `
+                <ul class="nav nav-tabs nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="network">NetWorkDrive</a>
+                    </li>
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="FTP">FTP</a>
+                    </li>-->
+                </ul>
+                <form class="pt-2">
+                    <div class="mb-2 input-group-sm">
+                        <label for="exampleDropdownFormEmail1" class="form-label">
+                            이름</label>
+                        <input type="text" class="form-control " id="optionname" placeholder="">
+                    </div>
+                    <div class="mb-2 input-group-sm">
+                        <label for="URL" class="form-label">IP</label>
+                        <input type="text" class="form-control input-group-sm" id="URL" placeholder="\\\\192.168.25.184\\share_folder\\PET">
+                    </div>
+                    <div class="mb-2 input-group-sm">
+                        <label for="ID" class="form-label">ID</label>
+                        <input class="form-control" style="resize: none;" id="ID" rows="5"></input>
+                    </div>
+                    <div class="mb-2 input-group-sm">
+                        <label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
+                        <input type="password" class="form-control" style="resize: none;" id="password" rows="5"></input>
+                    </div>
+                    <div class="mb-2 form-check" style="">
+                        <label class="form-check-label" for="defaultCheck2">데이터 변화 감지(Watching)</label>
+                        <input class="form-check-input" type="checkbox" id="watching">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    onclick="">저장</button>
+            </div>`
+
+    }
+
+    function dataClick(name) {
+        $("#option-view").show();
+        $("#option-detail").show();
+
+        document.getElementById("option-name").innerText = name;
         document.getElementById("option-detail").innerHTML = `
             <ul class="nav  nav-tabs nav-pills nav-fill">
                 <li class="nav-item ">
@@ -1157,7 +1261,8 @@
         fillName()
     }
 
-    function hawkeyeClick(){
+    function hawkeyeClick() {
+        $("#option-view").show();
         $("#option-detail").show();
 
         document.getElementById("option-name").innerText = 'hawkeye';
@@ -1168,22 +1273,25 @@
         `
     }
 
-    function cocoClick(name){
+    function cocoClick(name) {
         url = `http://118.67.129.214:7060/Analyze/Check`;
-        detail = `"checkoption": {"checkservice":"scon_label_to_coco","img_ext":"jpg","label_ext":"json","dataset_split":[8,1,1],"save_file_prifix":"scon","threshold":{"kpt_avr_score":0.5,"rank":1}}`;
-        
+        detail =
+            `"checkoption": {"checkservice":"scon_label_to_coco","img_ext":"jpg","label_ext":"json","dataset_split":[8,1,1],"save_file_prifix":"scon","threshold":{"kpt_avr_score":0.5,"rank":1}}`;
+
         urlboxFill(name, url, detail);
     }
 
-    function videoClick(name){
+    function videoClick(name) {
         url = `http://118.67.129.214:7060/Analyze/Check`;
-        detail = `"checkoption":{"checkservice":"scon_vid_to_img","savestorage":{"dir":"n2690722_GazziLabs/scon_data/image","ip":"10.250.53.94","loginid":"hawkeye","loginpw":"gazzilabs@123"},"img_ext":"JPG","vid_ext":"MOV","size":[1920,1080],"fps":1,"fileoverwrite":1}`;
-        
+        detail =
+            `"checkoption":{"checkservice":"scon_vid_to_img","savestorage":{"dir":"n2690722_GazziLabs/scon_data/image","ip":"10.250.53.94","loginid":"hawkeye","loginpw":"gazzilabs@123"},"img_ext":"JPG","vid_ext":"MOV","size":[1920,1080],"fps":1,"fileoverwrite":1}`;
+
         urlboxFill(name, url, detail);
     }
-    
-    
-    function urlboxFill(name, url, detail){
+
+
+    function urlboxFill(name, url, detail) {
+        $("#option-view").show();
         $("#option-detail").show();
 
         document.getElementById("option-name").innerText = name;
@@ -1194,8 +1302,8 @@
 
     }
 
-    function urlboxCreate(){
-        
+    function urlboxCreate() {
+
         var box = `
         <div class='input-group my-3'>
                         <span class='input-group-text'>URL</span>
@@ -1208,9 +1316,148 @@
         return box;
     }
 </script>
+<style>
+    body {
+        overflow-y: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        /* 스크롤바의 너비 */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        height: 30%;
+        /* 스크롤바의 길이 */
+        background: #dadada;
+        /* 스크롤바의 색상 */
+
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(241, 241, 241, 0.1);
+        /*스크롤바 뒷 배경 색상*/
+    }
+
+    /*timeilne*/
+
+    .timeline {
+        border-left: 3px solid #727cf5;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        background: rgba(114, 124, 245, 0.09);
+        margin: 0 auto;
+        letter-spacing: 0.2px;
+        position: relative;
+        line-height: 1.4em;
+        font-size: 1.03em;
+        padding: 50px;
+        list-style: none;
+        text-align: left;
+        max-width: 40%;
+    }
+
+    @media (max-width: 767px) {
+        .timeline {
+            max-width: 98%;
+            padding: 25px;
+        }
+    }
+
+    .timeline h1 {
+        font-weight: 300;
+        font-size: 1.4em;
+    }
+
+    .timeline h2,
+    .timeline h3 {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .timeline .event {
+        border-bottom: 1px dashed #e8ebf1;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event {
+            padding-top: 30px;
+        }
+    }
+
+    .timeline .event:last-of-type {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: none;
+    }
+
+    .timeline .event:before,
+    .timeline .event:after {
+        position: absolute;
+        display: block;
+        top: 0;
+    }
+
+    .timeline .event:before {
+        left: -207px;
+        content: attr(data-date);
+        text-align: right;
+        font-weight: 100;
+        font-size: 0.9em;
+        min-width: 120px;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event:before {
+            left: 0px;
+            text-align: left;
+        }
+    }
+
+    .timeline .event:after {
+        -webkit-box-shadow: 0 0 0 3px #727cf5;
+        box-shadow: 0 0 0 3px #727cf5;
+        left: -55.8px;
+        background: #fff;
+        border-radius: 50%;
+        height: 9px;
+        width: 9px;
+        content: "";
+        top: 5px;
+    }
+
+    @media (max-width: 767px) {
+        .timeline .event:after {
+            left: -31.8px;
+        }
+    }
+
+    .rtl .timeline {
+        border-left: 0;
+        text-align: right;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+        border-right: 3px solid #727cf5;
+    }
+
+    .rtl .timeline .event::before {
+        left: 0;
+        right: -170px;
+    }
+
+    .rtl .timeline .event::after {
+        left: 0;
+        right: -55.8px;
+    }
+</style>
 
 
-{% include 'medialist.html' %}
-{% include 'imageview.html' %}
-{% include 'statsview.html' %}
+
 {% endblock %}
