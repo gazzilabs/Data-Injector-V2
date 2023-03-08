@@ -133,7 +133,7 @@
             <table class="table" style="width: calc(100%-30px)">
                 <thead class="thead-light">
                     <tr>
-                            <!--
+                        <!--
                         <th style="text-align: center; width: 30px;">
                         </th>
                         -->
@@ -150,12 +150,12 @@
                     <th>Progress</th>
                     <th>Duration</th>
                     -->
-                        <th>States</th>
+                        <th style="text-align: left; width: 10vw;">States</th>
                         <!--
                     <th style="width: 4vw;">Action</th>
                     -->
-                </tr>
-                  </thead>
+                    </tr>
+                </thead>
                 <tbody id="MediaList">
                 </tbody>
             </table>
@@ -166,942 +166,952 @@
 
     </div>
 
-</div>
 
-<style>
-    .card-revision {
-        background: #fff;
-        margin: 20px;
-        position: relative;
-        display: block;
-        min-height: 100%;
-        width: 100vw - 20px;
-        padding: 10px 20px 10px 20px;
-        border-radius: 10px;
-    }
 
-    .layer_header table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+    <style>
+        .card-revision {
+            background: #fff;
+            margin: 20px;
+            position: relative;
+            display: block;
+            min-height: 100%;
+            width: 100vw - 20px;
+            padding: 10px 20px 10px 20px;
+            border-radius: 10px;
+        }
 
-</style>
+        .layer_header table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    </style>
 
-<script>
-    var MediaList = {
-        _storageID: '',
-        _page: 1,
-        _countOfPage: 20,
-        _countOfPageOfPage: 10,
-        _sortType: 1,
-        _mediaState: '',
-        _mediaTitle: '',
-        _mediaType: '',
-        _addDateStart: '',
-        _addTimeStart: '',
-        _addDateEnd: '',
-        _addTimeEnd: '',
-        _addDateTimeStart: '',
-        _addDateTimeEnd: '',
-        _exceptDelete: '',
-        _tableId: 'MediaList',
-        //_today: Date.now().toISOString().split('T')[0],
-        getData: function () {
-            //Table.clearRow(MediaList._tableId);
-            //showProgress()
-            var NumberMediaList = [];
-            //console.log(MediaList._mediaTitle);
+    <script>
+        var MediaList = {
+            _storageID: '',
+            _page: 1,
+            _countOfPage: 20,
+            _countOfPageOfPage: 10,
+            _sortType: 1,
+            _mediaState: '',
+            _mediaTitle: '',
+            _mediaType: '',
+            _addDateStart: '',
+            _addTimeStart: '',
+            _addDateEnd: '',
+            _addTimeEnd: '',
+            _addDateTimeStart: '',
+            _addDateTimeEnd: '',
+            _exceptDelete: '',
+            _tableId: 'MediaList',
+            //_today: Date.now().toISOString().split('T')[0],
+            getData: function () {
+                //Table.clearRow(MediaList._tableId);
+                //showProgress()
+                var NumberMediaList = [];
+                //console.log(MediaList._mediaTitle);
 
-            // deal with _mediaState = 0
-            if (this._mediaState == 0) {
-                this._mediaState = '';
-            }
-            // deal with _mediaType = 0
-            if (this._mediaType == 0) {
-                this._mediaType = '';
-            }
-            var _mediaTypeLowerCase = this._mediaType.toLowerCase();
-            // get _mediaTitle value
-            this._mediaTitle = document.getElementById('MediaTitle').value;
-            if (this._mediaTitle == 0) {
-                this._mediaTitle = '';
-            }
-
-            // deal with _addDate Star / End
-            this._addDateStart = document.getElementById('addDateStart').value;
-            this._addDateEnd = document.getElementById('addDateEnd').value;
-            var nowDate = new Date();
-            var today = nowDate.toISOString().split('T')[0];
-
-            if (this._addDateStart != '' && this._addDateEnd != '') {
-                this._addDateTimeStart = this._addDateStart + ' 00:00:00';
-                this._addDateTimeEnd = this._addDateEnd + ' 23:59:59';
-            } else
-            if (this._addDateStart == '' && this._addDateEnd != '') {
-                this._addDateTimeStart = '2022-01-01 00:00:00';
-                this._addDateTimeEnd = this._addDateEnd + ' 23:59:59';
-            } else
-            if (this._addDateStart != '' && this._addDateEnd == '') {
-                this._addDateTimeStart = this._addDateStart + ' 00:00:00';
-                this._addDateTimeEnd = today + ' 23:59:59';
-            } else {
-                this._addDateTimeStart = '';
-                this._addDateTimeEnd = '';
-            }
-
-            //console.log('DateTimeStar= ' + this._addDateTimeStart);
-            //console.log('DateTimeEnd= ' + this._addDateTimeEnd);
-            var params = "StorageID=" + this._storageID +
-                "&PageNum=" + this._page +
-                "&CountOfPage=" + this._countOfPage +
-                "&MediaState=" + this._mediaState +
-                "&SortType=" + this._sortType +
-                "&MediaType=" + _mediaTypeLowerCase +
-                "&MediaTitle=" + this._mediaTitle +
-                "&AddDateStart=" + encodeURIComponent(this._addDateTimeStart) +
-                "&AddDateEnd=" + encodeURIComponent(this._addDateTimeEnd) +
-                "&ExceptDelete=" + this._exceptDelete;
-            // Ajax Call
-            var url = 'http://49.50.160.122:3030/MediaList';
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(url + "?" + params);
-                    //Table.clearRow(MediaList._tableId);
-                    var rs = JSON.parse(this.responseText);
-                    console.log(rs)
-                    if (rs.totalcount == 0) {
-                        //ptint no data
-                        console.log("zero");
-                        document.getElementById("paging").style.display = "none";
-                        console.log(document.getElementById("MediaList"));
-
-                        var tr = document.createElement("tr");
-                        var td = document.createElement("td");
-                        tr.id = "none-data-tr";
-                        td.id = "none-data-td";
-
-                        document.getElementById("MediaList").appendChild(tr);
-                        document.getElementById("none-data-tr").appendChild(td);
-
-                        document.getElementById("none-data-td").colSpan = "12";
-                        document.getElementById("none-data-td").style.padding = "200px 0";
-                        document.getElementById("none-data-td").style.textAlign = "center";
-                        document.getElementById("none-data-td").innerHTML = "No data";
-
-                    } else if (rs.totalcount <= 10) {
-                        //print one page
-                        document.getElementById("paging").style.display = "";
-
-                        for (var i = 0; i < rs.mediainfo.length; i++) {
-                            MediaList.printTableList(rs.mediainfo[i], i);
-                            NumberMediaList.push(rs.mediainfo[i].count + 1);
-                            MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
-                        }
-                    } else if (rs.totalcount > 10) {
-                        document.getElementById("paging").style.display = "";
-
-                        //printCountPage(rs.totalcount);
-                        for (var i = 0; i < rs.mediainfo.length; i++) {
-                            console.log(rs.mediainfo[i])
-                            MediaList.printTableList(rs.mediainfo[i], i);
-                            NumberMediaList.push(rs.mediainfo[i].count + 1);
-                            MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
-                        }
-                    }
-                    var totalPageCount = Table.getPageCount(rs.totalcount,
-                        MediaList._countOfPage);
-                    $('paging').innerHTML = Table.writePagging4(MediaList._page, totalPageCount, MediaList
-                        ._countOfPageOfPage, 'MediaList.goPage', NumberMediaList);
-
+                // deal with _mediaState = 0
+                if (this._mediaState == 0) {
+                    this._mediaState = '';
                 }
-            };
-            xhttp.open("GET", url + '?' + params, true);
-            xhttp.send();
-
-
-            /*
-            new Ajax.JSON(url, {
-                method: "get",
-                parameters: params,
-                onSuccess: function (result) {
-                    console.log(url + "?" + params);
-                    Table.clearRow(MediaList._tableId);
-                    var rs = result.responseJSON;
-                    console.log(rs.totalcount)
-                    if (rs.totalcount == 0) {
-                        //ptint no data
-                        console.log("zero");
-                        document.getElementById("paging").style.display = "none";
-                        console.log(document.getElementById("MediaList"));
-                        
-                        var tr = document.createElement("tr");
-                        var td = document.createElement("td");
-                        tr.id = "none-data-tr";
-                        td.id = "none-data-td";
-
-                        document.getElementById("MediaList").appendChild(tr);
-                        document.getElementById("none-data-tr").appendChild(td);
-
-                        document.getElementById("none-data-td").colSpan = "12";
-                        document.getElementById("none-data-td").style.padding = "200px 0";
-                        document.getElementById("none-data-td").style.textAlign = "center";
-                        document.getElementById("none-data-td").innerHTML = "No data";
-
-                    } else if (rs.totalcount <= 10) {
-                        //print one page
-                        document.getElementById("paging").style.display = "";
-
-                        for (var i = 0; i < rs.mediainfo.length; i++) {
-                            MediaList.printTableList(rs.mediainfo[i], i);
-                            NumberMediaList.push(rs.mediainfo[i].count + 1);
-                            MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
-                        }
-                    } else if (rs.totalcount > 10) {
-                        document.getElementById("paging").style.display = "";
-
-                        //printCountPage(rs.totalcount);
-                        for (var i = 0; i < rs.mediainfo.length; i++) {
-                            MediaList.printTableList(rs.mediainfo[i], i);
-                            NumberMediaList.push(rs.mediainfo[i].count + 1);
-                            MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
-                        }
-                    }
-                    var totalPageCount = Table.getPageCount(rs.totalcount,
-                        MediaList._countOfPage);
-                    $('paging').innerHTML = Table.writePagging4(MediaList._page, totalPageCount, MediaList._countOfPageOfPage, 'MediaList.goPage', NumberMediaList);
-                },
-                onFailure: function (xmlHttp) {
-                    errorPop_up(_Lan.error);
+                // deal with _mediaType = 0
+                if (this._mediaType == 0) {
+                    this._mediaType = '';
                 }
-            });
-            */
-        },
-
-        printNoData: function () {
-            Table.addNoDataRow(this._tableId, _Lan.nodata);
-        },
-
-        printMediaNumber: function (total, NumberMediaList) {
-            var NumIniMD = Math.min(NumberMediaList);
-            var NumEndMD = Math.max(NumberMediaList);
-            document.getElementById("numberMediaStartPage").innerText = NumIniMD + ' - ';
-            document.getElementById("numberMediaEndPage").innerText = NumEndMD + ' of ';
-            document.getElementById("totalNumberMedia").innerText = total;
-        },
-
-        printNoMediaNumber: function () {
-            document.getElementById("numberMediaStartPage").innerText = '';
-            document.getElementById("numberMediaEndPage").innerText = '';
-            document.getElementById("totalNumberMedia").innerText = '';
-        },
-
-        printTableList(obj, idx) {
-            console.log(obj)
-            var tr = document.createElement('TR');
-            _mediaid = obj.mediaid;
-            _title = obj.title;
-            //MediaList.viewReport(obj.mediaid , obj.title);
-            //tr.className = "Color_";
-            var td;
-
-
-            /*Div Color State */
-            td = document.createElement('TD');
-            td.className = ((idx++ % 2 == 0) ? 'Color_' + obj.state + ' center ' : 'Color_' + obj.state +
-                ' center');
-
-            /* check box 
-            if (obj.state == 2) {
-                td.innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 7) {
-                td.innerHTML = '<div class="CBBGColor_' + obj.state +
-                    ' center" ></div>';
-                tr.appendChild(td);
-            } else if (obj.state) {
-                td.innerHTML = '<div class="CBBGColor_' + obj.state +
-                    ' center" ><input type="checkbox" class="checkboxOnStandby" name="checkId" id="checkId" value="' +
-                    obj.mediaid + '#' + obj.storageid + '#' + obj.title + '"/>' +
-                    '<input type="hidden" name="title" value="' + obj.mediaid.replaceAll("'", "") + '" /></div>';
-                tr.appendChild(td);
-            }
-            */
-
-            /*No */
-            td = document.createElement('TD');
-            td.className = 'center';
-            td.innerHTML = obj.count + 1;
-            tr.appendChild(td);
-
-            /* 
-            Media Title 
-            */
-            if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                var mediaTitle = obj.title;
-                td.innerHTML = mediaTitle;
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                var mediaTitle = obj.title;
-                td.innerHTML = mediaTitle;
-                tr.appendChild(td);
-            }
-            /* 
-            Media addtime 
-            */
-            if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = obj.addtime;
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = obj.addtime;
-                tr.appendChild(td);
-            }
-            /* 
-            Media Check Start Time 
-            if (obj.state == 1) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '-';
-                tr.appendChild(td);
-            } else if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].checkstarttime;
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].checkstarttime;
-                tr.appendChild(td);
-            }
-            */
-            /* 
-            Media Check End Time 
-            if (obj.state == 1) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '-';
-                tr.appendChild(td);
-            } else if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].checkendtime;
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].checkendtime;
-                tr.appendChild(td);
-            }
-            */
-            /* 
-            mediapath 
-            */
-            if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.innerHTML = obj.mediapath;
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.innerHTML = obj.mediapath;
-                tr.appendChild(td);
-            }
-
-
-
-            /* 
-            Error Count
-            if (obj.state == 1) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '-';
-                tr.appendChild(td);
-            } else if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].errorcount;
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].errorcount;
-                tr.appendChild(td);
-            }
-            */
-
-            /*
-            Progress
-            if (obj.state == 1) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '-';
-                tr.appendChild(td);
-            } else if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].progress;
-                tr.appendChild(td);
-            } else if (obj.state == 2) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '<div style="width:100%;">' +
-                    this.getHtmlProgress(obj.checkinfo[0].progress) +
-                    '</div>';
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = obj.checkinfo[0].progress;
-                tr.appendChild(td);
-            }
-            */
-
-
-            /*
-            Duration
-            if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = '-';
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '-';
-                tr.appendChild(td);
-            }
-            */
-
-            /*
-            States
-            */
-            if (obj.state == 1) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Before Inspect</p></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 2) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Inspecting</p></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 3 || obj.state == 4) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>revision</p></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 5) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Disqualified</p></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Qualified</p></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 7) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Deleted</p></div>';
-                tr.appendChild(td);
-            } else if (obj.state == 8) {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Invalid</p></div>';
-                tr.appendChild(td);
-            } else {}
-
-
-            /*
-
-            if (obj.state) {
-                    td.innerHTML = '<div class="CBBGColor_' + obj.state + '" ><input type="checkbox" class="CBColor_' + obj.state + ' center " onclick="CheckCheckBox(document.f1.checkId, this.checked);" name="checkId" id="checkId" value="'+ obj.id +'" />'
-                +'<input type="hidden" name="title" value="'+ obj.mediaid.replaceAllExp("'", "") +'" /></div>';
-                tr.appendChild(td);}
-            */
-
-
-            /*
-            Action
-            if (obj.state == 5 || obj.state == 6) {
-                td = document.createElement('TD');
-                td.onclick = function (_mediaid, _title) {
-                    mediareportPop_up(obj.mediaid);
-                };
-                td.className = 'center';
-                td.innerHTML =
-                    '<img src="../images/IconsSVG/description_white_24dp.svg" alt="" height="20px" />'; //<img src="../images/IconsSVG/file_download_white_24dp.svg" alt="" height="20px" />
-                tr.appendChild(td);
-            } else {
-                td = document.createElement('TD');
-                td.className = 'center';
-                td.innerHTML =
-                    '<img src="../images/IconsSVG/disabled_by_default_white_24dp.svg" alt="" height="20px" />'; //<img src="../images/IconsSVG/file_download_white_24dp.svg" alt="" height="20px" />
-                tr.appendChild(td);
-            }
-            */
-
-
-
-
-
-            document.getElementById(this._tableId).appendChild(tr);
-
-
-        },
-
-        getHtmlProgress: function (val) {
-            console.log(val)
-            var html = '';
-            var sizeRate = 0.3;
-            if (val > 100) {
-                val = 100;
-            }
-            html = '<div class="progress_s1" style="width:' + val * sizeRate + 'px;"></div>';
-            html += '<div class="progress_s2" style="width:' + (100 - val) * sizeRate + 'px;"></div>';
-            html += '<div class="progress_s3">' + val + '%</div>';
-            return html;
-        },
-
-        selectCheckBoxList: function () {
-            var new_arr = [];
-            var checkedValue = null;
-            var inputElements = document.getElementsByClassName('checkboxOnStandby');
-            for (var i = 0; inputElements[i]; ++i) {
-                if (inputElements[i].checked) {
-                    checkedValue = inputElements[i].value;
-                    splitValue = checkedValue.split("#")
-                    new_arr.push(splitValue);
-                    console.log(new_arr);
-                }
-            }
-            console.log(new_arr);
-            if (new_arr.length == 0) {
-                errorPop_up('Select media for On Standby.');
-            } else if (new_arr.length == 1) {
-                //console.log(new_arr[0]);
-                MediaList.AddMediaOnStandby(new_arr[0]);
-            } else if (new_arr.length > 1) {
-                for (l = 0; l < new_arr.length; l++) {
-                    //console.log(new_arr[l]);
-                    MediaList.AddMediaOnStandby(new_arr[l]);
+                var _mediaTypeLowerCase = this._mediaType.toLowerCase();
+                // get _mediaTitle value
+                this._mediaTitle = document.getElementById('MediaTitle').value;
+                if (this._mediaTitle == 0) {
+                    this._mediaTitle = '';
                 }
 
-            }
-        },
+                // deal with _addDate Star / End
+                this._addDateStart = document.getElementById('addDateStart').value;
+                this._addDateEnd = document.getElementById('addDateEnd').value;
+                var nowDate = new Date();
+                var today = nowDate.toISOString().split('T')[0];
 
-        AddMediaOnStandby: function (obj) {
-            _mdId = obj[0];
-            _mdSt = obj[1];
-            _mdTitle = obj[2];
-            _resultList = [];
-
-
-            // Ajax Call
-            var params = "MediaID=" + _mdId +
-                "&StorageID=" + _mdSt;
-            var url = _WEBSERVER_ROOT_URL + 'Standby/AddMedia';
-            console.log(url + '?' + params);
-            new Ajax.JSON(url, {
-                method: "get",
-                parameters: params,
-                onSuccess: function (result) {
-                    var rs = result.responseText;
-                    //warningPop_up('Result=' + result.responseText);
-                    this._resultList.push(this._mdTitle, result.responseText);
-                    console.log(this._resultList);
-                    if (this._resultList.length == 2) {
-                        warningPop_up(this._resultList.length / 2);
-                        this.getData();
-                    } else {
-                        /*
-                        for ( i=0; i< this._resultList.length ; i++) {
-                            this._resultList[i]
-                            console.log(this._resultList[i])								
-                        } */
-                        warningPop_upList(this._resultList.length / 2);
-                        this.getData();
-                    }
-                },
-                onFailure: function (xmlHttp) {
-                    errorPop_up(_Lan.error);
-                },
-            });
-        },
-
-        printErrorNumber: function (state, value, suffix) {
-            if (typeof suffix == 'undefined') {
-                suffix = '';
-            }
-            var result = '-';
-            if (state > 1) {
-                result = (value) + suffix;
-            }
-            return result;
-        },
-
-        changeCountOfPage: function (val) {
-            this._countOfPage = val;
-            this.goPage(1);
-        },
-
-        changeMediaState: function (val) {
-            this._mediaState = val;
-            this.goPage(1);
-        },
-
-        changeMediaType: function (val) {
-            this._mediaType = val;
-            this.goPage(1);
-        },
-
-        changeMediaErrorType: function (val) {
-            this._mediaErrorType = val;
-            this.goPage(1);
-        },
-
-        changeStorageID: function (val) {
-            _storageID = val;
-            this.goPage(1);
-        },
-
-        refreshMediaSearch: function () {
-            console.log('gopage')
-            this.goPage(1);
-        },
-
-        /*Modify color the MediaList_title*/
-        viewReport: function (id, lastCh) {
-            var theObj = document.getElementById(id);
-            if (theObj != undefined && theObj != null) {
-                theObj.style.color = "#79bb27";
-            }
-            GlobalPopup.PopWindow('report01?ID=' + id + '&lastChid=' + lastCh, 'report', 'scrollbars=yes',
-                '1100',
-                '810', 'true');
-        },
-
-        downReport: function (id, type) {
-            var url = _WEBSERVER_ROOT_URL + 'ReportFileDownload.jsp?id=' + id + '&type=' + type;
-            TaskFrame.location.href = url;
-        },
-
-        downReport02: function (id, type) {
-            var url = _WEBSERVER_ROOT_URL + 'ReportFileDownload_new.jsp?id=' + id + '&type=' + type;
-            TaskFrame.location.href = url;
-        },
-
-        goPage: function (page) {
-            this._page = page;
-            this._mediaState = document.getElementById("MediaState").value;
-            this._storageID = document.getElementById("StorageID").value;
-
-            this.getData(this._storageID);
-
-        },
-
-        goPageHDSD: function (page, mediacheck) {
-            this._page = page;
-            this.getData(mediacheck);
-
-        },
-
-        getHtmlProgress: function (val) {
-            var html = '';
-            var sizeRate = 0.3;
-            if (val > 100) {
-                val = 100;
-            }
-            html = '<div class="progress_s1" style="width:' + val * sizeRate + 'px;"></div>';
-            html += '<div class="progress_s2" style="width:' + (100 - val) * sizeRate + 'px;"></div>';
-            html += '<div class="progress_s3">' + val + '%</div>';
-            return html;
-        },
-
-        valDateStart: function (date) {
-            //console.log('StartDate= ' + date);
-            var nowDate = Date.now();
-            var today = nowDate.toISOString().split('T')[0];
-            if (date == '') {
-                document.getElementById("addDateStart").value = '';
-            } else if (date > today) {
-                errorPop_up("Start date Cannot Be Greater Than Today's Date");
-                document.getElementById("addDateStart").value = '';
-            } else {
-                MediaList._addDateStart = date;
-                document.getElementById("addDateEnd").value = today;
-                MediaList.getData();
-            }
-        },
-
-        valDateEnd: function (date) {
-            //console.log('EndDate= ' + date)
-            var nowDate = Date.now();
-            var today = nowDate.toISOString().split('T')[0];
-            if (date == '') {
-                document.getElementById("addDateEnd").value = '';
-            } else if (date > today) {
-                errorPop_up("End date Cannot Be Greater Than Today's Date");
-                document.getElementById('addDateEnd').value = '';
-            } else if (date < document.getElementById("addDateStart").value) {
-                errorPop_up("Start date Cannot Be Greater Than End Date");
-                document.getElementById('addDateEnd').value = '';
-            } else {
-                MediaList._addDateEnd = date;
-                MediaList.getData();
-            }
-        },
-
-
-    }
-
-
-
-
-
-    var Table = {
-        clearRow: function (obj_id, headerCount) {
-            //alert("clearRow() Start! obj_id : "+obj_id+" // headerCount : "+headerCount);
-
-            var len = $(obj_id).rows.length;
-            //alert("clearRow() len : "+len);
-            if (typeof headerCount == 'undefined') {
-                headerCount = 1;
-            }
-            //alert("clearRow() Middle!");
-            for (var i = len - 1; i >= headerCount; i--) {
-                $(obj_id).deleteRow(i);
-            }
-            //alert("clearRow() End!");
-        },
-
-        addRow: function (obj_id, arr_val) {
-            var tr = document.createElement('TR');
-            var td;
-
-            arr_val.each(function (value, index) {
-                td = document.createElement('TD');
-                td.className = 'left';
-                td.innerHTML = value;
-                tr.appendChild(td);
-            });
-
-            $(obj_id).appendChild(tr);
-        },
-
-        //Add(2012-02-07 jslee@)
-        addRowClss: function (obj_id, arr_val, classNm) {
-            var tr = document.createElement('TR');
-            var td;
-
-            arr_val.each(function (value, index) {
-                td = document.createElement('TD');
-                if (classNm == undefined || classNm == null || classNm == '') {} else {
-                    td.className = classNm;
-                }
-                td.innerHTML = value;
-                tr.appendChild(td);
-            });
-
-            $(obj_id).appendChild(tr);
-        },
-
-        addNoDataRow: function (obj_id, value) {
-            var tr = document.createElement('TR');
-            var td;
-
-            td = document.createElement('TD');
-            td.colSpan = 99;
-            td.className = 'no-data';
-            td.innerHTML = value;
-            tr.appendChild(td);
-
-            $(obj_id).appendChild(tr);
-            document.getElementsByClassName("no-data")[0].style.padding = "200px";
-
-        },
-
-        getPageCount: function (rowCounts, countsOfPage) {
-            var pageCount = parseInt((rowCounts - 1) / countsOfPage, 10) + 1;
-            return pageCount;
-        },
-
-        writePagging2: function (page, totalPageCount, pageUnit, functionStr) {
-            var startPage = page - pageUnit - 1;
-
-            if (startPage <= 0) {
-                startPage = 1;
-            }
-
-            var endPage = page + pageUnit - 1;
-            var paggingHtml = '';
-            var lineUp = '<img src="../images/pgP.gif" alt="Line Up" border="0">';
-            var lineDown = '<img src="../images/pgP.gif" alt="Line Donw" border="0">';
-            var lineFirst = '<img src="../images/pgP.gif" alt="Line First" border="0">';
-            var lineLast = '<img src="../images/pgP.gif" alt="Line Last" border="0">';
-            var leftArrow = '<img src="../images/pgP.gif" alt="Previous Page" border="0">';
-            var rightArrow = '<img src="../images/pgN.gif" alt="Next Page" border="0">';
-
-            if (page == 1) {
-                paggingHtml += leftArrow;
-            } else {
-                paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page - 1) +
-                    ');">';
-                paggingHtml += leftArrow;
-                paggingHtml += '</a> ';
-            }
-
-            for (var i = startPage; i <= endPage && i <= totalPageCount; i++) {
-                if (i == page) {
-                    paggingHtml += '&nbsp<b>' + i + '</b>&nbsp';
-
+                if (this._addDateStart != '' && this._addDateEnd != '') {
+                    this._addDateTimeStart = this._addDateStart + ' 00:00:00';
+                    this._addDateTimeEnd = this._addDateEnd + ' 23:59:59';
+                } else
+                if (this._addDateStart == '' && this._addDateEnd != '') {
+                    this._addDateTimeStart = '2022-01-01 00:00:00';
+                    this._addDateTimeEnd = this._addDateEnd + ' 23:59:59';
+                } else
+                if (this._addDateStart != '' && this._addDateEnd == '') {
+                    this._addDateTimeStart = this._addDateStart + ' 00:00:00';
+                    this._addDateTimeEnd = today + ' 23:59:59';
                 } else {
-                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + i + ');">';
-                    paggingHtml += '&nbsp' + i + ' </a>&nbsp';
+                    this._addDateTimeStart = '';
+                    this._addDateTimeEnd = '';
                 }
-            }
 
-            if (page == totalPageCount) {
-                paggingHtml += ' ' + rightArrow + ' ';
-            } else {
-                paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page + 1) +
-                    ');">';
-                paggingHtml += rightArrow;
-                paggingHtml += '</a> ';
-            }
+                //console.log('DateTimeStar= ' + this._addDateTimeStart);
+                //console.log('DateTimeEnd= ' + this._addDateTimeEnd);
+                var params = "StorageID=" + this._storageID +
+                    "&PageNum=" + this._page +
+                    "&CountOfPage=" + this._countOfPage +
+                    "&MediaState=" + this._mediaState +
+                    "&SortType=" + this._sortType +
+                    "&MediaType=" + _mediaTypeLowerCase +
+                    "&MediaTitle=" + this._mediaTitle +
+                    "&AddDateStart=" + encodeURIComponent(this._addDateTimeStart) +
+                    "&AddDateEnd=" + encodeURIComponent(this._addDateTimeEnd) +
+                    "&ExceptDelete=" + this._exceptDelete;
+                // Ajax Call
+                var url = 'http://49.50.160.122:3030/MediaList';
 
-            return paggingHtml;
-        },
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(url + "?" + params);
+                        //Table.clearRow(MediaList._tableId);
+                        var rs = JSON.parse(this.responseText);
+                        console.log(rs.totalcount)
+                        if (rs.totalcount == 0) {
+                            //ptint no data
+                            console.log("zero");
+                            document.getElementById("paging").style.display = "none";
+                            console.log(document.getElementById("MediaList"));
 
+                            var tr = document.createElement("tr");
+                            var td = document.createElement("td");
+                            tr.id = "none-data-tr";
+                            td.id = "none-data-td";
 
-        writePagging4: function (page, totalPageCount, pageUnit, functionStr, NumberMediaList, pagetype) {
-            //add mscho(2021-06-29) - first, last btn.edit ver
-            var startPage = page - pageUnit - 1;
+                            document.getElementById("MediaList").appendChild(tr);
+                            document.getElementById("none-data-tr").appendChild(td);
 
-            if (startPage <= 0) {
-                startPage = 1;
-            }
+                            document.getElementById("none-data-td").colSpan = "12";
+                            document.getElementById("none-data-td").style.padding = "200px 0";
+                            document.getElementById("none-data-td").style.textAlign = "center";
+                            document.getElementById("none-data-td").innerHTML = "No data";
 
-            var endPage = page + pageUnit - 1;
-            var paggingHtml = '';
-            var lineFirst = '<img src="../images/pgP2.gif" alt="Line First" border="0">';
-            var lineLast = '<img src="../images/pgN2.gif" alt="Line Last" border="0">';
-            var leftArrow = '<img src="../images/pgP.gif" alt="Previous Page" border="0">';
-            var rightArrow = '<img src="../images/pgN.gif" alt="Next Page" border="0">';
-            var recentpage = 0;
+                        } else if (rs.totalcount <= 10) {
+                            //print one page
+                            document.getElementById("paging").style.display = "";
 
-            if (page == 1) { //page가 1일 때
-                paggingHtml += lineFirst + ' ';
-                paggingHtml += leftArrow;
-            } else {
-                paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(1);">' + lineFirst +
-                    '</a>';
-                paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page - 1) +
-                    ');">';
-                paggingHtml += leftArrow;
-                paggingHtml += '</a> ';
-            }
-            var i = 0;
+                            for (var i = 0; i < rs.mediainfo.length; i++) {
+                                MediaList.printTableList(rs.mediainfo[i], i);
+                                NumberMediaList.push(rs.mediainfo[i].count + 1);
+                                console.log(NumberMediaList)
+                                MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
+                            }
+                        } else if (rs.totalcount > 10) {
+                            document.getElementById("paging").style.display = "";
 
-            var NumIniMD = Math.min(NumberMediaList);
-            var NumEndMD = Math.max(NumberMediaList);
+                            //printCountPage(rs.totalcount);
+                            for (var i = 0; i < rs.mediainfo.length; i++) {
+                                console.log(rs.mediainfo[i])
+                                MediaList.printTableList(rs.mediainfo[i], i);
+                                NumberMediaList.push(rs.mediainfo[i].count + 1);
+                                console.log(NumberMediaList)
+                                MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
+                            }
+                        }
+                        var totalPageCount = Table.getPageCount(rs.totalcount,
+                            MediaList._countOfPage);
+                        $('paging').innerHTML = Table.writePagging4(MediaList._page, totalPageCount,
+                            MediaList
+                            ._countOfPageOfPage, 'MediaList.goPage', NumberMediaList);
 
-            for (i = startPage; i <= endPage && i <= totalPageCount; i++) {
-                if (i == page) {
-                    paggingHtml += ' <b>&nbsp' + i + '&nbsp</b>';
-                    if (pagetype != 'imageviewer') {
-
-                        document.getElementById("numberMediaStartPage").innerText = (i - 1) * 10 + NumIniMD +
-                            ' - ';
-                        document.getElementById("numberMediaEndPage").innerText = (i - 1) * 10 + NumEndMD +
-                            ' of ';
                     }
-                } else {
-                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + i + ');">';
-                    paggingHtml += '&nbsp' + i + '&nbsp </a> ';
+                };
+                xhttp.open("GET", url + '?' + params, true);
+                xhttp.send();
+
+
+                /*
+                new Ajax.JSON(url, {
+                    method: "get",
+                    parameters: params,
+                    onSuccess: function (result) {
+                        console.log(url + "?" + params);
+                        Table.clearRow(MediaList._tableId);
+                        var rs = result.responseJSON;
+                        console.log(rs.totalcount)
+                        if (rs.totalcount == 0) {
+                            //ptint no data
+                            console.log("zero");
+                            document.getElementById("paging").style.display = "none";
+                            console.log(document.getElementById("MediaList"));
+                            
+                            var tr = document.createElement("tr");
+                            var td = document.createElement("td");
+                            tr.id = "none-data-tr";
+                            td.id = "none-data-td";
+
+                            document.getElementById("MediaList").appendChild(tr);
+                            document.getElementById("none-data-tr").appendChild(td);
+
+                            document.getElementById("none-data-td").colSpan = "12";
+                            document.getElementById("none-data-td").style.padding = "200px 0";
+                            document.getElementById("none-data-td").style.textAlign = "center";
+                            document.getElementById("none-data-td").innerHTML = "No data";
+
+                        } else if (rs.totalcount <= 10) {
+                            //print one page
+                            document.getElementById("paging").style.display = "";
+
+                            for (var i = 0; i < rs.mediainfo.length; i++) {
+                                MediaList.printTableList(rs.mediainfo[i], i);
+                                NumberMediaList.push(rs.mediainfo[i].count + 1);
+                                MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
+                            }
+                        } else if (rs.totalcount > 10) {
+                            document.getElementById("paging").style.display = "";
+
+                            //printCountPage(rs.totalcount);
+                            for (var i = 0; i < rs.mediainfo.length; i++) {
+                                MediaList.printTableList(rs.mediainfo[i], i);
+                                NumberMediaList.push(rs.mediainfo[i].count + 1);
+                                MediaList.printMediaNumber(rs.totalcount, NumberMediaList);
+                            }
+                        }
+                        var totalPageCount = Table.getPageCount(rs.totalcount,
+                            MediaList._countOfPage);
+                        $('paging').innerHTML = Table.writePagging4(MediaList._page, totalPageCount, MediaList._countOfPageOfPage, 'MediaList.goPage', NumberMediaList);
+                    },
+                    onFailure: function (xmlHttp) {
+                        errorPop_up(_Lan.error);
+                    }
+                });
+                */
+            },
+
+            printNoData: function () {
+                Table.addNoDataRow(this._tableId, _Lan.nodata);
+            },
+
+            printMediaNumber: function (total, NumberMediaList) {
+                var NumIniMD = Math.min(NumberMediaList);
+                var NumEndMD = Math.max(NumberMediaList);
+                document.getElementById("numberMediaStartPage").innerText = '1 - 20';
+                document.getElementById("numberMediaEndPage").innerText = ' of ';
+                document.getElementById("totalNumberMedia").innerText = total;
+            },
+
+            printNoMediaNumber: function () {
+                document.getElementById("numberMediaStartPage").innerText = '';
+                document.getElementById("numberMediaEndPage").innerText = '';
+                document.getElementById("totalNumberMedia").innerText = '';
+            },
+
+            printTableList(obj, idx) {
+                console.log(obj)
+                var tr = document.createElement('TR');
+                _mediaid = obj.mediaid;
+                _title = obj.title;
+                //MediaList.viewReport(obj.mediaid , obj.title);
+                //tr.className = "Color_";
+                var td;
+
+
+                /*Div Color State */
+                td = document.createElement('TD');
+                td.className = ((idx++ % 2 == 0) ? 'Color_' + obj.state + ' center ' : 'Color_' + obj.state +
+                    ' center');
+
+                /* check box 
+                if (obj.state == 2) {
+                    td.innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 7) {
+                    td.innerHTML = '<div class="CBBGColor_' + obj.state +
+                        ' center" ></div>';
+                    tr.appendChild(td);
+                } else if (obj.state) {
+                    td.innerHTML = '<div class="CBBGColor_' + obj.state +
+                        ' center" ><input type="checkbox" class="checkboxOnStandby" name="checkId" id="checkId" value="' +
+                        obj.mediaid + '#' + obj.storageid + '#' + obj.title + '"/>' +
+                        '<input type="hidden" name="title" value="' + obj.mediaid.replaceAll("'", "") + '" /></div>';
+                    tr.appendChild(td);
                 }
-            }
+                */
 
-            if (page == totalPageCount) {
-                paggingHtml += ' ' + rightArrow + ' ';
-                paggingHtml += ' ' + lineLast + ' ';
-            } else {
-                paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page + 1) +
-                    ');">';
-                paggingHtml += rightArrow;
-                paggingHtml += '</a> ';
-                paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + totalPageCount +
-                    ');">' + lineLast + '</a>';
-            }
-            return paggingHtml;
-        },
+                /*No */
+                td = document.createElement('TD');
+                td.className = 'center';
+                td.innerHTML = obj.count + 1;
+                tr.appendChild(td);
 
-        writePageUpDown: function (page, totalPageCount, pageUnit, functionStr) { //added by DS
-            var startPage = parseInt(page - pageUnit - 1);
-            if (startPage <= 0) {
-                startPage = 1;
-            }
-            var endPage = parseInt(page + pageUnit - 1);
-            var paggingHtml = '';
+                /* 
+                Media Title 
+                */
+                if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    var mediaTitle = obj.title;
+                    td.innerHTML = mediaTitle;
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    var mediaTitle = obj.title;
+                    td.innerHTML = mediaTitle;
+                    tr.appendChild(td);
+                }
+                /* 
+                Media addtime 
+                */
+                if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = obj.addtime;
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = obj.addtime;
+                    tr.appendChild(td);
+                }
+                /* 
+                Media Check Start Time 
+                if (obj.state == 1) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '-';
+                    tr.appendChild(td);
+                } else if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].checkstarttime;
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].checkstarttime;
+                    tr.appendChild(td);
+                }
+                */
+                /* 
+                Media Check End Time 
+                if (obj.state == 1) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '-';
+                    tr.appendChild(td);
+                } else if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].checkendtime;
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].checkendtime;
+                    tr.appendChild(td);
+                }
+                */
+                /* 
+                mediapath 
+                */
+                if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.innerHTML = obj.mediapath;
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.innerHTML = obj.mediapath;
+                    tr.appendChild(td);
+                }
 
-            var lineUp =
-                '<a href="#"><img src="../images/line_up2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineUp()"></a>'; //added by DS
-            var lineDown =
-                '<a href="#"><img src="../images/line_down2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineDown()"></a>'; //added by DS
-            var lineFirst =
-                '<a href="#"><img src="../images/line_up_first2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineFirst()"></a>'; //added by DS
-            var lineLast =
-                '<a href="#"><img src="../images/line_down_last2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineLast()"></a>'; //added by DS	
-            var bar =
-                '<img src="../images/white.gif" alt="white space" border="0" align="absmiddle">'; //added by DS	
 
-            paggingHtml = lineFirst + bar + bar + bar + bar + bar + bar + lineUp + bar + bar + bar + bar + bar +
-                bar + lineDown + bar + bar + bar + bar + bar + bar + lineLast;
 
-            return paggingHtml;
+                /* 
+                Error Count
+                if (obj.state == 1) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '-';
+                    tr.appendChild(td);
+                } else if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].errorcount;
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].errorcount;
+                    tr.appendChild(td);
+                }
+                */
+
+                /*
+                Progress
+                if (obj.state == 1) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '-';
+                    tr.appendChild(td);
+                } else if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].progress;
+                    tr.appendChild(td);
+                } else if (obj.state == 2) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '<div style="width:100%;">' +
+                        this.getHtmlProgress(obj.checkinfo[0].progress) +
+                        '</div>';
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = obj.checkinfo[0].progress;
+                    tr.appendChild(td);
+                }
+                */
+
+
+                /*
+                Duration
+                if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = '-';
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '-';
+                    tr.appendChild(td);
+                }
+                */
+
+                /*
+                States
+                */
+                if (obj.state == 1) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Before Inspect</p></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 2) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Inspecting</p></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 3 || obj.state == 4) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>revision</p></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 5) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Disqualified</p></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Qualified</p></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 7) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Deleted</p></div>';
+                    tr.appendChild(td);
+                } else if (obj.state == 8) {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML = '<div class="SBGColor_' + obj.state + '" ><p>Invalid</p></div>';
+                    tr.appendChild(td);
+                } else {}
+
+
+                /*
+
+                if (obj.state) {
+                        td.innerHTML = '<div class="CBBGColor_' + obj.state + '" ><input type="checkbox" class="CBColor_' + obj.state + ' center " onclick="CheckCheckBox(document.f1.checkId, this.checked);" name="checkId" id="checkId" value="'+ obj.id +'" />'
+                    +'<input type="hidden" name="title" value="'+ obj.mediaid.replaceAllExp("'", "") +'" /></div>';
+                    tr.appendChild(td);}
+                */
+
+
+                /*
+                Action
+                if (obj.state == 5 || obj.state == 6) {
+                    td = document.createElement('TD');
+                    td.onclick = function (_mediaid, _title) {
+                        mediareportPop_up(obj.mediaid);
+                    };
+                    td.className = 'center';
+                    td.innerHTML =
+                        '<img src="../images/IconsSVG/description_white_24dp.svg" alt="" height="20px" />'; //<img src="../images/IconsSVG/file_download_white_24dp.svg" alt="" height="20px" />
+                    tr.appendChild(td);
+                } else {
+                    td = document.createElement('TD');
+                    td.className = 'center';
+                    td.innerHTML =
+                        '<img src="../images/IconsSVG/disabled_by_default_white_24dp.svg" alt="" height="20px" />'; //<img src="../images/IconsSVG/file_download_white_24dp.svg" alt="" height="20px" />
+                    tr.appendChild(td);
+                }
+                */
+
+
+
+
+
+                document.getElementById(this._tableId).appendChild(tr);
+
+
+            },
+
+            getHtmlProgress: function (val) {
+                console.log(val)
+                var html = '';
+                var sizeRate = 0.3;
+                if (val > 100) {
+                    val = 100;
+                }
+                html = '<div class="progress_s1" style="width:' + val * sizeRate + 'px;"></div>';
+                html += '<div class="progress_s2" style="width:' + (100 - val) * sizeRate + 'px;"></div>';
+                html += '<div class="progress_s3">' + val + '%</div>';
+                return html;
+            },
+
+            selectCheckBoxList: function () {
+                var new_arr = [];
+                var checkedValue = null;
+                var inputElements = document.getElementsByClassName('checkboxOnStandby');
+                for (var i = 0; inputElements[i]; ++i) {
+                    if (inputElements[i].checked) {
+                        checkedValue = inputElements[i].value;
+                        splitValue = checkedValue.split("#")
+                        new_arr.push(splitValue);
+                        console.log(new_arr);
+                    }
+                }
+                console.log(new_arr);
+                if (new_arr.length == 0) {
+                    errorPop_up('Select media for On Standby.');
+                } else if (new_arr.length == 1) {
+                    //console.log(new_arr[0]);
+                    MediaList.AddMediaOnStandby(new_arr[0]);
+                } else if (new_arr.length > 1) {
+                    for (l = 0; l < new_arr.length; l++) {
+                        //console.log(new_arr[l]);
+                        MediaList.AddMediaOnStandby(new_arr[l]);
+                    }
+
+                }
+            },
+
+            AddMediaOnStandby: function (obj) {
+                _mdId = obj[0];
+                _mdSt = obj[1];
+                _mdTitle = obj[2];
+                _resultList = [];
+
+
+                // Ajax Call
+                var params = "MediaID=" + _mdId +
+                    "&StorageID=" + _mdSt;
+                var url = _WEBSERVER_ROOT_URL + 'Standby/AddMedia';
+                console.log(url + '?' + params);
+                new Ajax.JSON(url, {
+                    method: "get",
+                    parameters: params,
+                    onSuccess: function (result) {
+                        var rs = result.responseText;
+                        //warningPop_up('Result=' + result.responseText);
+                        this._resultList.push(this._mdTitle, result.responseText);
+                        console.log(this._resultList);
+                        if (this._resultList.length == 2) {
+                            warningPop_up(this._resultList.length / 2);
+                            this.getData();
+                        } else {
+                            /*
+                            for ( i=0; i< this._resultList.length ; i++) {
+                                this._resultList[i]
+                                console.log(this._resultList[i])								
+                            } */
+                            warningPop_upList(this._resultList.length / 2);
+                            this.getData();
+                        }
+                    },
+                    onFailure: function (xmlHttp) {
+                        errorPop_up(_Lan.error);
+                    },
+                });
+            },
+
+            printErrorNumber: function (state, value, suffix) {
+                if (typeof suffix == 'undefined') {
+                    suffix = '';
+                }
+                var result = '-';
+                if (state > 1) {
+                    result = (value) + suffix;
+                }
+                return result;
+            },
+
+            changeCountOfPage: function (val) {
+                this._countOfPage = val;
+                this.goPage(1);
+            },
+
+            changeMediaState: function (val) {
+                this._mediaState = val;
+                this.goPage(1);
+            },
+
+            changeMediaType: function (val) {
+                this._mediaType = val;
+                this.goPage(1);
+            },
+
+            changeMediaErrorType: function (val) {
+                this._mediaErrorType = val;
+                this.goPage(1);
+            },
+
+            changeStorageID: function (val) {
+                _storageID = val;
+                this.goPage(1);
+            },
+
+            refreshMediaSearch: function () {
+                console.log('gopage')
+                this.goPage(1);
+            },
+
+            /*Modify color the MediaList_title*/
+            viewReport: function (id, lastCh) {
+                var theObj = document.getElementById(id);
+                if (theObj != undefined && theObj != null) {
+                    theObj.style.color = "#79bb27";
+                }
+                GlobalPopup.PopWindow('report01?ID=' + id + '&lastChid=' + lastCh, 'report', 'scrollbars=yes',
+                    '1100',
+                    '810', 'true');
+            },
+
+            downReport: function (id, type) {
+                var url = _WEBSERVER_ROOT_URL + 'ReportFileDownload.jsp?id=' + id + '&type=' + type;
+                TaskFrame.location.href = url;
+            },
+
+            downReport02: function (id, type) {
+                var url = _WEBSERVER_ROOT_URL + 'ReportFileDownload_new.jsp?id=' + id + '&type=' + type;
+                TaskFrame.location.href = url;
+            },
+
+            goPage: function (page) {
+                this._page = page;
+                this._mediaState = document.getElementById("MediaState").value;
+                this._storageID = document.getElementById("StorageID").value;
+
+                this.getData(this._storageID);
+
+            },
+
+            goPageHDSD: function (page, mediacheck) {
+                this._page = page;
+                this.getData(mediacheck);
+
+            },
+
+            getHtmlProgress: function (val) {
+                var html = '';
+                var sizeRate = 0.3;
+                if (val > 100) {
+                    val = 100;
+                }
+                html = '<div class="progress_s1" style="width:' + val * sizeRate + 'px;"></div>';
+                html += '<div class="progress_s2" style="width:' + (100 - val) * sizeRate + 'px;"></div>';
+                html += '<div class="progress_s3">' + val + '%</div>';
+                return html;
+            },
+
+            valDateStart: function (date) {
+                //console.log('StartDate= ' + date);
+                var nowDate = Date.now();
+                var today = nowDate.toISOString().split('T')[0];
+                if (date == '') {
+                    document.getElementById("addDateStart").value = '';
+                } else if (date > today) {
+                    errorPop_up("Start date Cannot Be Greater Than Today's Date");
+                    document.getElementById("addDateStart").value = '';
+                } else {
+                    MediaList._addDateStart = date;
+                    document.getElementById("addDateEnd").value = today;
+                    MediaList.getData();
+                }
+            },
+
+            valDateEnd: function (date) {
+                //console.log('EndDate= ' + date)
+                var nowDate = Date.now();
+                var today = nowDate.toISOString().split('T')[0];
+                if (date == '') {
+                    document.getElementById("addDateEnd").value = '';
+                } else if (date > today) {
+                    errorPop_up("End date Cannot Be Greater Than Today's Date");
+                    document.getElementById('addDateEnd').value = '';
+                } else if (date < document.getElementById("addDateStart").value) {
+                    errorPop_up("Start date Cannot Be Greater Than End Date");
+                    document.getElementById('addDateEnd').value = '';
+                } else {
+                    MediaList._addDateEnd = date;
+                    MediaList.getData();
+                }
+            },
+
 
         }
-    }
 
 
 
-    MediaList.getData()
-</script>
+
+
+        var Table = {
+            clearRow: function (obj_id, headerCount) {
+                //alert("clearRow() Start! obj_id : "+obj_id+" // headerCount : "+headerCount);
+
+                var len = $(obj_id).rows.length;
+                //alert("clearRow() len : "+len);
+                if (typeof headerCount == 'undefined') {
+                    headerCount = 1;
+                }
+                //alert("clearRow() Middle!");
+                for (var i = len - 1; i >= headerCount; i--) {
+                    $(obj_id).deleteRow(i);
+                }
+                //alert("clearRow() End!");
+            },
+
+            addRow: function (obj_id, arr_val) {
+                var tr = document.createElement('TR');
+                var td;
+
+                arr_val.each(function (value, index) {
+                    td = document.createElement('TD');
+                    td.className = 'left';
+                    td.innerHTML = value;
+                    tr.appendChild(td);
+                });
+
+                $(obj_id).appendChild(tr);
+            },
+
+            //Add(2012-02-07 jslee@)
+            addRowClss: function (obj_id, arr_val, classNm) {
+                var tr = document.createElement('TR');
+                var td;
+
+                arr_val.each(function (value, index) {
+                    td = document.createElement('TD');
+                    if (classNm == undefined || classNm == null || classNm == '') {} else {
+                        td.className = classNm;
+                    }
+                    td.innerHTML = value;
+                    tr.appendChild(td);
+                });
+
+                $(obj_id).appendChild(tr);
+            },
+
+            addNoDataRow: function (obj_id, value) {
+                var tr = document.createElement('TR');
+                var td;
+
+                td = document.createElement('TD');
+                td.colSpan = 99;
+                td.className = 'no-data';
+                td.innerHTML = value;
+                tr.appendChild(td);
+
+                $(obj_id).appendChild(tr);
+                document.getElementsByClassName("no-data")[0].style.padding = "200px";
+
+            },
+
+            getPageCount: function (rowCounts, countsOfPage) {
+                var pageCount = parseInt((rowCounts - 1) / countsOfPage, 10) + 1;
+                return pageCount;
+            },
+
+            writePagging2: function (page, totalPageCount, pageUnit, functionStr) {
+                var startPage = page - pageUnit - 1;
+
+                if (startPage <= 0) {
+                    startPage = 1;
+                }
+
+                var endPage = page + pageUnit - 1;
+                var paggingHtml = '';
+                var lineUp = '<img src="../images/pgP.gif" alt="Line Up" border="0">';
+                var lineDown = '<img src="../images/pgP.gif" alt="Line Donw" border="0">';
+                var lineFirst = '<img src="../images/pgP.gif" alt="Line First" border="0">';
+                var lineLast = '<img src="../images/pgP.gif" alt="Line Last" border="0">';
+                var leftArrow = '<img src="../images/pgP.gif" alt="Previous Page" border="0">';
+                var rightArrow = '<img src="../images/pgN.gif" alt="Next Page" border="0">';
+
+                if (page == 1) {
+                    paggingHtml += leftArrow;
+                } else {
+                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page - 1) +
+                        ');">';
+                    paggingHtml += leftArrow;
+                    paggingHtml += '</a> ';
+                }
+
+                for (var i = startPage; i <= endPage && i <= totalPageCount; i++) {
+                    if (i == page) {
+                        paggingHtml += '&nbsp<b>' + i + '</b>&nbsp';
+
+                    } else {
+                        paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + i +
+                            ');">';
+                        paggingHtml += '&nbsp' + i + ' </a>&nbsp';
+                    }
+                }
+
+                if (page == totalPageCount) {
+                    paggingHtml += ' ' + rightArrow + ' ';
+                } else {
+                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page + 1) +
+                        ');">';
+                    paggingHtml += rightArrow;
+                    paggingHtml += '</a> ';
+                }
+
+                return paggingHtml;
+            },
+
+
+            writePagging4: function (page, totalPageCount, pageUnit, functionStr, NumberMediaList, pagetype) {
+                //add mscho(2021-06-29) - first, last btn.edit ver
+                var startPage = page - pageUnit - 1;
+
+                if (startPage <= 0) {
+                    startPage = 1;
+                }
+
+                var endPage = page + pageUnit - 1;
+                var paggingHtml = '';
+                var lineFirst = '<img src="../images/pgP2.gif" alt="Line First" border="0">';
+                var lineLast = '<img src="../images/pgN2.gif" alt="Line Last" border="0">';
+                var leftArrow = '<img src="../images/pgP.gif" alt="Previous Page" border="0">';
+                var rightArrow = '<img src="../images/pgN.gif" alt="Next Page" border="0">';
+                var recentpage = 0;
+
+                if (page == 1) { //page가 1일 때
+                    paggingHtml += lineFirst + ' ';
+                    paggingHtml += leftArrow;
+                } else {
+                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(1);">' +
+                        lineFirst +
+                        '</a>';
+                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page - 1) +
+                        ');">';
+                    paggingHtml += leftArrow;
+                    paggingHtml += '</a> ';
+                }
+                var i = 0;
+
+                var NumIniMD = Math.min(NumberMediaList);
+                var NumEndMD = Math.max(NumberMediaList);
+
+                for (i = startPage; i <= endPage && i <= totalPageCount; i++) {
+                    if (i == page) {
+                        paggingHtml += ' <b>&nbsp' + i + '&nbsp</b>';
+                        if (pagetype != 'imageviewer') {
+
+                            document.getElementById("numberMediaStartPage").innerText = 
+                                '1 - 20';
+                            document.getElementById("numberMediaEndPage").innerText =
+                                ' of ';
+                        }
+                    } else {
+                        paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + i +
+                            ');">';
+                        paggingHtml += '&nbsp' + i + '&nbsp </a> ';
+                    }
+                }
+
+                if (page == totalPageCount) {
+                    paggingHtml += ' ' + rightArrow + ' ';
+                    paggingHtml += ' ' + lineLast + ' ';
+                } else {
+                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' + (page + 1) +
+                        ');">';
+                    paggingHtml += rightArrow;
+                    paggingHtml += '</a> ';
+                    paggingHtml += ' <a href="javascript:void(0);" onclick="' + functionStr + '(' +
+                        totalPageCount +
+                        ');">' + lineLast + '</a>';
+                }
+                return paggingHtml;
+            },
+
+            writePageUpDown: function (page, totalPageCount, pageUnit, functionStr) { //added by DS
+                var startPage = parseInt(page - pageUnit - 1);
+                if (startPage <= 0) {
+                    startPage = 1;
+                }
+                var endPage = parseInt(page + pageUnit - 1);
+                var paggingHtml = '';
+
+                var lineUp =
+                    '<a href="#"><img src="../images/line_up2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineUp()"></a>'; //added by DS
+                var lineDown =
+                    '<a href="#"><img src="../images/line_down2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineDown()"></a>'; //added by DS
+                var lineFirst =
+                    '<a href="#"><img src="../images/line_up_first2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineFirst()"></a>'; //added by DS
+                var lineLast =
+                    '<a href="#"><img src="../images/line_down_last2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineLast()"></a>'; //added by DS	
+                var bar =
+                    '<img src="../images/white.gif" alt="white space" border="0" align="absmiddle">'; //added by DS	
+
+                paggingHtml = lineFirst + bar + bar + bar + bar + bar + bar + lineUp + bar + bar + bar + bar +
+                    bar +
+                    bar + lineDown + bar + bar + bar + bar + bar + bar + lineLast;
+
+                return paggingHtml;
+
+            }
+        }
+
+
+
+        MediaList.getData()
+    </script>
+
+
+</div>

@@ -20,19 +20,20 @@
 </div>
 <div class="row" style="margin-left: 0; margin-right: 0;">
     <div class="wrapper col-2 shadow-sm list-group" style=" height: 84vh;">
-        <div class="align-items-stretch bg-white border-bottom border-primary border-5" id="option-view" >
+        <div class="align-items-stretch bg-white border-bottom border-primary border-5" id="option-view">
             <div class="accordion-item ">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#option" aria-expanded="false" aria-controls="option"
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#option"
+                        aria-expanded="false" aria-controls="option"
                         style="font-weight: 600; background-color: rgba(0, 0, 0, 0.03);">
-                        <div style="font-weight: 600;" >속성</div>
+                        <div style="font-weight: 600;">속성</div>
                     </button>
                 </h2>
-                <div class="collapse collapse-horizontal show" id="option" style="padding-left:0 1rem; height: 300px; overflow-y: auto;">
-                    <div class="accordion-body" >
+                <div class="collapse collapse-horizontal show" id="option"
+                    style="padding-left:0 1rem; height: 300px; overflow-y: auto;">
+                    <div class="accordion-body">
                         <div class="mb-2" id="option-name" style="font-weight: 600;"></div>
-                        <div id="option-detail" ></div>
+                        <div id="option-detail"></div>
                     </div>
                 </div>
             </div>
@@ -194,86 +195,98 @@
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="col-12 shadow-sm" id="resizable" style="overflow-y: hidden; height: 85vh;">
-            <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
-                <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
-                    <div class="">Project01</div>
-                </div>
+    <main style="position: absolute; top: 150px; left: 340px; width: 83.3vw;">
+        <div class="col">
+            <div class="col-12 shadow-sm" id="resizable" style="overflow-y: hidden; height: 85vh;">
+                <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                    <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                        <div class="">Project01</div>
+                    </div>
 
-                <div class="card-body" style="background-color:rgba(0, 0, 0, 0.0);">
-                    <div class="d-flex flex-row justify-content-between ">
-                        <div class="gap-3 d-flex flex-row">
-                            <div id="lock" onclick="editor.editor_mode='fixed'; changeMode('lock');">
-                                <button class="btn btn-outline-primary">
-                                    <i class="fas fa-lock "></i>
-                                </button>
+                    <div class="card-body" style="background-color:rgba(0, 0, 0, 0.0);">
+                        <div class="d-flex flex-row justify-content-between ">
+                            <div class="gap-3 d-flex flex-row">
+                                <div id="lock" onclick="editor.editor_mode='fixed'; changeMode('lock');">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-lock "></i>
+                                    </button>
+                                </div>
+                                <div id="unlock" onclick="editor.editor_mode='edit'; changeMode('unlock');"
+                                    style="display:none;">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-lock-open"></i>
+                                    </button>
+                                </div>
+                                <div onclick="editor.zoom_out()">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-search-minus"></i>
+                                    </button>
+                                </div>
+                                <div onclick="editor.zoom_reset()">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div onclick="editor.zoom_in()">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-search-plus"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div id="unlock" onclick="editor.editor_mode='edit'; changeMode('unlock');"
-                                style="display:none;">
-                                <button class="btn btn-outline-primary">
-                                    <i class="fas fa-lock-open"></i>
-                                </button>
+                            <div class="gap-3 d-flex flex-row" style="float: right;">
+                                <div>
+                                    <button class="btn btn-outline-primary" aria-current="page" onclick="exportmodal()">
+                                        내보내기
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-primary" onclick="editor.clearModuleSelected()">
+                                        모두 지우기
+                                    </button>
+                                </div>
                             </div>
-                            <div onclick="editor.zoom_out()">
-                                <button class="btn btn-outline-primary">
-                                    <i class="fas fa-search-minus"></i>
-                                </button>
-                            </div>
-                            <div onclick="editor.zoom_reset()">
-                                <button class="btn btn-outline-primary">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                            <div onclick="editor.zoom_in()">
-                                <button class="btn btn-outline-primary">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
+
                         </div>
-                        <div class="gap-3 d-flex flex-row" style="float: right;">
-                            <div>
-                                <button class="btn btn-outline-primary" aria-current="page" onclick="exportmodal()">
-                                    내보내기
-                                </button>
-                            </div>
-                            <div>
-                                <button class="btn btn-outline-primary" onclick="editor.clearModuleSelected()">
-                                    모두 지우기
-                                </button>
-                            </div>
+
+                        <div class=" col-12 drawflow" id="drawflow" style="height: 100vh;" ondrop="drop(event)"
+                            ondragover="allowDrop(event)">
                         </div>
 
                     </div>
-
-                    <div class=" col-12 drawflow" id="drawflow" style="height: 100vh;" ondrop="drop(event)"
-                        ondragover="allowDrop(event)">
+                </div>
+            </div>
+            <div class="col-12 shadow-sm viewers" id="filelist" style="display: none;">
+                <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                    <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                        <div class="">Filelist</div>
                     </div>
-
+                    <div class="card-body" style="overflow-y: auto; height: 35vh;">
+                        {% include 'medialist.html' %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 shadow-sm viewers" id="imageviewer" style="display: none;">
+                <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                    <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                        <div class="">Image Viewer</div>
+                    </div>
+                    <div class="card-body" style="overflow-y: auto; height: 35vh;">
+                        {% include 'imageview.html' %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 shadow-sm viewers" id="statsviewer" style="display: none;">
+                <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
+                    <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
+                        <div class="">Stats Viewer</div>
+                    </div>
+                    <div class="card-body" style="overflow-y: auto; height: 35vh;">
+                        {% include 'statsview.html' %}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 shadow-sm viewers" id="filelist" style="display: none;">
-            <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
-                <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
-                    <div class="">Filelist</div>
-                </div>
-                <div class="card-body"  style="overflow-y: auto; height: 35vh;">
-                    {% include 'medialist.html' %}
-                </div>
-            </div>
-        </div>
-        <div class="col-12 shadow-sm viewers" id="imageviewer" style="display: none;">
-            <div class="card" style="background-color:rgba(0, 0, 0, 0.0);">
-                <div class="card-header d-flex flex-row p-3" style="font-weight: 600; ">
-                    <div class="">Image Viewer</div>
-                </div>
-                <div class="card-body"  style="overflow-y: auto; height: 35vh;">
-                    {% include 'imageview.html' %}
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
 </div>
 
 <div class="modal" id="modal-start" tabindex="-1" style="display: none;">
@@ -477,13 +490,13 @@
 
 
 <script>
-    function screenChange(it){
+    function screenChange(it) {
         document.getElementById("resizable").style.height = "50vh";
 
         $(".viewers").hide();
-        $("#"+it).show();
+        $("#" + it).show();
     }
-    
+
     let projectJson = JSON.parse(JSON.stringify(projectlist));
     let storageJson = JSON.parse(JSON.stringify(storage));
     console.log(projectJson);
@@ -888,8 +901,8 @@
 
             case 'chart':
                 var chart = `
-              <div>
-                <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>
+                <div onclick='screenChange("statsviewer");'>
+                    <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>
               </div>
               `
                 editor.addNode('chart', 1, 0, pos_x, pos_y, 'viewer', {}, chart);
@@ -1324,13 +1337,13 @@
         urlboxFill(name, url, detail);
     }
 
-    function autolabeling(){
+    function autolabeling() {
         url = `http://118.67.129.214:7060/Analyze/Check`;
         document.getElementById("option-name").innerText = "자동 이미지 라벨링";
         document.getElementById("option-detail").innerHTML = urlboxCreate();
 
 
-         urlboxFill(name, url, detail)
+        urlboxFill(name, url, detail)
     }
 
 
@@ -1346,7 +1359,7 @@
 
     }
 
-    function codeClick(){
+    function codeClick() {
         $("#option-view").show();
         $("#option-detail").show();
 
@@ -1369,7 +1382,6 @@
 
         return box;
     }
-    
 </script>
 <style>
     body {
