@@ -1,0 +1,1850 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static './css/statisticstyle.css' %}">
+<script language="JavaScript" type="text/javascript" src="{% static './js/chart.min-390.js' %}"></script>
+<script language="JavaScript" type="text/javascript" src="{% static './js/chartjs-plugin-datalabels.js' %}"></script>
+<script language="JavaScript" type="text/javascript" src="{% static './js/chartjs-chart-treemap.js' %}"></script>
+<script language="JavaScript" type="text/javascript" src="{% static './js/boxplot.js' %}"></script>
+
+
+
+<div id="divstatsview" style="background: #f4f4f4;">
+    <div id="contentsbox">
+        <div class="contents 1 selected" id="contents1기본형" style="">
+            <div class="contents-container chartpage 기본형" id="chartdiv1기본형0">
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형막대 차트">막대 차트</div>
+                    <div class="analyzing" id="analyzing1기본형막대 차트"></div>
+                    <div class="not-div" id="div1기본형막대 차트">
+                        <div class="not-analyze" id="not-analyze1기본형막대 차트"></div><canvas class="chart"
+                            id="chart1기본형+막대 차트" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형박스플롯">박스플롯</div>
+                    <div class="analyzing" id="analyzing1기본형박스플롯"></div>
+                    <div class="not-div" id="div1기본형박스플롯">
+                        <div class="not-analyze" id="not-analyze1기본형박스플롯"></div><canvas class="chart"
+                            id="chart1기본형+박스플롯" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형도넛차트">도넛차트</div>
+                    <div class="analyzing" id="analyzing1기본형도넛차트"></div>
+                    <div class="not-div" id="div1기본형도넛차트">
+                        <div class="not-analyze" id="not-analyze1기본형도넛차트"></div><canvas class="chart"
+                            id="chart1기본형+도넛차트" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형파이차트">파이차트</div>
+                    <div class="analyzing" id="analyzing1기본형파이차트"></div>
+                    <div class="not-div" id="div1기본형파이차트">
+                        <div class="not-analyze" id="not-analyze1기본형파이차트"></div><canvas class="chart"
+                            id="chart1기본형+파이차트" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="contents-container chartpage 기본형" id="chartdiv1기본형1">
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형영역차트">영역차트</div>
+                    <div class="analyzing" id="analyzing1기본형영역차트"></div>
+                    <div class="not-div" id="div1기본형영역차트">
+                        <div class="not-analyze" id="not-analyze1기본형영역차트"></div><canvas class="chart"
+                            id="chart1기본형+영역차트" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형라인차트">라인차트</div>
+                    <div class="analyzing" id="analyzing1기본형라인차트"></div>
+                    <div class="not-div" id="div1기본형라인차트">
+                        <div class="not-analyze" id="not-analyze1기본형라인차트"></div><canvas class="chart"
+                            id="chart1기본형+라인차트" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형산점도">산점도</div>
+                    <div class="analyzing" id="analyzing1기본형산점도"></div>
+                    <div class="not-div" id="div1기본형산점도">
+                        <div class="not-analyze" id="not-analyze1기본형산점도"></div><canvas class="chart"
+                            id="chart1기본형+산점도" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1기본형트리맵">트리맵</div>
+                    <div class="analyzing" id="analyzing1기본형트리맵"></div>
+                    <div class="not-div" id="div1기본형트리맵">
+                        <div class="not-analyze" id="not-analyze1기본형트리맵"></div><canvas class="chart"
+                            id="chart1기본형+트리맵" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contents 1" id="contents1option" style="display:none;">
+            <div class="contents-container chartpage option" id="chartdiv1option0">
+                <div class="box1">
+                    <div class="chartname" id="chartname1optionviolin 2color">violin 2color</div>
+                    <div class="analyzing" id="analyzing1optionviolin 2color"></div>
+                    <div class="not-div" id="div1optionviolin 2color">
+                        <div class="not-analyze" id="not-analyze1optionviolin 2color"></div><canvas class="chart"
+                            id="chart1option+violin 2color" "="" width=" 0" height="0"
+                            style="display: block; box-sizing: border-box; height: 0px; width: 0px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1optionline(option, stepped: middle)">line(option, stepped:
+                        middle)</div>
+                    <div class="analyzing" id="analyzing1optionline(option, stepped: middle)"></div>
+                    <div class="not-div" id="div1optionline(option, stepped: middle)">
+                        <div class="not-analyze" id="not-analyze1optionline(option, stepped: middle)"></div><canvas
+                            class="chart" id="chart1option+line(option, stepped: middle)" "="" width=" 0" height="0"
+                            style="display: block; box-sizing: border-box; height: 0px; width: 0px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1optionHorizontal Bar Chart">Horizontal Bar Chart</div>
+                    <div class="analyzing" id="analyzing1optionHorizontal Bar Chart"></div>
+                    <div class="not-div" id="div1optionHorizontal Bar Chart">
+                        <div class="not-analyze" id="not-analyze1optionHorizontal Bar Chart"></div><canvas class="chart"
+                            id="chart1option+Horizontal Bar Chart" "="" width=" 0" height="0"
+                            style="display: block; box-sizing: border-box; height: 0px; width: 0px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname1option산점도2">산점도2</div>
+                    <div class="analyzing" id="analyzing1option산점도2"></div>
+                    <div class="not-div" id="div1option산점도2">
+                        <div class="not-analyze" id="not-analyze1option산점도2"></div><canvas class="chart"
+                            id="chart1option+산점도2" "="" width=" 0" height="0"
+                            style="display: block; box-sizing: border-box; height: 0px; width: 0px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contents 2" id="contents2동시2차트line" style="display: none;">
+            <div class="contents-container chartpage 동시2차트line" id="chartdiv2동시2차트line0">
+                <div class="box1">
+                    <div class="chartname" id="chartname2동시2차트line바차트 기준선">바차트 기준선</div>
+                    <div class="analyzing" id="analyzing2동시2차트line바차트 기준선"></div>
+                    <div class="not-div" id="div2동시2차트line바차트 기준선">
+                        <div class="not-analyze" id="not-analyze2동시2차트line바차트 기준선"></div><canvas class="chart"
+                            id="chart2동시2차트line+바차트 기준선" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname2동시2차트lineHorizontal Bar Chart 기준선">Horizontal Bar Chart 기준선
+                    </div>
+                    <div class="analyzing" id="analyzing2동시2차트lineHorizontal Bar Chart 기준선"></div>
+                    <div class="not-div" id="div2동시2차트lineHorizontal Bar Chart 기준선">
+                        <div class="not-analyze" id="not-analyze2동시2차트lineHorizontal Bar Chart 기준선"></div><canvas
+                            class="chart" id="chart2동시2차트line+Horizontal Bar Chart 기준선" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname2동시2차트lineline - logscale example (이 경우는 음수와 0이 안된다)">line -
+                        logscale example (이 경우는 음수와 0이 안된다)</div>
+                    <div class="analyzing" id="analyzing2동시2차트lineline - logscale example (이 경우는 음수와 0이 안된다)"></div>
+                    <div class="not-div" id="div2동시2차트lineline - logscale example (이 경우는 음수와 0이 안된다)">
+                        <div class="not-analyze" id="not-analyze2동시2차트lineline - logscale example (이 경우는 음수와 0이 안된다)">
+                        </div><canvas class="chart"
+                            id="chart2동시2차트line+line - logscale example (이 경우는 음수와 0이 안된다)" "="" width=" 942"
+                            height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname2동시2차트line영역차트 기준선">영역차트 기준선</div>
+                    <div class="analyzing" id="analyzing2동시2차트line영역차트 기준선"></div>
+                    <div class="not-div" id="div2동시2차트line영역차트 기준선">
+                        <div class="not-analyze" id="not-analyze2동시2차트line영역차트 기준선"></div><canvas class="chart"
+                            id="chart2동시2차트line+영역차트 기준선" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="contents-container chartpage 동시2차트line" id="chartdiv2동시2차트line1">
+                <div class="box1">
+                    <div class="chartname" id="chartname2동시2차트line라인차트 * 2">라인차트 * 2</div>
+                    <div class="analyzing" id="analyzing2동시2차트line라인차트 * 2"></div>
+                    <div class="not-div" id="div2동시2차트line라인차트 * 2">
+                        <div class="not-analyze" id="not-analyze2동시2차트line라인차트 * 2"></div><canvas class="chart"
+                            id="chart2동시2차트line+라인차트 * 2" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box1">
+                    <div class="chartname" id="chartname2동시2차트line중간 누락 line">중간 누락 line</div>
+                    <div class="analyzing" id="analyzing2동시2차트line중간 누락 line"></div>
+                    <div class="not-div" id="div2동시2차트line중간 누락 line">
+                        <div class="not-analyze" id="not-analyze2동시2차트line중간 누락 line"></div><canvas class="chart"
+                            id="chart2동시2차트line+중간 누락 line" "="" width=" 942" height="942"
+                            style="display: block; box-sizing: border-box; height: 471px; width: 471px;"></canvas>
+                    </div>
+                </div>
+                <div class="box2">
+                    <div class="chartname" id="chartname_table">table</div>
+                    <div id="tablecontainer" style="height:350px; padding: 20px;">
+                        <table id="table" style="padding:20px;">
+                            <thead>
+                                <tr>
+                                    <td colspan="3" rowspan="2">품질지표</td>
+                                    <td colspan="4">검사대상 데이터종류</td>
+                                    <td colspan="6">검사대상 구축공정</td>
+                                    <td colspan="2">검사 방법</td>
+                                </tr>
+                                <tr>
+                                    <td>동영상</td>
+                                    <td>이미지</td>
+                                    <td>텍스트</td>
+                                    <td>음성</td>
+                                    <td>임무정의</td>
+                                    <td>구축계획수립</td>
+                                    <td>데이터획득</td>
+                                    <td>데이터정제</td>
+                                    <td>데이터라벨링</td>
+                                    <td>데이터학습</td>
+                                    <td>정량적검사</td>
+                                    <td>정성적검사</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="6">정확성</td>
+                                    <td rowspan="3">의미정확성</td>
+                                    <td>정확도</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>정밀도</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>재현율</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3">구문정확성</td>
+                                    <td>데이터 구조</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>입력값 범위</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>데이터 형식</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <!---->
+                                <tr>
+                                    <td rowspan="4">유효성</td>
+                                    <td rowspan="4">학습모델유효성</td>
+                                    <td>분류성능</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>탐지성능</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>인식성능</td>
+                                    <td>●</td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>질의응답</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>●</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>※</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+var objjson = [
+    {
+        "category": "기본형",
+        "resultpath": "/25/1x02000000/2022_08_22/json_1068.json",
+        "startdate": "2022-08-22 18:39:58",
+        "enddate": "2022-08-22 18:40:01",
+        "checkcode": "1x02000000",
+        "chartdata": {
+            "chart": [
+                {
+                    "chartidx": 0,
+                    "progress": 100,
+                    "subcategory": "structure_check",
+                    "name": "막대 차트",
+                    "type": "bar",
+                    "color": [
+                        "#00B0F0",
+                        "#ff6384",
+                        "#70AD47",
+                        "#FFC000",
+                        "#9F3FFA",
+                        "#FA6022",
+                        "#63FF40",
+                        "#37DED5"
+                    ],
+                    "bordercolor": "rgba(0, 0, 0, 0)",
+                    "data": {
+                        "labels": [
+                            "error",
+                            "fail",
+                            "na",
+                            "none",
+                            "pass",
+                            "progress",
+                            "start",
+                            "wait"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                200,
+                                100,
+                                700,
+                                50,
+                                180,
+                                650,
+                                400,
+                                300
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 1,
+                    "progress": 100,
+                    "subcategory": "structure_check",
+                    "name": "박스플롯",
+                    "type": "boxplot",
+                    "color": [
+                        "#00B0F0",
+                        "#ff6384",
+                        "#70AD47",
+                        "#FFC000",
+                        "#9F3FFA",
+                        "#FA6022",
+                        "#63FF40",
+                        "#37DED5"
+                    ],
+                    "bordercolor": [
+                        "#00B0F0",
+                        "#ff6384",
+                        "#70AD47",
+                        "#FFC000",
+                        "#9F3FFA",
+                        "#FA6022",
+                        "#63FF40",
+                        "#37DED5"
+                    ],
+                    "data": {
+                        "labels": [
+                            "January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                [
+                                    85,
+                                    19,
+                                    53,
+                                    100,
+                                    76
+                                ],
+                                [
+                                    65,
+                                    86,
+                                    13,
+                                    68,
+                                    34
+                                ],
+                                [
+                                    32,
+                                    9,
+                                    45,
+                                    81,
+                                    63
+                                ],
+                                [
+                                    13,
+                                    94,
+                                    64,
+                                    75,
+                                    21
+                                ],
+                                [
+                                    74,
+                                    92,
+                                    35,
+                                    90,
+                                    2
+                                ],
+                                [
+                                    65,
+                                    94,
+                                    13,
+                                    75,
+                                    100
+                                ],
+                                [
+                                    74,
+                                    3,
+                                    35,
+                                    64,
+                                    2
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 2,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "도넛차트",
+                    "type": "doughnut",
+                    "color": [
+                        "#00B0F0",
+                        "#ff6384",
+                        "#70AD47",
+                        "#FFC000",
+                        "#9F3FFA",
+                        "#FA6022"
+                    ],
+                    "bordercolor": "rgba(0, 0, 0, 0)",
+                    "data": {
+                        "labels": [
+                            "error",
+                            "fail",
+                            "na",
+                            "none",
+                            "pass",
+                            "progress"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                1000,
+                                800,
+                                600,
+                                200,
+                                70,
+                                20
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 2,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "파이차트",
+                    "type": "pie",
+                    "color": [
+                        "#FF5B3D",
+                        "#9A76E6",
+                        "#78FAE4",
+                        "#DAE66C",
+                        "#FBA76C"
+                    ],
+                    "bordercolor": "rgba(0, 0, 0, 0)",
+                    "data": {
+                        "labels": [
+                            "토마토",
+                            "가지",
+                            "민트",
+                            "겨자",
+                            "자몽"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                300000,
+                                80000,
+                                9600,
+                                2800,
+                                97
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 3,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "영역차트",
+                    "type": "line",
+                    "color": [
+                        "#433EE6"
+                    ],
+                    "bordercolor": "#433EE6",
+                    "data": {
+                        "labels": [
+                            "error",
+                            "fail",
+                            "na",
+                            "none",
+                            "pass",
+                            "progress",
+                            "start",
+                            "wait"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                30,
+                                20,
+                                784,
+                                10,
+                                500,
+                                20,
+                                70,
+                                0
+                            ],
+                            "fill": true
+                        }
+                    }
+                },
+                {
+                    "chartidx": 4,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "라인차트",
+                    "type": "line",
+                    "color": [
+                        "#C0A1E3"
+                    ],
+                    "bordercolor": "#C0A1E3",
+                    "data": {
+                        "labels": [
+                            "2014",
+                            "2015",
+                            "2016",
+                            "2017",
+                            "2018",
+                            "2019",
+                            "2020",
+                            "2021"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                1,
+                                20,
+                                50,
+                                100,
+                                400,
+                                800,
+                                1600,
+                                2220
+                            ],
+                            "fill": false
+                        }
+                    }
+                },
+                {
+                    "chartidx": 5,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "산점도",
+                    "type": "scatter",
+                    "color": [
+                        "#FFF140"
+                    ],
+                    "bordercolor": "#FFF140",
+                    "data": {
+                        "labels": [
+                            "a",
+                            "b",
+                            "c",
+                            "d",
+                            "e",
+                            "f",
+                            "g",
+                            "h",
+                            "i",
+                            "j",
+                            "k",
+                            "l",
+                            "m",
+                            "n"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                {
+                                    "x": 10,
+                                    "y": 20
+                                },
+                                {
+                                    "x": 2,
+                                    "y": 14
+                                },
+                                {
+                                    "x": 18,
+                                    "y": 25
+                                },
+                                {
+                                    "x": 9,
+                                    "y": 17
+                                },
+                                {
+                                    "x": 0,
+                                    "y": 10
+                                },
+                                {
+                                    "x": 22,
+                                    "y": 15
+                                },
+                                {
+                                    "x": 9,
+                                    "y": 22
+                                },
+                                {
+                                    "x": 1,
+                                    "y": 2
+                                },
+                                {
+                                    "x": 17,
+                                    "y": 23
+                                },
+                                {
+                                    "x": 24,
+                                    "y": 15
+                                },
+                                {
+                                    "x": 29,
+                                    "y": 22
+                                },
+                                {
+                                    "x": 51,
+                                    "y": 2
+                                },
+                                {
+                                    "x": 45,
+                                    "y": 23
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 5,
+                    "progress": 100,
+                    "subcategory": "fileformatcheck",
+                    "color": [
+                        "#C0A1E3"
+                    ],
+                    "bordercolor": "#C0A1E3",
+                    "name": "트리맵",
+                    "type": "treemap",
+                    "data": {
+                        "labels": [
+                            "N/A",
+                            "error",
+                            "fail",
+                            "none",
+                            "pass",
+                            "progress",
+                            "start",
+                            "wait"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                10,
+                                8,
+                                5,
+                                3,
+                                2,
+                                1,
+                                1,
+                                0
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "progress": 100
+    },
+    {
+        "category": "option",
+        "resultpath": "/25/1x01000000/2022_08_22/json_1069.json",
+        "startdate": "2022-08-22 18:39:58",
+        "enddate": "2022-08-22 20:10:06",
+        "checkcode": "1x01000000",
+        "chartdata": {
+            "chart": [
+                {
+                    "chartidx": 0,
+                    "progress": 100,
+                    "name": "violin 2color",
+                    "type": "violin",
+                    "color": [
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B"
+                    ],
+                    "bordercolor": [
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B"
+                    ],
+                    "data": {
+                        "labels": [
+                            "January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                [
+                                    85,
+                                    19,
+                                    53,
+                                    100,
+                                    76
+                                ],
+                                [
+                                    65,
+                                    86,
+                                    13,
+                                    68,
+                                    34
+                                ],
+                                [
+                                    32,
+                                    9,
+                                    45,
+                                    81,
+                                    63
+                                ],
+                                [
+                                    13,
+                                    94,
+                                    64,
+                                    75,
+                                    21
+                                ],
+                                [
+                                    74,
+                                    92,
+                                    35,
+                                    90,
+                                    2
+                                ],
+                                [
+                                    65,
+                                    94,
+                                    13,
+                                    75,
+                                    100
+                                ],
+                                [
+                                    74,
+                                    3,
+                                    35,
+                                    64,
+                                    2
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 1,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "line(option, stepped: middle)",
+                    "type": "line",
+                    "color": [
+                        "#FA86C2"
+                    ],
+                    "bordercolor": "#FA86C2",
+                    "data": {
+                        "labels": [
+                            "error",
+                            "fail",
+                            "na",
+                            "none",
+                            "pass",
+                            "progress",
+                            "start",
+                            "wait"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                10,
+                                20,
+                                4,
+                                0,
+                                10,
+                                20,
+                                300,
+                                4000000
+                            ],
+                            "fill": false,
+                            "stepped": "middle"
+                        }
+                    }
+                },
+                {
+                    "chartidx": 3,
+                    "progress": 100,
+                    "subcategory": "fileformatcheck",
+                    "color": [
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B"
+                    ],
+                    "bordercolor": [
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#FA86C2",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B",
+                        "#3CAD3B"
+                    ],
+                    "name": "Horizontal Bar Chart",
+                    "type": "bar",
+                    "axis": "y",
+                    "data": {
+                        "labels": [
+                            "1월",
+                            "2월",
+                            "3월",
+                            "4월",
+                            "5월",
+                            "6월",
+                            "7월",
+                            "8월"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                1,
+                                5,
+                                8,
+                                10,
+                                8,
+                                2,
+                                1,
+                                1
+                            ]
+                        }
+                    }
+                },
+                {
+                    "chartidx": 5,
+                    "progress": 100,
+                    "subcategory": "target",
+                    "name": "산점도2",
+                    "type": "scatter",
+                    "color": [
+                        "#FABFAD",
+                        "#3CAD3B"
+                    ],
+                    "bordercolor": [
+                        "#FABFAD",
+                        "#3CAD3B"
+                    ],
+                    "data": {
+                        "labels": [
+                            "a",
+                            "b",
+                            "c",
+                            "d",
+                            "e",
+                            "f",
+                            "g",
+                            "h",
+                            "i"
+                        ],
+                        "dataset": {
+                            "label": "data",
+                            "data": [
+                                {
+                                    "x": 10,
+                                    "y": 20
+                                },
+                                {
+                                    "x": 2,
+                                    "y": 14
+                                },
+                                {
+                                    "x": 18,
+                                    "y": 25
+                                },
+                                {
+                                    "x": 9,
+                                    "y": 17
+                                },
+                                {
+                                    "x": 0,
+                                    "y": 10
+                                },
+                                {
+                                    "x": 22,
+                                    "y": 15
+                                },
+                                {
+                                    "x": 9,
+                                    "y": 22
+                                },
+                                {
+                                    "x": 1,
+                                    "y": 2
+                                },
+                                {
+                                    "x": 15,
+                                    "y": 23
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "filelistdata": "{\n  \"filelist\": [\n    {\n      \"chartidx\": 0,\n      \"name\": \"result\",\n      \"data\": {\n        \"pass\": [\n          {\n            \"path\": \"//10.250.53.94/n2690722_GazziLabs\\\\scon\\\\video/20220624/vid_20220617_101358.mov\"\n          },\n          {\n            \"path\": \"//10.250.53.94/n2690722_GazziLabs\\\\scon\\\\video/20220624/vid_20220617_110932.mov\"\n          },\n          {\n            \"path\": \"//10.250.53.94/n2690722_GazziLabs\\\\scon\\\\video/20220624/vid_20220617_123909.mov\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+        "progress": 100
+    }
+]
+
+
+
+
+
+
+
+
+
+
+    function loadConverter(obj, storageid, profile, categoryIdx) {
+        console.log(obj)
+        console.log(storageid)
+        console.log(profile)
+        console.log(categoryIdx)
+
+        if (0 <= categoryIdx) {
+            var objArr = [];
+            objArr.push(obj[categoryIdx]);
+            return chartMaker(objArr, storageid, profile);
+        }
+        else {
+            if (storageid == 2) {
+                return chartMaker2(obj, storageid, profile);
+            }
+            chartMaker(obj, storageid, profile)
+        }
+    }
+
+    function chartMaker2(obj, storageid, profile) {
+        for (i = 0; i < obj.length; i++) {
+            var data = obj[i];
+            var chartdata = data.chartdata;
+            var chartJson = chartdata.chart;
+            for (j = 0; j < chartJson.length; j++) {
+                //차트 초기화
+
+                if (chartJson[j].type == 'table') {
+                    return tableCreate();
+                }
+
+                var originData = chartJson[j].data.dataset.data;
+                //로그값에 +1을 해주는 이유는 데이터에 1이 있을 경우, 로그를 취하면 0이 되기 때문이다. 0의 경우는   1 보여주지 않기 때문에 1을 더한다.
+                var logValue = originData.map((originData) => {
+                    if (0 < originData && originData < 1) {
+                    }
+                    else {
+                        originData = Math.log(originData) / Math.LN10 + 1
+                    }
+                    return originData;
+                });
+
+                //0에 로그를 취하면 마이너스 무한으로 떨어지기 때문에 예외처리를 한다
+                for (p = 0; p < logValue.length; p++) {
+                    if (logValue[p] == -Infinity) {
+                        logValue[p] = 0;
+                    }
+                }
+                var scale = '';
+                switch (chartJson[j].name) {
+                    case '바차트 기준선':
+                        dataset = [
+                            {
+                                label: '기준선',
+                                type: 'line',
+                                data: [10, 10, 10, 10, 10, 10, 10],
+                                realdata: [10, 10, 10, 10, 10, 10, 10],
+                                borderColor: "#ffffff",
+                                padding: '10px',
+                                borderWidth: 1,
+                                pointRadius: 0,
+                                datalabels: {
+                                    display: false,
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+
+                            },
+                            {
+                                label: 'Dataset 2',
+                                type: 'bar',
+                                data: [10, 7, 8, 4, 7, 20, 1],
+                                realdata: [10, 7, 8, 4, 7, 20, 1],
+                                backgroundColor: ["#ff6384", "#ff6384", "#ff6384", "#ff6384", "#ff6384", "#00B0F0", "#ff6384"],
+                                borderColor: ["#ff6384", "#ff6384", "#ff6384", "#ff6384", "#ff6384", "#00B0F0", "#ff6384"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+                            },
+                        ]
+                        dalabel = ["0", "1", "2", "3", "4", "5", "6"]
+                        break;
+                    case 'Horizontal Bar Chart 기준선':
+                        dataset = [
+                            {
+                                label: '기준선',
+                                type: 'line',
+                                data: [11, 11, 12, 13, 14, 15, 16],
+                                realdata: [10, 10, 10, 10, 10, 10, 10],
+                                borderColor: "#ffffff",
+                                padding: '10px',
+                                borderWidth: 1,
+                                pointRadius: 0,
+                                datalabels: {
+                                    display: false,
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'center',
+                                },
+                                indexAxis: 'y'
+                            },
+                            {
+                                label: 'Dataset 2',
+                                type: 'bar',
+                                data: [10, 7, 8, 4, 7, 20, 1],
+                                realdata: [10, 7, 8, 4, 7, 20, 1],
+                                backgroundColor: ["#ff6384", "#ff6384", "#ff6384", "#ff6384", "#ff6384", "#00B0F0", "#ff6384"],
+                                borderColor: ["#ff6384", "#ff6384", "#ff6384", "#ff6384", "#ff6384", "#00B0F0", "#ff6384"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'center',
+                                },
+                                indexAxis: 'y'
+
+                            },
+                        ]
+                        dalabel = ["0", "1", "2", "3", "4", "5", "6"]
+                        break;
+                    case 'line - logscale example (이 경우는 음수와 0이 안된다)':
+                        scale = ({
+                            x: {
+                                display: true,
+                            },
+                            y: {
+                                display: true,
+                                type: 'logarithmic',
+                            }
+                        });
+
+                        dataset = [
+                            {
+                                label: 'Dataset 1',
+                                type: 'line',
+                                data: [10000, 700, 8, 4, 7, 20, 1],
+                                realdata: [10000, 700, 8, 4, 7, 20, 1],
+                                backgroundColor: ["#E6AE95"],
+                                borderColor: ["#E6AE95"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'center',
+                                },
+                            },
+                            {
+                                label: 'Dataset 2',
+                                type: 'line',
+                                data: [20000, 300, 80, 40, 70, 20, 3],
+                                realdata: [10000, 700, 8, 4, 7, 20, 1],
+                                backgroundColor: ["#BFFAB1"],
+                                borderColor: ["#BFFAB1"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'center',
+                                },
+                            },
+                        ]
+                        dalabel = ["0", "1", "2", "3", "4", "5", "6"]
+                        break;
+                    case '영역차트 기준선':
+                        dataset = [
+                            {
+                                label: '기준선',
+                                type: 'line',
+                                data: [10, 13, 11, 12, 10, 10, 10],
+                                realdata: [10, 10, 10, 10, 10, 10, 10],
+                                borderColor: "#ffffff",
+                                padding: '10px',
+                                borderWidth: 1,
+                                pointRadius: 0,
+                                datalabels: {
+                                    display: false,
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+
+                            },
+                            {
+                                label: 'Dataset 2',
+                                type: 'line',
+                                data: [10, 7, 8, 4, 7, 17, 1],
+                                fill: true,
+                                realdata: [10, 7, 8, 4, 7, 17, 1],
+                                backgroundColor: ["#3B9EAD"],
+                                borderColor: ["#3B9EAD"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+                            },
+                        ]
+                        dalabel = ["0", "1", "2", "3", "4", "5", "6"]
+                        break;
+                    case '라인차트 * 2':
+                        dataset = [
+                            {
+                                label: '기준선',
+                                type: 'line',
+                                data: [20, 13, 18, 12, 16, 12, 10],
+                                realdata: [20, 13, 18, 12, 16, 12, 10],
+                                backgroundColor: ["#A3B4FF"],
+                                borderColor: "#A3B4FF",
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+
+                            },
+                            {
+                                label: 'Dataset 2',
+                                type: 'line',
+                                data: [12, 27, 38, 44, 57, 67, 51],
+                                realdata: [12, 27, 38, 44, 57, 67, 51],
+                                backgroundColor: ["#F5D472"],
+                                borderColor: ["#F5D472"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+                            },
+                        ]
+                        dalabel = ["0", "1", "2", "3", "4", "5", "6"]
+                        break;
+                    case '중간 누락 line':
+                        dataset = [
+                            {
+                                label: '기준선',
+                                type: 'line',
+                                data: [20, 13, 18, NaN, 16, 12, 10],
+                                realdata: [20, 13, 18, NaN, 16, 12, 10],
+                                backgroundColor: ["#FAE9B1"],
+                                borderColor: "#FAE9B1",
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+
+                            },
+                            {
+                                label: 'Dataset 2',
+                                type: 'line',
+                                data: [12, 27, 38, NaN, 57, 67, 51],
+                                realdata: [12, 27, 38, NaN, 57, 67, 51],
+                                backgroundColor: ["#3E93E6"],
+                                borderColor: ["#3E93E6"],
+                                padding: '10px',
+                                borderWidth: 1,
+                                datalabels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'normal'
+                                    },
+                                    anchor: 'center',
+                                    align: 'top',
+                                },
+                            },
+                        ]
+                        dalabel = ["0", "1", "2", "3", "4", "5", "6"]
+                        break;
+                }
+
+                var ctx = new Chart(document.getElementById('chart' + storageid + obj[i].category.replace(/\s/gi, "") + "+" + chartJson[j].name), {
+                    data: {
+                        labels: dalabel,
+                        datasets: dataset
+                    },
+                    options: {
+                        scales: scale,
+                        animation: {
+                            duration: 0, // general animation time
+                        },
+                        hover: {
+                            animationDuration: 0, // duration of animations when hovering an item
+                        },
+                        responsiveAnimationDuration: 0, // animation duration after a resize
+                        //indexAxis: axis,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    color: '#f4f4f4',
+                                    padding: 10
+                                }
+                            },
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        devicePixelRatio: false,
+                    },
+                    plugins: [ChartDataLabels],
+                });
+            }
+        }
+    }
+
+
+    function chartMaker(obj, storageid, profile) {
+        console.log("ChartMaker")
+        for (i = 0; i < obj.length; i++) {
+            var data = obj[i];
+            var chartdata = data.chartdata;
+            var chartJson = chartdata.chart;
+            for (j = 0; j < chartJson.length; j++) {
+                //차트 초기화
+
+                if (chartJson[j].type == 'table') {
+                    return tableCreate();
+                }
+
+                var originData = chartJson[j].data.dataset.data;
+                //로그값에 +1을 해주는 이유는 데이터에 1이 있을 경우, 로그를 취하면 0이 되기 때문이다. 0의 경우는   1 보여주지 않기 때문에 1을 더한다.
+                //var logValue = originData.map(originData => Math.log(originData) / Math.LN10 + 1);
+                var logValue = originData.map((originData) => {
+                    if (0 < originData && originData < 1) {
+                    }
+                    else {
+                        originData = Math.log(originData) / Math.LN10 + 1
+                    }
+                    return originData;
+                });
+
+                //0에 로그를 취하면 마이너스 무한으로 떨어지기 때문에 예외처리를 한다
+                for (p = 0; p < logValue.length; p++) {
+                    if (logValue[p] == -Infinity) {
+                        logValue[p] = 0;
+                    }
+                }
+
+                switch (chartJson[j].type) {
+                    case 'doughnut':
+                    case 'pie':
+                        treeData = '';
+                        step = false;
+                        offsetCnt = -30;
+                        Labels = ChartDataLabels;
+                        legendSwitch = true;
+                        var color = chartJson[j].color;
+                        var bordercolor = chartJson[j].bordercolor;
+                        var scale = '';
+                        var dataalign = 'end';
+                        var axisSet = '';
+
+                        percent = (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return percentage;
+                        }
+                        break;
+                    case 'bar':
+                        treeData = '';
+                        step = false;
+                        offsetCnt = 0;
+                        legendSwitch = false;
+                        Labels = ChartDataLabels;
+                        var dataalign = 'top';
+                        var color = chartJson[j].color;
+                        var bordercolor = chartJson[j].bordercolor;
+                        var axisSet = 'x';
+                        if (chartJson[j].axis == 'y') {
+                            axisSet = chartJson[j].axis;
+                            var scale = ({
+                                x: {
+                                    grid: {
+                                        display: false,
+                                        color: '#414141'
+                                    },
+                                    ticks: {
+                                        color: '#f4f4f4',
+                                        display: false
+                                    }
+                                },
+                                y: {
+                                    grid: {
+                                        display: false,
+                                        color: '#414141'
+                                    },
+                                    ticks: {
+                                        color: '#f4f4f4',
+                                        display: true
+                                    }
+                                }
+                            });
+                            break;
+                        }
+
+                        var percent = '';
+                        var scale = ({
+                            x: {
+                                grid: {
+                                    display: false,
+                                    color: '#414141'
+                                },
+                                ticks: {
+                                    color: '#f4f4f4'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false,
+                                    color: '#414141'
+                                },
+                                ticks: {
+                                    display: false
+                                }
+                            }
+                        });
+                        break;
+                    case 'line':
+                        treeData = '';
+                        offsetCnt = 0;
+                        legendSwitch = false;
+                        Labels = ChartDataLabels;
+                        if (typeof chartJson[j].data.dataset.stepped != 'undefined') {
+                            step = chartJson[j].data.dataset.stepped;
+                        }
+                        //var color = chart[j].color;
+                        //var bordercolor = chart[j].bordercolor;
+                        var axisSet = 'x';
+                        if (chartJson[j].axis == 'y') {
+                            axisSet = chartJson[j].axis;
+                        }
+                        color = chartJson[j].color;
+                        bordercolor = chartJson[j].bordercolor;
+                        var percent = '';
+                        var filltype = chartJson[j].data.dataset.fill;
+                        var dataalign = 'start';
+                        var scale = ({
+                            x: {
+                                grid: {
+                                    display: false,
+                                    //color: '#414141'
+                                },
+                                ticks: {
+                                    color: '#f4f4f4'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false,
+                                    //color: '#414141'
+                                },
+                                ticks: {
+                                    display: false,
+                                    //color: '#d4d4d4',
+                                }
+                            }
+                        });
+                        break;
+                    case 'violin':
+                    case 'boxplot':
+                        treeData = '';
+                        step = false;
+                        offsetCnt = 0;
+                        legendSwitch = false;
+                        Labels = '';
+                        logValue = chartJson[j].data.dataset.data;
+                        var bordercolor = chartJson[j].bordercolor;
+                        var percent = '';
+                        var color = chartJson[j].color;
+                        var filltype = false;
+                        var dataalign = 'center';
+                        var axisSet = 'x';
+                        if (chartJson[j].axis == 'y') {
+                            axisSet = chartJson[j].axis;
+                        }
+                        var scale = ({
+                            x: {
+                                grid: {
+                                    display: false,
+                                    //color: '#414141'
+                                },
+                                ticks: {
+                                    color: '#f4f4f4'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false,
+                                    //color: '#414141'
+                                },
+                                ticks: {
+                                    display: false,
+                                    //color: '#d4d4d4',
+                                }
+                            }
+                        });
+                        break;
+                    case 'scatter':
+                        offsetCnt = 0;
+                        step = false;
+                        legendSwitch = false;
+                        Labels = '';
+                        logValue = chartJson[j].data.dataset.data;
+                        var percent = '';
+                        var bordercolor = chartJson[j].bordercolor;
+                        var color = chartJson[j].color;
+                        var dataalign = 'bottom';
+                        var filltype = false;
+                        var axisSet = 'x';
+                        if (chartJson[j].axis == 'y') {
+                            axisSet = chartJson[j].axis;
+                        }
+                        var scale = ({
+                            x: {
+                                grid: {
+                                    display: false,
+                                    color: '#414141'
+                                },
+                                ticks: {
+                                    color: '#d4d4d4'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false,
+                                    color: '#414141'
+                                },
+                                ticks: {
+                                    display: true,
+                                    color: '#d4d4d4'
+                                }
+                            }
+                        });
+                        break;
+                    case 'treemap':
+                        var axisSet = '';
+                        step = false;
+                        Labels = '';
+                        legendSwitch = false;
+                        var bordercolor = chartJson[j].bordercolor;
+                        bgcolor = chartJson[j].color;
+                        var color = function (ctx) {
+                            if (ctx.type !== 'data') {
+                                return 'transparent';
+                            }
+                            return bgcolor[0];
+                        }
+                        var treeData = originData;
+                        logValue = [];
+
+                        break;
+                    default:
+                        alert('charttype error');
+                }
+
+                var datas = {
+                    labels: chartJson[j].data.labels,
+                    datasets: [{
+                        label: chartJson[j].data.dataset.label,
+                        fill: filltype,
+                        stepped: step,
+                        data: logValue,
+                        realdata: originData,
+                        tree: treeData,
+                        backgroundColor: color,
+                        borderColor: bordercolor,
+                        padding: '10px',
+                        borderWidth: 1,
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                size: 16,
+                                weight: 'normal'
+                            },
+                            anchor: 'center',
+                            align: 'top',
+                            offset: offsetCnt,
+                            display: function (context) {
+                                return context.dataset.data[context.dataIndex] !== 0; // or >= 1 or ...
+                            },
+                            formatter: function (value, context) {
+                                return (context.chart.config._config.data.datasets[0].realdata[context.dataIndex]).toFixed(3).replace(/(\.0+|0+)$/, '');
+                            }
+                        },
+                        labels: {
+                            font: {
+                                size: 14,
+                                weight: 'normal'
+                            },
+                            color: '#fff',
+                            align: 'center',
+                            display: true,
+                            formatter(ctx) {
+                                const data = ctx.chart.data;
+                                return `${data.labels[ctx.dataIndex]}: ${data.datasets[ctx.datasetIndex].tree[ctx.dataIndex]}`;
+                            }
+                        }
+                    }]
+                };
+                var ctx = new Chart(document.getElementById('chart' + storageid + obj[i].category.replace(/\s/gi, "") + "+" + chartJson[j].name), {
+                    type: chartJson[j].type,
+                    data: datas,
+                    options: {
+                        indexAxis: axisSet,
+                        layout: {
+                            padding: 20
+                        },
+                        animation: {
+                            duration: 0, // general animation time
+                        },
+                        hover: {
+                            animationDuration: 0, // duration of animations when hovering an item
+                        },
+                        responsiveAnimationDuration: 0, // animation duration after a resize
+                        //indexAxis: axis,
+                        scales: scale,
+                        plugins: {
+                            legend: {
+                                display: legendSwitch,
+                                position: 'bottom',
+                                align: 'center',
+                                labels: {
+                                    color: '#f4f4f4',
+                                    padding: 10
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (tooltipItem, data) {
+                                        var type = tooltipItem.chart.config._config.type;
+                                        var indice = tooltipItem.dataIndex;
+
+                                        if (type == 'pie' || type == 'doughnut') {
+                                            return tooltipItem.label + ' : ' + tooltipItem.dataset.realdata[indice].toLocaleString('ko-KR');
+                                        }
+                                        else if (type == 'scatter') {
+                                            return JSON.stringify(tooltipItem.dataset.data[indice]).replace(/"|{|}/g, "");
+                                        }
+                                        else {
+                                            return tooltipItem.dataset.realdata[indice].toLocaleString('ko-KR');
+
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        devicePixelRatio: false,
+                        onClick: function (chart, event) {
+                            if (event.length <= 0) return;
+                            var indCnt = event[0].index;
+                            var chartdivId = chart.chart.ctx.canvas.id;
+                            chartdivId = chartdivId.split("+", 2);
+                            var clickLabel = chart.chart.config._config.data.labels[indCnt];
+                            var originDataCnt = chart.chart.config._config.data.datasets[0].realdata[indCnt];
+                            popuptableMaker(chartdivId[1], clickLabel);
+                            tableMaker(chartdivId[1], clickLabel, originDataCnt, storageid, profile)
+                        }
+                    },
+                    plugins: [
+                        {
+                            id: 'textTotalMedia',
+                            afterDatasetDraw: function (chart, args, options) {
+                                const { ctx, chartArea: { top, bottom, left, right, width, height } } = chart;
+
+                                var result = 0;
+                                const arr = chart.config._config.data.datasets[0].realdata;
+                                const reducer = (accumulator, curr) => accumulator + curr;
+
+                                result = arr.reduce(reducer);
+
+
+                                if (result > 0) {
+                                    result = result.toLocaleString('ko-KR');
+
+                                } else {
+                                    //result = "";
+                                }
+                                if (chart.config._config.type == 'doughnut') {
+                                    ctx.save();
+                                    ctx.font = '24px Arial';
+                                    ctx.fillStyle = '#f4f4f4';
+                                    ctx.textAlign = 'center';
+                                    ctx.fillText(result, chart.width / 2, chart.height / 2 - 0); //view sum
+
+                                    ctx.restore();
+                                    ctx.font = '18px Arial';
+                                    ctx.fillStyle = '#f4f4f4';
+                                    ctx.textAlign = 'center';
+                                    ctx.fillText('Total', chart.width / 2, chart.height / 2 - 30); //view 'total'
+                                }
+                            }
+                        },
+                        Labels],
+                });
+            }
+        }
+    }
+
+
+
+
+    loadConverter(objjson, '1', 'Check_Level_01', undefined)
+
+
+</script>

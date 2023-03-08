@@ -13,18 +13,14 @@
 <div id="divimageview">
 
 
-    <div class="warningpopuphide" id="warningclosed" onclick="closewarningPop_up()"></div>
-    <div class="warningpopup-containerhide" id="warningpopup-container" style="width: 500px;">
-        <div style="width: 110px;"></div>
-        <a class="warningpopup-close" href="#">X</a>
-    </div>
     <div style="display: flex; justify-content: space-between;">
-        <div style="margin: 20px 20px 0 25px; font-size: 20px; color: #d4d4d4; font-weight: bold;">
+        <div style="margin: 20px 20px 0 45px; font-size: 20px; color: #000; font-weight: bold;">
             Image Viewer
         </div>
     </div>
-    <div id="container-1" style="display: grid;">
-        <div class="cardbg" style="background: #f4f4f4; margin: 20px; border-radius: 10px;">
+    <div id="container-1" style="display: grid; margin: 20px;">
+
+        <div class="cardbg" style="background: #fff; margin: 20px; border-radius: 10px; display: none;">
             <form name="f1">
                 <div class="layer_search" style="margin: 10px;">
                     <table style="width: 50%; display: inline-block;">
@@ -81,8 +77,8 @@
         </div>
 
         <div class="imageviewer"
-            style="display: grid; grid-template-rows: 5% 95%; background-color:#f4f4f4; margin:0 20px; border-radius: 10px; padding: 0px;">
-            <div class="layer_search" style="display: grid; grid-template-columns: 1fr 1fr; height: 60px;">
+            style="display: grid; grid-template-rows: 5% 95%; background-color:#fff; margin:0 20px; border-radius: 10px; padding: 0px;">
+            <div class="layer_search" style="display: grid; grid-template-columns: 1fr 1fr; height: 60px; display: none;">
                 <div style="display: flex;">
                     <div id="markLabeling" style="display: inline-block">
                     </div>
@@ -99,7 +95,7 @@
                         </table>
                     </div>
                 </div>
-                <div>
+                <div style="display: none;">
                     <table style="float: right; width: 400px;">
                         <tr>
                             <th style="color:#000;text-align: right; width: 200px;">

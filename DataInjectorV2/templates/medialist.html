@@ -1,12 +1,12 @@
 <div id="divmedialist">
 
-    <div style="display: flex; justify-content: space-between;">
+    <div style="display: none; justify-content: space-between;">
         <div style="margin: 20px 20px 0 25px; font-size: 20px; color: #000; font-weight: bold;">
             File List
         </div>
     </div>
 
-    <div class="cardbg" style="margin: 20px; border-radius: 10px;">
+    <div class="cardbg" style="margin: 20px; border-radius: 10px; display: none;">
 
         <form name="f1">
             <div class="layer_search">
@@ -100,10 +100,10 @@
                 <table style="margin-top: 10px;">
                     <tbody>
                         <tr>
-                            <td style="vertical-align: middle; text-align: left; font-size: 16px;">
+                            <td style="vertical-align: middle; text-align: left; font-size: 20px;">
                                 File List
                             </td>
-                            <td>
+                            <td style="vertical-align: middle; text-align: right; font-size: 16px;">
                                 <a id="numberMediaStartPage" style="font-size: 14px;"></a>
                                 <a id="numberMediaEndPage" style="font-size: 14px;"></a>
                                 <a id="totalNumberMedia" style="font-size: 14px; margin-right: 20px;"></a>
@@ -130,23 +130,33 @@
             </div>
         </div>
         <div class="layer_list">
-            <table style="margin: 10px 30px;">
-                <tbody id="MediaList">
+            <table class="table" style="width: calc(100%-30px)">
+                <thead class="thead-light">
                     <tr>
-                        <th style="text-align: center; width: 20px;"><input type="checkbox" id="select-all-checkbox">
+                            <!--
+                        <th style="text-align: center; width: 30px;">
                         </th>
-                        <th style="text-align: center;">No.</th>
-                        <th style="text-align: left; width: 27vw;">File Name</th>
+                        -->
+                        <th style="text-align: left; width: 2vw;">No.</th>
+                        <th style="text-align: left; width: 30vw;"> File Name</th>
                         <th style="width: 11vw;">Add Time</th>
-                        <th style="width: 11vw;">Check Start Time</th>
-                        <th style="width: 11vw;">Check End Time</th>
-                        <th style="text-align: left; width: 27vw;">Media Path</th>
-                        <th>Error Count</th>
-                        <th>Progress</th>
-                        <th>Duration</th>
+                        <!--
+                    <th style="width: 11vw;">Check Start Time</th>
+                    <th style="width: 11vw;">Check End Time</th>
+                    -->
+                        <th style="text-align: left; width: 40vw;">Media Path</th>
+                        <!--
+                    <th>Error Count</th>
+                    <th>Progress</th>
+                    <th>Duration</th>
+                    -->
                         <th>States</th>
-                        <th style="width: 4vw;">Action</th>
-                    </tr>
+                        <!--
+                    <th style="width: 4vw;">Action</th>
+                    -->
+                </tr>
+                  </thead>
+                <tbody id="MediaList">
                 </tbody>
             </table>
         </div>
@@ -157,6 +167,26 @@
     </div>
 
 </div>
+
+<style>
+    .card-revision {
+        background: #fff;
+        margin: 20px;
+        position: relative;
+        display: block;
+        min-height: 100%;
+        width: 100vw - 20px;
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+    }
+
+    .layer_header table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+</style>
+
 <script>
     var MediaList = {
         _storageID: '',
@@ -380,9 +410,9 @@
             /*Div Color State */
             td = document.createElement('TD');
             td.className = ((idx++ % 2 == 0) ? 'Color_' + obj.state + ' center ' : 'Color_' + obj.state +
-            ' center');
+                ' center');
 
-            /* check box */
+            /* check box 
             if (obj.state == 2) {
                 td.innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
                 tr.appendChild(td);
@@ -397,6 +427,7 @@
                     '<input type="hidden" name="title" value="' + obj.mediaid.replaceAll("'", "") + '" /></div>';
                 tr.appendChild(td);
             }
+            */
 
             /*No */
             td = document.createElement('TD');
@@ -440,7 +471,6 @@
             }
             /* 
             Media Check Start Time 
-            */
             if (obj.state == 1) {
                 td = document.createElement('TD');
                 td.className = 'center';
@@ -460,9 +490,9 @@
                 td.innerHTML = obj.checkinfo[0].checkstarttime;
                 tr.appendChild(td);
             }
+            */
             /* 
             Media Check End Time 
-            */
             if (obj.state == 1) {
                 td = document.createElement('TD');
                 td.className = 'center';
@@ -482,6 +512,7 @@
                 td.innerHTML = obj.checkinfo[0].checkendtime;
                 tr.appendChild(td);
             }
+            */
             /* 
             mediapath 
             */
@@ -502,7 +533,6 @@
 
             /* 
             Error Count
-            */
             if (obj.state == 1) {
                 td = document.createElement('TD');
                 td.className = 'center';
@@ -522,10 +552,10 @@
                 td.innerHTML = obj.checkinfo[0].errorcount;
                 tr.appendChild(td);
             }
+            */
 
             /*
             Progress
-            */
             if (obj.state == 1) {
                 td = document.createElement('TD');
                 td.className = 'center';
@@ -552,11 +582,11 @@
                 td.innerHTML = obj.checkinfo[0].progress;
                 tr.appendChild(td);
             }
+            */
 
 
             /*
             Duration
-            */
             if (obj.state == 5 || obj.state == 6) {
                 td = document.createElement('TD');
                 td.onclick = function (_mediaid, _title) {
@@ -571,6 +601,7 @@
                 td.innerHTML = '-';
                 tr.appendChild(td);
             }
+            */
 
             /*
             States
@@ -630,7 +661,6 @@
 
             /*
             Action
-            */
             if (obj.state == 5 || obj.state == 6) {
                 td = document.createElement('TD');
                 td.onclick = function (_mediaid, _title) {
@@ -647,6 +677,7 @@
                     '<img src="../images/IconsSVG/disabled_by_default_white_24dp.svg" alt="" height="20px" />'; //<img src="../images/IconsSVG/file_download_white_24dp.svg" alt="" height="20px" />
                 tr.appendChild(td);
             }
+            */
 
 
 
@@ -1060,7 +1091,7 @@
             var lineLast =
                 '<a href="#"><img src="../images/line_down_last2.gif" border="0" align="absmiddle" onclick="MediaList.fnLineLast()"></a>'; //added by DS	
             var bar =
-            '<img src="../images/white.gif" alt="white space" border="0" align="absmiddle">'; //added by DS	
+                '<img src="../images/white.gif" alt="white space" border="0" align="absmiddle">'; //added by DS	
 
             paggingHtml = lineFirst + bar + bar + bar + bar + bar + bar + lineUp + bar + bar + bar + bar + bar +
                 bar + lineDown + bar + bar + bar + bar + bar + bar + lineLast;
