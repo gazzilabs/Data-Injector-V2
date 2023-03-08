@@ -16,6 +16,9 @@
             </div>
             <div style="text-align: center; font-size: 14px;">작업 내역</div>
         </div>
+        <div>
+            <button onclick="showprofile()">profile</button>
+        </div>
     </div>
 </div>
 <div class="row" style="margin-left: 0; margin-right: 0;">
@@ -487,6 +490,25 @@
     </div>
 </div>
 
+
+
+<div class="modal" id="modal-profile" display="none">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">내보내기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="div-profile" style="overflow-y: auto;">
+                    {% include 'profile.html' %}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    onclick="closePopup('modal-start');">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
@@ -1382,6 +1404,12 @@
 
         return box;
     }
+
+
+    function showprofile() {
+        $("#modal-profile").modal("show");
+    }
+
 </script>
 <style>
     body {
