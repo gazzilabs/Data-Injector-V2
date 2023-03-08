@@ -16,9 +16,6 @@
             </div>
             <div style="text-align: center; font-size: 14px;">작업 내역</div>
         </div>
-        <div>
-            <button onclick="showprofile()">profile</button>
-        </div>
     </div>
 </div>
 <div class="row" style="margin-left: 0; margin-right: 0;">
@@ -32,11 +29,10 @@
                         <div style="font-weight: 600;">속성</div>
                     </button>
                 </h2>
-                <div class="collapse collapse-horizontal show" id="option"
-                    style="padding-left:0 1rem; " >
+                <div class="collapse collapse-horizontal show" id="option" style="padding-left:0 1rem; ">
                     <div class="accordion-body" style="height: 280px; overflow-y:auto;">
                         <div class="mb-2" id="option-name" style="font-weight: 600;"></div>
-                        <div id="option-detail" >
+                        <div id="option-detail">
                         </div>
                     </div>
                 </div>
@@ -498,14 +494,14 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">내보내기</h5>
+                <h5 class="modal-title">Hawkeye 설정</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="div-profile" style="overflow-y: auto;">
                     {% include 'profile.html' %}
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                    onclick="closePopup('modal-start');">Close</button>
+                        onclick="closePopup('modal-start');">Close</button>
                 </div>
             </div>
         </div>
@@ -535,192 +531,244 @@
         "drawflow": {
             "Home": {
                 "data": {
-                    "8": {
-                        "id": 8,
-                        "name": "hawkeye",
-                        "data": {},
-                        "class": "machining",
-                        "html": "\n <div onclick=\"hawkeyeClick()\">\n <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "9",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {
-                            "output_1": {
-                                "connections": [{
-                                    "node": "13",
-                                    "output": "input_1"
-                                }]
-                            }
-                        },
-                        "pos_x": 595,
-                        "pos_y": 238.66666666666666
-                    },
-                    "9": {
-                        "id": 9,
-                        "name": "videotoimage",
-                        "data": {},
-                        "class": "machining",
-                        "html": "\n <div onclick=\"videoClick('비디오를 이미지로 변환');\">\n <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>\n <div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "16",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {
-                            "output_1": {
-                                "connections": [{
-                                        "node": "14",
-                                        "output": "input_1"
-                                    },
-                                    {
-                                        "node": "8",
-                                        "output": "input_1"
-                                    }
-                                ]
-                            }
-                        },
-                        "pos_x": 246,
-                        "pos_y": 133.33333333333334
-                    },
-                    "11": {
-                        "id": 11,
-                        "name": "original-viewer",
-                        "data": {},
-                        "class": "viewer",
-                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>\n \n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "16",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {},
-                        "pos_x": 254.33333333333334,
-                        "pos_y": 22
-                    },
-                    "12": {
-                        "id": 12,
-                        "name": "chart",
-                        "data": {},
-                        "class": "viewer",
-                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>\n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "15",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {},
-                        "pos_x": 586,
-                        "pos_y": 359.6666666666667
-                    },
-                    "13": {
-                        "id": 13,
-                        "name": "test-viewer",
-                        "data": {},
-                        "class": "viewer",
-                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>\n \n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "8",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {},
-                        "pos_x": 812.3333333333334,
-                        "pos_y": 243
-                    },
-                    "14": {
-                        "id": 14,
-                        "name": "test-viewer",
-                        "data": {},
-                        "class": "viewer",
-                        "html": "\n <div>\n <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>\n \n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "9",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {},
-                        "pos_x": 813,
-                        "pos_y": 136.66666666666666
-                    },
-                    "15": {
-                        "id": 15,
-                        "name": "template",
-                        "data": {},
-                        "class": "template",
-                        "html": "\n <div class='' >\n <div class='title-box'><i class='fa-solid fa-code'></i>코드 커스텀</div>\n <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>\n <button class='btn btn-primary' onclick='codeblock()'>코드 작성</button>\n </div>\n </div>\n ",
-                        "typenode": false,
-                        "inputs": {
-                            "input_1": {
-                                "connections": [{
-                                    "node": "16",
-                                    "input": "output_1"
-                                }]
-                            }
-                        },
-                        "outputs": {
-                            "output_1": {
-                                "connections": [{
-                                    "node": "12",
-                                    "output": "input_1"
-                                }]
-                            }
-                        },
-                        "pos_x": 297.6666666666667,
-                        "pos_y": 275.3333333333333
-                    },
-                    "16": {
-                        "id": 16,
+                    "17": {
+                        "id": 17,
                         "name": "pet",
                         "data": {},
                         "class": "data",
-                        "html": "\n <div class='d-flex flex-row' onclick=\"openPopup()\">\n <div class='d-flex flex-row justify-content-between'>\n <div><i class='fa-solid fa-database'></i></div>\n <div> 데이터셋 입수</div>\n </div> \n </div>\n ",
+                        "html": "\n <div class='d-flex flex-row' onclick=\"openPopup(); screenChange('filelist');\">\n <div class='d-flex flex-row justify-content-between'>\n <div><i class='fa-solid fa-database'></i></div>\n <div> 데이터셋 입수</div>\n </div> \n </div>\n ",
                         "typenode": false,
                         "inputs": {},
                         "outputs": {
                             "output_1": {
                                 "connections": [{
-                                        "node": "11",
+                                        "node": "20",
                                         "output": "input_1"
                                     },
                                     {
-                                        "node": "9",
+                                        "node": "18",
                                         "output": "input_1"
                                     },
                                     {
-                                        "node": "15",
+                                        "node": "26",
                                         "output": "input_1"
                                     }
                                 ]
                             }
                         },
-                        "pos_x": 52,
-                        "pos_y": 155
+                        "pos_x": 282,
+                        "pos_y": 197
+                    },
+                    "18": {
+                        "id": 18,
+                        "name": "original-viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div onclick='screenChange(\"imageviewer\"); viewerProperty(\"origin-viewer\");'>\n <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "17",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 580,
+                        "pos_y": 27
+                    },
+                    "20": {
+                        "id": 20,
+                        "name": "videotoimage",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n <div onclick=\"videoClick('비디오를 이미지로 변환'); screenChange('filelist');\">\n <div class='title-box'><i class='fa-solid fa-right-left'></i> 비디오를 이미지로 변환</div>\n <div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "17",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                        "node": "22",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "21",
+                                        "output": "input_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "pos_x": 559,
+                        "pos_y": 170
+                    },
+                    "21": {
+                        "id": 21,
+                        "name": "autolabeling",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n <div onclick=\"labelClick('자동 이미지 라벨링'); screenChange('filelist');\">\n <div class='title-box'><i class='fa-solid fa-right-left'></i>자동 이미지 라벨링</div>\n <div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "20",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "24",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 823,
+                        "pos_y": 166
+                    },
+                    "22": {
+                        "id": 22,
+                        "name": "hawkeye",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n <div onclick=\"hawkeyeClick(); screenChange('filelist');\">\n <div class='title-box'><i class='fa-solid fa-photo-film'></i> Hawkeye</div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "20",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "25",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 829,
+                        "pos_y": 46
+                    },
+                    "24": {
+                        "id": 24,
+                        "name": "test-viewer",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div onclick='screenChange(\"imageviewer\"); viewerProperty(\"test-viewer\");'>\n <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>\n \n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "21",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 1082,
+                        "pos_y": 168
+                    },
+                    "25": {
+                        "id": 25,
+                        "name": "chart",
+                        "data": {},
+                        "class": "viewer",
+                        "html": "\n <div onclick='screenChange(\"statsviewer\"); viewerProperty(\"stats-viewer\");'>\n <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "22",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 1075,
+                        "pos_y": 46
+                    },
+                    "26": {
+                        "id": 26,
+                        "name": "template",
+                        "data": {},
+                        "class": "template",
+                        "html": "\n <div class='' onclick=\"codeClick(); screenChange('filelist');\">\n <div class='title-box'><i class='fa-solid fa-code'></i>코드 커스텀</div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "17",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "27",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 590,
+                        "pos_y": 322
+                    },
+                    "27": {
+                        "id": 27,
+                        "name": "coco",
+                        "data": {},
+                        "class": "machining",
+                        "html": "\n <div onclick=\"cocoClick('COCO데이터셋 변환'); screenChange('filelist');\">\n <div class='title-box'><i class='fa-solid fa-right-left'></i> COCO데이터셋 변환</div>\n <div>\n <div>\n <div class='progress mb-2' role='progressbar' aria-label='Basic example' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='height:8px;'>\n <div class='progress-bar'></div>\n </div>\n </div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "26",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [{
+                                    "node": "29",
+                                    "output": "input_1"
+                                }]
+                            }
+                        },
+                        "pos_x": 819,
+                        "pos_y": 310
+                    },
+                    "29": {
+                        "id": 29,
+                        "name": "xdq",
+                        "data": {},
+                        "class": "xdq",
+                        "html": "\n <div class='' onclick=\"xdqClick();\">\n <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>\n </div>\n ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [{
+                                    "node": "27",
+                                    "input": "output_1"
+                                }]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": 1093,
+                        "pos_y": 316
                     }
                 }
             }
@@ -777,13 +825,6 @@
 
     editor.on('nodeSelected', function (id) {
         console.log("Node selected " + id);
-        if(id == 16 || id == 8 || id == 9 || id == 15){
-            screenChange('filelist');
-        } else if (id == 14 || id == 13 || id == 11) {
-            screenChange('imageviewer');
-        } else if (id == 12){
-            screenChange('statsviewer');        
-        }
     })
 
     editor.on('moduleCreated', function (name) {
@@ -904,7 +945,7 @@
 
             case 'original-viewer':
                 var originalViewer = `
-              <div onclick='screenChange("imageviewer");'>
+              <div onclick='screenChange("imageviewer"); viewerProperty("origin-viewer");'>
                 <div class='title-box'><i class='fa-solid fa-images'></i>원본 이미지 뷰어</div>
                 
               </div>
@@ -914,7 +955,7 @@
 
             case 'test-viewer':
                 var testViewer = `
-              <div onclick='screenChange("imageviewer");'>
+              <div onclick='screenChange("imageviewer"); viewerProperty("test-viewer");'>
                 <div class='title-box'><i class='fa-solid fa-images'></i>검사 이미지 뷰어</div>
                 
               </div>
@@ -924,7 +965,7 @@
 
             case 'label-viewer':
                 var labelviewer = `
-              <div onclick='screenChange("imageviewer");'>
+              <div onclick='screenChange("imageviewer"); viewerProperty("label-viewer");'>
                 <div class='title-box'><i class='fa-solid fa-images'></i>라벨링 이미지 뷰어</div>
                 
               </div>
@@ -934,7 +975,7 @@
 
             case 'chart':
                 var chart = `
-                <div onclick='screenChange("statsviewer");'>
+                <div onclick='screenChange("statsviewer"); viewerProperty("stats-viewer");'>
                     <div class='title-box'><i class='fa-solid fa-chart-pie'></i>통계</div>
               </div>
               `
@@ -997,12 +1038,8 @@
                 break;
             case 'xdq':
                 var xdq = `
-              <div class='' >
+              <div class='' onclick="xdqClick();">
                 <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>
-                <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
-                    <button class='btn btn-primary' onclick='moveXDQ()'>XDQ</button>
-                   
-                </div>
               </div>
               `;
                 editor.addNode('xdq', 1, 0, pos_x, pos_y, 'xdq', {}, xdq);
@@ -1236,7 +1273,7 @@
     }
 
     function moveXDQ() {
-        window.open('http://101.101.219.218:8000/', 'XDQ');
+        window.open('http://101.101.219.218:8000/datasetList?ID=99/', 'XDQ');
     }
 
     function openstart() {
@@ -1245,6 +1282,104 @@
 
 
     //클릭이벤트
+    function viewerProperty(name) {
+        var title = "";
+        var property = "";
+
+        switch (name) {
+            case ("origin-viewer"):
+                title = "원본 이미지 뷰어"
+                property = `
+                <div class='input-group my-3'>
+                    <span class='input-group-text'>파일 경로</span>
+                    <input type='text' class='form-control' id="url" value="D:\\project\\Data-Injector">
+                </div>`;
+                break;
+            case ("test-viewer"):
+                title = "검사 이미지 뷰어"
+                property = `
+            <div class='input-group my-3'>
+                                <span class='input-group-text'>파일 경로</span>
+                                <input type='text' class='form-control' id="url" value="D:\\project\\Data-Injector\\results">
+                            </div>
+                            <div>검사결과 목록</div>
+                            <div class='input-group mb-3'>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>변환된 이미지</option>
+                                  </select>
+                            </div>
+            `;
+                break;
+            case ("label-viewer"):
+                title = "라벨링 이미지 뷰어"
+                property = `
+            <div class='input-group my-3'>
+                                <span class='input-group-text'>라벨링 파일 경로</span>
+                                <input type='text' class='form-control' id="url" value="D:\\project\\Data-Injector\\labellingfile">
+                            </div>
+                            <div class='input-group my-3'>
+                                <span class='input-group-text'>이미지 폴더 경로</span>
+                                <input type='text' class='form-control' id="url" value="D:\\project\\Data-Injector\\image">
+                            </div>
+                            <div>라벨링 타입</div>
+                            <div class='input-group mb-3'>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option>Hands</option>
+                                    <option>Box</option>
+                                    <option>Polygon</option>
+                                    <option>Skeleton</option>
+                                    <option selected>Face</option>
+                                  </select>
+                            </div>
+                            <div>키포인트 선택</div>
+                            <div class='input-group mb-3'>
+                                <select class="form-select" aria-label="Default select example">
+                                <option value="1" selected>Face Keypoint 68</option>
+                                <option value="2">Body Keypoint 26</option>
+                                <option value="3">Hands Keypoint 42</option>
+                                  </select>
+                            </div>
+            `;
+                break;
+            case ("stats-viewer"):
+                title = "통계"
+                property = `
+                <hr>
+                <div style="font-weight: 600;">차트 1</div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>차트</div>
+                                    <div class='input-group mb-3'>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Bar</option>
+                                            <option >Line</option>
+                                        </select>
+                                    </div>
+                                    <div>X축</div>
+                                    <div class='input-group mb-3'>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>시간</option>
+                                        </select>
+                                    </div>
+                                    <div>Y축</div>
+                                    <div class='input-group mb-3'>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1" selected>오류 파일 개수</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2" style="text-align: center;">
+                                <button class="btn btn-primary">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                    차트 추가</button>
+                            </div>
+                `
+                break;
+        }
+        document.getElementById("option-name").innerText = title;
+        document.getElementById("option-detail").innerHTML = property
+    }
 
     function openPopup(name) {
         $("#option-view").show();
@@ -1345,7 +1480,7 @@
         document.getElementById("option-name").innerText = 'Hawkeye';
         document.getElementById("option-detail").innerHTML = `
         <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
-        <button class='btn btn-primary' onclick='hawkeyeSetting();'>옵션 설정</button>
+        <button class='btn btn-primary' onclick='showprofile();'>옵션 설정</button>
         </div>
         `
     }
@@ -1398,6 +1533,18 @@
 
     }
 
+    function xdqClick() {
+        $("#option-view").show();
+        $("#option-detail").show();
+
+        document.getElementById("option-name").innerText = 'XDQ';
+        document.getElementById("option-detail").innerHTML = `
+        <div style="color:#0d6efd;"><i class="fa-solid fa-circle-check" ></i>로그인 연동 완료</div>
+        <div class='d-flex flex-row justify-content-center my-2 ' style='text-align: center;'>
+                    <button class='btn btn-primary' onclick='moveXDQ();'> XDQ 연동</button>
+        </div>`;
+    }
+
     function codeClick() {
         $("#option-view").show();
         $("#option-detail").show();
@@ -1426,7 +1573,6 @@
     function showprofile() {
         $("#modal-profile").modal("show");
     }
-
 </script>
 <style>
     body {
