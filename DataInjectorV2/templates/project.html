@@ -33,19 +33,21 @@
                     </button>
                 </h2>
                 <div class="collapse collapse-horizontal show" id="option"
-                    style="padding-left:0 1rem; height: 300px; overflow-y: auto;">
-                    <div class="accordion-body">
+                    style="padding-left:0 1rem; " >
+                    <div class="accordion-body" style="height: 280px; overflow-y:auto;">
                         <div class="mb-2" id="option-name" style="font-weight: 600;"></div>
-                        <div id="option-detail"></div>
+                        <div id="option-detail" >
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="p-3 list-group-item d-flex flex-row justify-content-between "
+            style="background-color:rgba(0, 0, 0, 0.03);">
+            <div style="font-weight: 600; ">작업</div>
+        </div>
         <div class="col align-items-stretch bg-white" style="overflow-y: auto; ">
-            <div class="p-3 list-group-item d-flex flex-row justify-content-between "
-                style="background-color:rgba(0, 0, 0, 0.03);">
-                <div style="font-weight: 600; ">작업</div>
-            </div>
+
             <div class="accordion" id="menu" style="overflow-y: auto;">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
@@ -512,6 +514,8 @@
 
 
 <script>
+    document.getElementById("back").style.display = "";
+
     function screenChange(it) {
         document.getElementById("resizable").style.height = "50vh";
 
@@ -972,7 +976,7 @@
                 break;
             case 'autolabeling':
                 var label = `
-              <div onclick="videoClick('자동 이미지 라벨링'); screenChange('filelist');">
+              <div onclick="labelClick('자동 이미지 라벨링'); screenChange('filelist');">
                 <div class='title-box'><i class='fa-solid fa-right-left'></i>자동 이미지 라벨링</div>
                 <div>
                     <div>
@@ -1273,10 +1277,6 @@
                         <input class="form-check-input" type="checkbox" id="watching">
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    onclick="">저장</button>
             </div>`
 
     }
@@ -1359,13 +1359,23 @@
         urlboxFill(name, url, detail);
     }
 
-    function autolabeling() {
+    function labelClick() {
         url = `http://118.67.129.214:7060/Analyze/Check`;
         document.getElementById("option-name").innerText = "자동 이미지 라벨링";
-        document.getElementById("option-detail").innerHTML = urlboxCreate();
+        document.getElementById("option-detail").innerHTML = `
+        <div class='input-group my-3'>
+                                <span class='input-group-text'>URL</span>
+                                <input type='text' class='form-control' id="url"></div>
+                            <select class="form-select form-select" aria-label=".form-select-sm example">
+                                <option selected>-- Select Key Point --</option>
+                                <option value="1">Face Keypoint 68</option>
+                                <option value="2">Body Keypoint 26</option>
+                                <option value="3">Hands Keypoint 42</option>
+                            </select>
+        `;
 
+        document.getElementById("url").value = url;
 
-        urlboxFill(name, url, detail)
     }
 
 
