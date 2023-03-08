@@ -250,7 +250,6 @@
         <div class="col-12 shadow-sm" style="overflow-y: auto; height: 35vh;">
             {% include 'medialist.html' %}
             {% include 'imageview.html' %}
-            {% include 'statsview.html' %}
         </div>
     </div>
 </div>
@@ -456,9 +455,7 @@
 
 
 <script>
-    $(function () {
-        $("#resizable").resizable();
-    });
+
 
     let projectJson = JSON.parse(JSON.stringify(projectlist));
     let storageJson = JSON.parse(JSON.stringify(storage));
