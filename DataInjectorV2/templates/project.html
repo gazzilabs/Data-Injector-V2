@@ -777,6 +777,13 @@
 
     editor.on('nodeSelected', function (id) {
         console.log("Node selected " + id);
+        if(id == 16 || id == 8 || id == 9 || id == 15){
+            screenChange('filelist');
+        } else if (id == 14 || id == 13 || id == 11) {
+            screenChange('imageviewer');
+        } else if (id == 12){
+            screenChange('statsviewer');        
+        }
     })
 
     editor.on('moduleCreated', function (name) {
