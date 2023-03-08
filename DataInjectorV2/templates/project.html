@@ -516,6 +516,12 @@
         document.getElementById("resizable").style.height = "50vh";
 
         $(".viewers").hide();
+
+        if (it == 'xdq') {
+            document.getElementById("resizable").style.height = "100vh";
+            return;
+        }
+
         $("#" + it).show();
     }
 
@@ -743,7 +749,7 @@
                         "outputs": {
                             "output_1": {
                                 "connections": [{
-                                    "node": "29",
+                                    "node": "30",
                                     "output": "input_1"
                                 }]
                             }
@@ -751,12 +757,12 @@
                         "pos_x": 819,
                         "pos_y": 310
                     },
-                    "29": {
-                        "id": 29,
+                    "30": {
+                        "id": 30,
                         "name": "xdq",
                         "data": {},
                         "class": "xdq",
-                        "html": "\n <div class='' onclick=\"xdqClick();\">\n <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>\n </div>\n ",
+                        "html": "\n <div class='' onclick=\"xdqClick(); screenChange('xdq');\">\n <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>\n </div>\n ",
                         "typenode": false,
                         "inputs": {
                             "input_1": {
@@ -767,8 +773,8 @@
                             }
                         },
                         "outputs": {},
-                        "pos_x": 1093,
-                        "pos_y": 316
+                        "pos_x": 1108,
+                        "pos_y": 318
                     }
                 }
             }
@@ -1038,7 +1044,7 @@
                 break;
             case 'xdq':
                 var xdq = `
-              <div class='' onclick="xdqClick();">
+              <div class='' onclick="xdqClick(); screenChange('xdq');">
                 <div class='title-box'><i class='fa-solid fa-circle-nodes'></i>XDQ 연동</div>
               </div>
               `;
