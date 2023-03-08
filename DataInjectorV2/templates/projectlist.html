@@ -1,164 +1,235 @@
 {% extends "header.html" %}
 
-    {% block content %}
-    <div class="container">
-        <div class="my-4" style="font-size: 2em; font-weight: 600;">프로젝트 리스트</div>
-        <div id="toolbar">
-            <button id="remove" class="btn btn-danger" disabled>
-                <i class="fa fa-trash"></i> Delete
-            </button>
-        </div>
-        <table class="h-100" id="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" data-show-toggle="true"
-            data-show-fullscreen="true" data-show-columns="true" data-show-columns-toggle-all="true"
-            data-detail-view="true" data-show-export="true" data-click-to-select="true"
-            data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
-            data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" data-show-footer="true"
-            data-side-pagination="server" data-response-handler="responseHandler">
-            <tr>
-                <th data-field="id">ID</th>
-                <th data-field="name">프로젝트 이름</th>
-                <th data-field="business_name">사업명</th>
-                <th data-field="startdate">작업 시작</th>
-                <th data-field="startdate">작업 끝</th>
-                <th data-field="startdate">시작 시간</th>
+{% block content %}
+<div class="container">
+    <div class="my-4" style="font-size: 2em; font-weight: 600;">프로젝트 리스트</div>
+    <table class="h-100 table table-striped" id="table" data-toolbar="#toolbar" data-search="true"
+        data-show-refresh="true" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true"
+        data-show-columns-toggle-all="true" data-detail-view="true" data-show-export="true" data-click-to-select="true"
+        data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
+        data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" data-show-footer="true"
+        data-side-pagination="server" data-response-handler="responseHandler">
+        <tr class="table-success">
+            <th data-field="name">프로젝트 이름</th>
+            <th data-field="business_name">사업명</th>
+            <th data-field="startdate">시업기간</th>
+            <th data-field="startdate">담당자</th>
+            <th data-field="startdate">상태</th>
+        </tr>
 
-              </tr>
-        </table>
+        <tr>
+                <td><a href="/project">02.반려동물 안구 및 피부질환 데이터</a></td>
+                <td>2021 인공지능 학습용데이터구축(2차)지원사업</td>
+                <td>2021.06.01 ~ 2021.12.31 7개월</td>
+                <td>조영탁, 임소현</td>
+                <td>완료</td>
+        </tr>
+        <tr>
+            <td><a href="/project">16. 영유아 행동 영상 데이터</a></td>
+            <td>2021 인공지능 학습용데이터구축(2차)지원사업</td>
+            <td>021.06.01 ~ 2021.12.31 7개월</td>
+            <td>조영탁, 정소현</td>
+            <td>완료</td>
+        </tr>
+        <tr>
+            <td><a href="/project">34. 고양시 태권도 데이터</a></td>
+            <td>2021 인공지능 학습용데이터구축(2차)지원사업</td>
+            <td>2021.06.01 ~ 2021.12.31 7개월</td>
+            <td>조영탁, 정소현</td>
+            <td>완료</td>
+        </tr>
+        <tr>
+            <td><a href="/project">식품 리테일 상품추천 및 수요예측 인공지능(AI)솔루션 개발</a></td>
+            <td>2021 AI바우처 지원사업</td>
+            <td>2021.04.01 ~ 2021.10.31 7개월</td>
+            <td>조영탁, 정현우, 임소현, 장기헌</td>
+            <td>완료</td>
+        </tr>
+        <tr>
+            <td><a href="/project">3D케릭터 활용 실시간 방송을 위한 얼굴/손 포즈 예측 모델 개발</a></td>
+            <td>2022 AI바우처 지원사업</td>
+            <td>2022.04.01 ~ 2022.10.31 7개월</td>
+            <td>조영탁, 정소현</td>
+            <td>완료</td>
+        </tr>
+        <tr>
+            <td><a href="/project">스포츠 사람동작 '축구데이터' 고도화</a></td>
+            <td>2022 인공지능 학습용 데이터 구축 지원사업(3차)</td>
+            <td>2022.06.01 ~ 2022.12.31 7개월</td>
+            <td>조영탁, 김민기, 정소현</td>
+            <td>완료</td>
+        </tr>
+        <tr>
+            <td><a href="/project">규칙기반 고차원 영상 인식을 위한 데이터</a></td>
+            <td>2022 인공지능 학습용 데이터 구축 지원사업(3차)</td>
+            <td>2022.06.01 ~ 2022.12.31 7개월</td>
+            <td>안기옥, 박창진</td>
+            <td>진행 중</td>
+        </tr>
+        <tr>
+            <td><a href="/project">3D 사람간 상호작용 데이터</a></td>
+            <td>2022 인공지능 학습용 데이터 구축 지원사업(3차)</td>
+            <td>2022.06.01 ~ 2022.12.31 7개월</td>
+            <td>조영탁, 정소현, 임소현</td>
+            <td>완료</td>
+        </tr>
+    </table>
 
-    </div>
-   
+</div>
+<style>
+    a:link {
+        text-decoration: none;
+        color: #212529;
+      }
+      
+      a:visited {
+        text-decoration: none;
+        color: #212529;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+        color: #212529;
+      }
+      
+      a:active {
+        text-decoration: underline;
+        color: #212529;
+      }
+</style>
 
-    <script>
-        var $table = $("#table")
-        var $remove = $("#remove")
-        var selections = []
+<script>
+    var $table = $("#table")
+    var $remove = $("#remove")
+    var selections = []
 
-        $(function() {
-            var data = [
-              {
+    $(function () {
+        var data = [{
                 "id": 0,
                 "name": "project01",
                 "business_name": "tkd",
-                "startdate":"2023-02-02",
-                "enddate":"2023-02-04",
-                "createdate":"2023-02-02"
-              },
-              {
+                "startdate": "2023-02-02",
+                "enddate": "2023-02-04",
+                "createdate": "2023-02-02"
+            },
+            {
                 "id": 1,
                 "name": "project01",
                 "business_name": "tkd",
-                "startdate":"2023-02-02",
-                "enddate":"2023-02-04",
-                "createdate":"2023-02-02"
-              },
-            ]
-            $table.bootstrapTable({data: data})
-          })
-
-        function getIdSelections() {
-            return $.map($table.bootstrapTable("getSelections"), function (row) {
-                return row.id
-            })
-        }
-
-        function responseHandler(res) {
-            $.each(res.rows, function (i, row) {
-                row.state = $.inArray(row.id, selections) !== -1
-            })
-            return res
-        }
-
-        function detailFormatter(index, row) { // 추가 테이블
-            var html = []
-            $.each(row, function (key, value) {
-                html.push("<p><b>" + key + ":</b> " + value + "</p>")
-            })
-            return html.join("")
-        }
-
-        function operateFormatter(value, row, index) {
-
-        }
-
-        window.operateEvents = {
-            "click .like": function (e, value, row, index) {
-                alert("You click like action, row: " + JSON.stringify(row))
+                "startdate": "2023-02-02",
+                "enddate": "2023-02-04",
+                "createdate": "2023-02-02"
             },
-            "click .remove": function (e, value, row, index) {
-                $table.bootstrapTable("remove", {
-                    field: "id",
-                    values: [row.id]
-                })
-            }
-        }
-
-        function totalTextFormatter(data) {
-            return "Total"
-        }
-
-        function totalNameFormatter(data) {
-            return data.length
-        }
-
-        function totalPriceFormatter(data) {
-            var field = this.field
-            return "$" + data.map(function (row) {
-                return +row[field].substring(1)
-            }).reduce(function (sum, i) {
-                return sum + i
-            }, 0)
-        }
-
-        function initTable() {
-            $table.bootstrapTable("destroy").bootstrapTable({
-                height: "100%",
-                locale: $("#locale").val(),
-                columns: [
-                    [{
-                        field: "name",
-                        title: "Item Name",
-                        sortable: true,
-                        align: "center"
-                    }, {
-                        field: "business_name",
-                        title: "Item Price",
-                        sortable: true,
-                        align: "center",
-                    }, {
-                        field: "startdate",
-                        title: "Item Operate",
-                        align: "center",
-                        clickToSelect: false,
-                        events: window.operateEvents,
-                    }]
-                ]
-            })
-            $table.on("check.bs.table uncheck.bs.table " +
-                "check-all.bs.table uncheck-all.bs.table",
-                function () {
-                    $remove.prop("disabled", !$table.bootstrapTable("getSelections").length)
-
-                    // save your data, here just save the current page
-                    selections = getIdSelections()
-                    // push or splice the selections if you want to save all data selections
-                })
-            $table.on("all.bs.table", function (e, name, args) {
-                console.log(name, args)
-            })
-            $remove.click(function () {
-                var ids = getIdSelections()
-                $table.bootstrapTable("remove", {
-                    field: "id",
-                    values: ids
-                })
-                $remove.prop("disabled", true)
-            })
-        }
-
-        $(function () {
-            initTable()
-
-            $("#locale").change(initTable)
+        ]
+        $table.bootstrapTable({
+            data: data
         })
-    </script>
-    {% endblock %}
+    })
+
+    function getIdSelections() {
+        return $.map($table.bootstrapTable("getSelections"), function (row) {
+            return row.id
+        })
+    }
+
+    function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.state = $.inArray(row.id, selections) !== -1
+        })
+        return res
+    }
+
+    function detailFormatter(index, row) { // 추가 테이블
+        var html = []
+        $.each(row, function (key, value) {
+            html.push("<p><b>" + key + ":</b> " + value + "</p>")
+        })
+        return html.join("")
+    }
+
+    function operateFormatter(value, row, index) {
+
+    }
+
+    window.operateEvents = {
+        "click .like": function (e, value, row, index) {
+            alert("You click like action, row: " + JSON.stringify(row))
+        },
+        "click .remove": function (e, value, row, index) {
+            $table.bootstrapTable("remove", {
+                field: "id",
+                values: [row.id]
+            })
+        }
+    }
+
+    function totalTextFormatter(data) {
+        return "Total"
+    }
+
+    function totalNameFormatter(data) {
+        return data.length
+    }
+
+    function totalPriceFormatter(data) {
+        var field = this.field
+        return "$" + data.map(function (row) {
+            return +row[field].substring(1)
+        }).reduce(function (sum, i) {
+            return sum + i
+        }, 0)
+    }
+
+    function initTable() {
+        $table.bootstrapTable("destroy").bootstrapTable({
+            height: "100%",
+            locale: $("#locale").val(),
+            columns: [
+                [{
+                    field: "name",
+                    title: "Item Name",
+                    sortable: true,
+                    align: "center"
+                }, {
+                    field: "business_name",
+                    title: "Item Price",
+                    sortable: true,
+                    align: "center",
+                }, {
+                    field: "startdate",
+                    title: "Item Operate",
+                    align: "center",
+                    clickToSelect: false,
+                    events: window.operateEvents,
+                }]
+            ]
+        })
+        $table.on("check.bs.table uncheck.bs.table " +
+            "check-all.bs.table uncheck-all.bs.table",
+            function () {
+                $remove.prop("disabled", !$table.bootstrapTable("getSelections").length)
+
+                // save your data, here just save the current page
+                selections = getIdSelections()
+                // push or splice the selections if you want to save all data selections
+            })
+        $table.on("all.bs.table", function (e, name, args) {
+            console.log(name, args)
+        })
+        $remove.click(function () {
+            var ids = getIdSelections()
+            $table.bootstrapTable("remove", {
+                field: "id",
+                values: ids
+            })
+            $remove.prop("disabled", true)
+        })
+    }
+
+    $(function () {
+        initTable()
+
+        $("#locale").change(initTable)
+    })
+</script>
+{% endblock %}
