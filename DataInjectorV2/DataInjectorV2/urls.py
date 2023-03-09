@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from projectList.views import projectlist
 from projectPage.views import project
+from projectList.views import testcode
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('projectlist/', projectlist),
     path('project/', project),
+    path('testcode/', testcode),
 ]
